@@ -1,8 +1,8 @@
 # CortexDocs — Project Brief
 
 **Author:** Rob Dixon
-**Date:** May 14, 2026
-**Status:** Draft v0.1 — for review and refinement before kickoff
+**Date:** May 21, 2026
+**Status:** Draft v0.2 — for review and refinement before kickoff
 **Target completion:** 4 working days from kickoff
 
 ---
@@ -13,10 +13,10 @@ Build a small, working AI documentation generator that ingests the Cortex MCP se
 
 The project exists for two reasons:
 
-1. **Direct demonstration of capability** for the Salesforce Lead Developer Documentation Writer role, which explicitly calls for experience using AI tools to streamline content creation, structuring content for AI ingestion, and evaluating documentation quality for AI consumers.
+1. **Direct demonstration of capability** and experience using AI tools to streamline content creation, structuring content for AI ingestion, and evaluating documentation quality for AI consumers.
 2. **Genuine craft exploration** of how a small multi-agent pipeline can produce documentation that holds up under both reader populations — a question worth answering on its own merits, independent of the job application.
 
-The project is built for the interview, not announced before it. It exists to be shown, not pitched.
+The first version is a working prototype, not a production-ready tool.
 
 ---
 
@@ -135,8 +135,6 @@ These need to be resolved before day 1 begins.
 1. **Agent framework.** LangGraph (real learning credential, transfers to other projects, half-day learning tax) versus rolling my own with the Anthropic SDK (fastest, lowest risk, less impressive on the resume). My current lean: **LangGraph**, because it's already in my learning plan and a real project is the best way to learn it. Reconsider if day 1 reveals friction.
 2. **Project name.** "CortexDocs" is the working title. Acceptable, or pick something better.
 3. **Optional stress test.** Should I reserve half of day 4 to run the pipeline against a second small repo as a generality demonstration? Strongly tempted; depends on day 3 timing.
-4. **License and repo visibility.** Public repo on GitHub from day 1, or private until interview, or never public. My lean: **public from day 1**, MIT license. It's a stronger artifact if the hiring manager can link to it.
-5. **Whether to mention this project before the interview.** My current plan, per prior conversation: **no**. Build it, bring it, show it organically when AI doc tooling comes up.
 
 ---
 
@@ -204,8 +202,8 @@ A few things worth stating plainly so they do not get scope-crept in later:
 
 ---
 
-## 11. What success looks like at the interview
+## 11. What success looks like
 
 I can open my laptop, show the rendered docs site, walk through one page, show the corresponding `llms.txt` entry, run a single eval question live (or play a recorded run), and show the comparison report. Total time: 5-7 minutes.
 
-The conversation I want this to enable: "How would you apply this thinking to Salesforce's developer documentation?"
+The conversation I want this to enable: "How would you apply this thinking to our developer documentation?"

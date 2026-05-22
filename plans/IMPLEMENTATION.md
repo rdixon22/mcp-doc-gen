@@ -34,7 +34,7 @@ Day 2 is the **minimum shippable artifact** for the interview. If Days 3–4 sli
 
 ## Day 1 — Project setup + Phase 1 discovery
 
-**Goal:** Running `python -m cortexdocs generate --server-cmd "..."` produces `output/manifest.json` containing all 16 Cortex tools.
+**Goal:** Running `python3 -m cortexdocs generate --server-cmd "..."` produces `output/manifest.json` containing all 16 Cortex tools.
 
 ### Morning: Project scaffold
 
@@ -83,16 +83,16 @@ REPO_PATH=/Users/you/Documents/dev/ai/ai-local-test
 **6. `Makefile`**
 ```makefile
 generate:
-    python -m cortexdocs generate
+    python3 -m cortexdocs generate
 
 generate-phase1:
-    python -m cortexdocs generate --no-repo
+    python3 -m cortexdocs generate --no-repo
 
 serve:
-    python -m cortexdocs serve
+    python3 -m cortexdocs serve
 
 eval:
-    python -m cortexdocs eval
+    python3 -m cortexdocs eval
 
 deploy:
     mkdocs gh-deploy --config-file output/mkdocs.yml
@@ -118,7 +118,7 @@ Key implementation notes:
 
 **Done criteria for Day 1:**
 ```bash
-python -m cortexdocs generate --server-cmd "npx tsx src/server/mcp-stdio.ts" \
+python3 -m cortexdocs generate --server-cmd "npx tsx src/server/mcp-stdio.ts" \
   --server-cmd-cwd ~/Documents/dev/ai/ai-local-test
 # → output/manifest.json exists
 # → contains all 16 tools with names, descriptions, and inputSchema
@@ -197,7 +197,7 @@ The `route_reviewer` function returns `"writer"` (revise), `"writer_next"` (appr
 
 **Done criteria for Day 2:**
 ```bash
-python -m cortexdocs generate \
+python3 -m cortexdocs generate \
   --server-cmd "npx tsx src/server/mcp-stdio.ts" \
   --server-cmd-cwd ~/Documents/dev/ai/ai-local-test
 # → output/manifest.json  (from Day 1)
@@ -208,7 +208,7 @@ python -m cortexdocs generate \
 # → logs/*.json           (one per agent call)
 ```
 
-Run `python -m cortexdocs serve` and verify the site looks reasonable in a browser. Check one tool page against the manifest to confirm accuracy.
+Run `python3 -m cortexdocs serve` and verify the site looks reasonable in a browser. Check one tool page against the manifest to confirm accuracy.
 
 **Then deploy:**
 ```bash
@@ -271,7 +271,7 @@ else:
 
 **Done criteria for Day 3:**
 ```bash
-python -m cortexdocs generate \
+python3 -m cortexdocs generate \
   --server-cmd "npx tsx src/server/mcp-stdio.ts" \
   --server-cmd-cwd ~/Documents/dev/ai/ai-local-test \
   --repo ~/Documents/dev/ai/ai-local-test
@@ -312,7 +312,7 @@ Deploy updated site. Commit and tag: `git tag v0.2-phase2`.
 *Tier 3 — need Phase 2 docs (repo-enriched):*
 - "What database does Cortex use to store thoughts, and what does the schema look like?"
 - "How does Cortex generate embeddings, and what model does it use?"
-- "How would I add a new MCP tool to Cortex?"
+- "When should I use `ingest_to_wiki` vs `write_wiki_page`?"
 - "What is the librarian agent and how does it work internally?"
 - "How does the stdio transport differ from the HTTP transport in this server?"
 
