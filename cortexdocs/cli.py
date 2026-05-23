@@ -55,12 +55,16 @@ def generate(
     _print_config_summary(settings, from_stage)
 
     if from_stage is None or from_stage == "discover":
-        asyncio.run(_run_discover(settings))
+        manifest = asyncio.run(_run_discover(settings))
     else:
-        console.print(f"[dim]Skipping discovery — resuming from stage: {from_stage}[/dim]")
+        console.print(f"[dim]Skipping discovery — loading manifest from disk[/dim]")
+        import json
+        from cortexdocs.discovery.models import MCPServerManifest
+        manifest = MCPServerManifest.model_validate_json(
+            (settings.output_dir / "manifest.json").read_text()
+        )
 
-    console.print("\n[yellow]Pipeline stages beyond discovery are not yet implemented.[/yellow]")
-    console.print("Run again after Day 2 for the full pipeline.")
+    _run_pipeline(settings, manifest, from_stage)
 
 
 @app.command()
@@ -78,6 +82,19 @@ def serve() -> None:
 def eval_docs() -> None:
     """Re-run the evaluation harness against existing generated output."""
     console.print("[yellow]Eval harness not yet implemented (Day 4).[/yellow]")
+
+
+def _print_token_summary(token_usage: dict) -> None:
+    if not token_usage:
+        return
+    table = Table(title="Token Usage", show_header=True, box=None, padding=(0, 2))
+    table.add_column("type", style="dim")
+    table.add_column("tokens", justify="right")
+    table.add_row("input", str(token_usage.get("input", 0)))
+    table.add_row("output", str(token_usage.get("output", 0)))
+    table.add_row("cache read", str(token_usage.get("cache_read", 0)))
+    table.add_row("cache write", str(token_usage.get("cache_write", 0)))
+    console.print(table)
 
 
 def _print_config_summary(settings: Settings, from_stage: str | None) -> None:
@@ -99,7 +116,7 @@ def _print_config_summary(settings: Settings, from_stage: str | None) -> None:
     console.print()
 
 
-async def _run_discover(settings: Settings) -> None:
+async def _run_discover(settings: Settings):
     from cortexdocs.discovery.mcp_client import discover
 
     console.print("[bold]Phase 1:[/bold] Connecting to MCP server...")
@@ -116,3 +133,34 @@ async def _run_discover(settings: Settings) -> None:
     if manifest.prompts:
         console.print(f"  [dim]+[/dim] {len(manifest.prompts)} prompt(s)")
     console.print(f"\n[dim]Manifest saved to {output_path}[/dim]")
+    return manifest
+
+
+def _run_pipeline(settings: Settings, manifest, from_stage: str | None) -> None:
+    from langgraph.checkpoint.sqlite import SqliteSaver
+
+    from cortexdocs.agents.graph import build_graph, initial_state
+
+    console.print()
+    db_path = str(settings.output_dir / "checkpoints.db")
+
+    with SqliteSaver.from_conn_string(db_path) as checkpointer:
+        graph = build_graph(settings, checkpointer)
+        state = initial_state(manifest, settings)
+        import time
+        run_config = {
+            "configurable": {
+                "thread_id": f"run-{int(time.time())}",
+                "settings": settings,
+            }
+        }
+
+        try:
+            final_state = graph.invoke(state, config=run_config)
+        except NotImplementedError as e:
+            # Expected while stub nodes are still in place
+            console.print(f"\n[yellow]Pipeline stopped at stub:[/yellow] {e}")
+            return
+
+    console.print("\n[green]Pipeline complete.[/green]")
+    _print_token_summary(final_state.get("token_usage", {}))

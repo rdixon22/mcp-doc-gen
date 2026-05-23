@@ -12,6 +12,7 @@ dependencies = [
     "mkdocs-material>=9.5",
     "tiktoken>=0.7.0",
     "rich>=13.0",
+    "langgraph-checkpoint-sqlite>=3.1.0",
 ]
 
 [project.scripts]

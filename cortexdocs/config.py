@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     server_cmd: str | None = None        # e.g. "npx tsx src/server/mcp-stdio.ts"
     server_url: str | None = None        # e.g. "http://localhost:3000/mcp"
     server_cmd_cwd: str | None = None    # working dir when spawning stdio process
+    server_env_file: str | None = None   # path to .env file to load for the server process
     mcp_access_key: str | None = None    # sent as x-cortex-key header (HTTP only)
 
     # Phase 2 — optional repo enrichment
