@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Complete technical reference for all Cortex MCP tools, organized by functional group with decision tables and protocol notes.">
+        <meta name="description" content="Complete technical reference for all Cortex MCP tools, organized by functional group with search selection guidance and write protocols.">
       
       
       
@@ -400,10 +400,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#thought-capture-browsing" class="md-nav__link">
+  <a href="#thought-tools" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Thought Capture &amp; Browsing
+        Thought Tools
       
     </span>
   </a>
@@ -411,10 +411,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#semantic-search" class="md-nav__link">
+  <a href="#wiki-tools" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Semantic Search
+        Wiki Tools
       
     </span>
   </a>
@@ -422,21 +422,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#wiki-authoring" class="md-nav__link">
+  <a href="#cross-store-utility-tools" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Wiki Authoring
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vault-migration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Vault Migration
+        Cross-Store &amp; Utility Tools
       
     </span>
   </a>
@@ -448,17 +437,6 @@
     <span class="md-ellipsis">
       
         Choosing the Right Search Tool
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#choosing-the-right-write-tool" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Choosing the Right Write Tool
       
     </span>
   </a>
@@ -855,10 +833,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#thought-capture-browsing" class="md-nav__link">
+  <a href="#thought-tools" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Thought Capture &amp; Browsing
+        Thought Tools
       
     </span>
   </a>
@@ -866,10 +844,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#semantic-search" class="md-nav__link">
+  <a href="#wiki-tools" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Semantic Search
+        Wiki Tools
       
     </span>
   </a>
@@ -877,21 +855,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#wiki-authoring" class="md-nav__link">
+  <a href="#cross-store-utility-tools" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Wiki Authoring
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vault-migration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Vault Migration
+        Cross-Store &amp; Utility Tools
       
     </span>
   </a>
@@ -903,17 +870,6 @@
     <span class="md-ellipsis">
       
         Choosing the Right Search Tool
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#choosing-the-right-write-tool" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Choosing the Right Write Tool
       
     </span>
   </a>
@@ -949,7 +905,7 @@
 
 
 <h1 id="tools-index">Tools Index</h1>
-<h2 id="thought-capture-browsing">Thought Capture &amp; Browsing</h2>
+<h2 id="thought-tools">Thought Tools</h2>
 <table>
 <thead>
 <tr>
@@ -959,20 +915,24 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="tools/capture-thought.md">capture_thought</a></td>
-<td>Save a new note with automatic metadata extraction (topics, type, people, action items)</td>
+<td><a href="capture-thought/">capture_thought</a></td>
+<td>Save a new note, insight, decision, or task — automatically extracts metadata on write.</td>
 </tr>
 <tr>
-<td><a href="tools/list-thoughts.md">list_thoughts</a></td>
-<td>Browse recently captured thoughts with optional filters for type, topic, person, and recency</td>
+<td><a href="search-thoughts/">search_thoughts</a></td>
+<td>Semantic search across captured thoughts only (excludes wiki pages).</td>
 </tr>
 <tr>
-<td><a href="tools/thought-stats.md">thought_stats</a></td>
-<td>Get summary counts and breakdowns: total thoughts, type distribution, top topics and people</td>
+<td><a href="list-thoughts/">list_thoughts</a></td>
+<td>Browse recently captured thoughts chronologically with optional type, topic, person, or date filters.</td>
+</tr>
+<tr>
+<td><a href="thought-stats/">thought_stats</a></td>
+<td>Return aggregate counts, type breakdown, top topics, and top people across all captured thoughts.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="semantic-search">Semantic Search</h2>
+<h2 id="wiki-tools">Wiki Tools</h2>
 <table>
 <thead>
 <tr>
@@ -982,24 +942,28 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="tools/search-thoughts.md">search_thoughts</a></td>
-<td>Semantic search over captured thoughts only</td>
+<td><a href="write-wiki-page/">write_wiki_page</a></td>
+<td>Create or overwrite a WikiVault markdown page; automatically embeds content and indexes it.</td>
 </tr>
 <tr>
-<td><a href="tools/search-messages.md">search_messages</a></td>
-<td>Semantic search over past AI chat conversation messages</td>
+<td><a href="read-wiki-page/">read_wiki_page</a></td>
+<td>Read the full body and frontmatter of a WikiVault page by title or file path.</td>
 </tr>
 <tr>
-<td><a href="tools/search-wiki.md">search_wiki</a></td>
-<td>Semantic search over WikiVault pages, with optional type filter</td>
+<td><a href="search-wiki/">search_wiki</a></td>
+<td>Semantic search across WikiVault pages only, with optional page-type filter.</td>
 </tr>
 <tr>
-<td><a href="tools/search-all.md">search_all</a></td>
-<td>Unified semantic search across all stores (thoughts + wiki pages); results tagged by source</td>
+<td><a href="list-wiki-pages/">list_wiki_pages</a></td>
+<td>Browse WikiVault pages by type or tag without a query; returns titles, types, tags, and paths.</td>
+</tr>
+<tr>
+<td><a href="append-wiki-log/">append_wiki_log</a></td>
+<td>Append a one-line audit entry to <code>log.md</code> after any wiki write or significant decision.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="wiki-authoring">Wiki Authoring</h2>
+<h2 id="cross-store-utility-tools">Cross-Store &amp; Utility Tools</h2>
 <table>
 <thead>
 <tr>
@@ -1009,35 +973,16 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="tools/write-wiki-page.md">write_wiki_page</a></td>
-<td>Create or overwrite a WikiVault page; auto-builds frontmatter and indexes content</td>
+<td><a href="search-all/">search_all</a></td>
+<td>Semantic search across both captured thoughts and WikiVault pages simultaneously; results tagged <code>[thought]</code> or <code>[wiki]</code>.</td>
 </tr>
 <tr>
-<td><a href="tools/read-wiki-page.md">read_wiki_page</a></td>
-<td>Read full body and frontmatter of a WikiVault page by title or file path</td>
+<td><a href="search-messages/">search_messages</a></td>
+<td>Semantic search across past AI chat conversation history.</td>
 </tr>
 <tr>
-<td><a href="tools/list-wiki-pages.md">list_wiki_pages</a></td>
-<td>Browse wiki pages by type or tag via filesystem scan; returns titles, types, tags, paths — no bodies</td>
-</tr>
-<tr>
-<td><a href="tools/append-wiki-log.md">append_wiki_log</a></td>
-<td>Write a one-line audit log entry to log.md after any write action</td>
-</tr>
-</tbody>
-</table>
-<h2 id="vault-migration">Vault Migration</h2>
-<table>
-<thead>
-<tr>
-<th>Tool</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="tools/migrate-vault-file.md">migrate_vault_file</a></td>
-<td>One-time import of a MainVault file into WikiVault raw/; normalizes frontmatter, strips Dataview blocks, embeds, and indexes</td>
+<td><a href="migrate-vault-file/">migrate_vault_file</a></td>
+<td>One-time import: copy a MainVault file into WikiVault <code>raw/</code>, normalize frontmatter, and index it.</td>
 </tr>
 </tbody>
 </table>
@@ -1046,65 +991,52 @@
 <table>
 <thead>
 <tr>
-<th>Goal</th>
-<th>Use</th>
+<th>Target scope</th>
+<th>Recommended tool</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Search captured notes and thoughts only</td>
-<td><a href="tools/search-thoughts.md">search_thoughts</a></td>
+<td>Captured thoughts only (notes, tasks, observations)</td>
+<td><a href="search-thoughts/">search_thoughts</a></td>
 </tr>
 <tr>
-<td>Search past AI chat conversations</td>
-<td><a href="tools/search-messages.md">search_messages</a></td>
+<td>Wiki pages only (people, projects, concepts, areas)</td>
+<td><a href="search-wiki/">search_wiki</a></td>
 </tr>
 <tr>
-<td>Search wiki pages only (people, projects, concepts, etc.)</td>
-<td><a href="tools/search-wiki.md">search_wiki</a></td>
+<td>Everything at once — broadest possible context</td>
+<td><a href="search-all/">search_all</a></td>
 </tr>
 <tr>
-<td>Broadest search / unknown which store holds the information</td>
-<td><a href="tools/search-all.md">search_all</a></td>
+<td>Past AI chat sessions / conversation history</td>
+<td><a href="search-messages/">search_messages</a></td>
+</tr>
+<tr>
+<td>Browse thoughts by type, topic, person, or date without a semantic query</td>
+<td><a href="list-thoughts/">list_thoughts</a></td>
+</tr>
+<tr>
+<td>Browse wiki pages by type or tag without a semantic query</td>
+<td><a href="list-wiki-pages/">list_wiki_pages</a></td>
 </tr>
 </tbody>
 </table>
-<p><code>search_all</code> has a lower default threshold (0.45 vs 0.5) and returns results tagged <code>[thought]</code> or <code>[wiki]</code> so you can distinguish sources.</p>
-<hr />
-<h2 id="choosing-the-right-write-tool">Choosing the Right Write Tool</h2>
-<table>
-<thead>
-<tr>
-<th>Goal</th>
-<th>Use</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Save an atomic note, insight, decision, or task</td>
-<td><a href="tools/capture-thought.md">capture_thought</a></td>
-</tr>
-<tr>
-<td>Create or update a structured wiki page (person, project, concept, area, topic)</td>
-<td><a href="tools/read-wiki-page.md">read_wiki_page</a> → <a href="tools/write-wiki-page.md">write_wiki_page</a></td>
-</tr>
-<tr>
-<td>Import a legacy file from MainVault into WikiVault raw/</td>
-<td><a href="tools/migrate-vault-file.md">migrate_vault_file</a></td>
-</tr>
-</tbody>
-</table>
+<p><strong>When to prefer <code>search_all</code> over targeted tools:</strong> Use <code>search_all</code> when you are unsure whether the relevant information was captured as a thought or written into a wiki page, or when you want to surface related content from both stores in a single ranked list. Note that <code>search_all</code> uses a lower default similarity threshold (0.45 vs 0.5) and higher default result count (15 vs 10), trading precision for recall.</p>
+<p><strong>When to prefer targeted search:</strong> Use <code>search_thoughts</code> or <code>search_wiki</code> when you know which store contains the answer, or when you want finer threshold/limit control without noise from the other store.</p>
 <hr />
 <h2 id="read-before-write-protocol">Read-Before-Write Protocol</h2>
-<p>Never call <code>write_wiki_page</code> on a page that may already exist without first reading it. Follow these steps:</p>
+<p><strong>Always follow this sequence before writing or updating a wiki page.</strong> Skipping step 1 risks clobbering existing content.</p>
 <ol>
-<li>Call <code>read_wiki_page</code> with the target page title or relative file path.</li>
-<li>Inspect the returned body and frontmatter for existing content, tags, sources, and status.</li>
-<li>Merge or update content as needed — preserving information you are not explicitly replacing.</li>
-<li>Call <code>write_wiki_page</code> with the full revised body (including all retained content).</li>
-<li>Call <code>append_wiki_log</code> with the file path and a one-line summary of what was changed.</li>
+<li>Call <code>read_wiki_page</code> with the target title (e.g. <code>"Alice Smith"</code>) or known relative path (e.g. <code>"wiki/people/Alice-Smith.md"</code>).</li>
+<li>Inspect the response — confirm whether the page exists and review its current body and frontmatter in full.</li>
+<li>If the page exists, merge your new information into the existing body, preserving all content that is still accurate. Do not silently drop existing sections.</li>
+<li>Call <code>write_wiki_page</code> with the complete, updated body (including retained existing content). Pass the same <code>title</code> and <code>type</code> as the existing page to avoid creating a duplicate.</li>
+<li>Call <code>append_wiki_log</code> immediately after a successful write, recording the relative file path and a concise one-line summary of what changed.</li>
 </ol>
-<p>Skipping step 1 risks silently clobbering existing knowledge. <code>write_wiki_page</code> performs a full overwrite — there is no partial-update operation.</p>
+<blockquote>
+<p><strong>Note:</strong> <code>write_wiki_page</code> performs a full overwrite — there is no patch or merge operation. The complete final body must be supplied on every call.</p>
+</blockquote>
 
 
 

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Appends a timestamped one-line audit entry to log.md in WikiVault, recording every wiki mutation for traceability.">
+        <meta name="description" content="Appends a timestamped one-line audit entry to log.md in WikiVault, documenting an action taken on a specific wiki page.">
       
       
       
@@ -719,10 +719,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-call" class="md-nav__link">
+  <a href="#when-to-call-this-tool" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When to call
+        When to call this tool
       
     </span>
   </a>
@@ -742,10 +742,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#basic-logging-a-page-update" class="md-nav__link">
+  <a href="#after-updating-an-existing-project-page" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Basic: logging a page update
+        After updating an existing project page
       
     </span>
   </a>
@@ -753,10 +753,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#logging-a-new-page-creation" class="md-nav__link">
+  <a href="#after-creating-a-new-person-page" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Logging a new page creation
+        After creating a new person page
       
     </span>
   </a>
@@ -764,10 +764,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#logging-a-migration" class="md-nav__link">
+  <a href="#after-deciding-not-to-create-a-page" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Logging a migration
+        After deciding not to create a page
       
     </span>
   </a>
@@ -775,10 +775,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#typical-write-sequence" class="md-nav__link">
+  <a href="#typical-write-log-sequence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Typical write sequence
+        Typical write + log sequence
       
     </span>
   </a>
@@ -791,10 +791,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#audit-trail-behaviour" class="md-nav__link">
+  <a href="#related-tools" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Audit trail behaviour
+        Related tools
       
     </span>
   </a>
@@ -939,10 +939,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-call" class="md-nav__link">
+  <a href="#when-to-call-this-tool" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When to call
+        When to call this tool
       
     </span>
   </a>
@@ -962,10 +962,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#basic-logging-a-page-update" class="md-nav__link">
+  <a href="#after-updating-an-existing-project-page" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Basic: logging a page update
+        After updating an existing project page
       
     </span>
   </a>
@@ -973,10 +973,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#logging-a-new-page-creation" class="md-nav__link">
+  <a href="#after-creating-a-new-person-page" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Logging a new page creation
+        After creating a new person page
       
     </span>
   </a>
@@ -984,10 +984,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#logging-a-migration" class="md-nav__link">
+  <a href="#after-deciding-not-to-create-a-page" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Logging a migration
+        After deciding not to create a page
       
     </span>
   </a>
@@ -995,10 +995,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#typical-write-sequence" class="md-nav__link">
+  <a href="#typical-write-log-sequence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Typical write sequence
+        Typical write + log sequence
       
     </span>
   </a>
@@ -1011,10 +1011,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#audit-trail-behaviour" class="md-nav__link">
+  <a href="#related-tools" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Audit trail behaviour
+        Related tools
       
     </span>
   </a>
@@ -1038,9 +1038,8 @@
 
 
 
-<h1 id="append_wiki_log"><code>append_wiki_log</code></h1>
-<p>Writes a single timestamped line to <code>log.md</code> in WikiVault documenting an action that was taken. This is the sole mechanism for maintaining an audit trail of all wiki mutations.</p>
-<p><strong>Call this tool after every <a href="../write-wiki-page/"><code>write_wiki_page</code></a> call and after any other significant decision affecting the wiki.</strong> Skipping it breaks log continuity and makes the change history unreliable.</p>
+<h1 id="append_wiki_log">append_wiki_log</h1>
+<p>Writes a timestamped one-line entry to <code>log.md</code> in WikiVault, recording which page was acted on and what was done. Call this after every <a href="../write-wiki-page/"><code>write_wiki_page</code></a> invocation and after any other significant decision — including choosing <em>not</em> to create or update a page. This log is the persistent audit trail of all LLM-driven wiki changes.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -1056,92 +1055,98 @@
 <tr>
 <td><code>file_path</code></td>
 <td>string</td>
-<td>✅ Yes</td>
+<td>✅ yes</td>
 <td>—</td>
-<td>Relative path of the page that was acted on (e.g. <code>wiki/people/Alice-Smith.md</code>)</td>
+<td>Relative path of the WikiVault page that was acted on (e.g. <code>wiki/projects/Atlas.md</code>)</td>
 </tr>
 <tr>
 <td><code>summary</code></td>
 <td>string</td>
-<td>✅ Yes</td>
+<td>✅ yes</td>
 <td>—</td>
-<td>One-line description of what was done. Maximum 200 characters.</td>
+<td>One-line human-readable description of what was done. Maximum 200 characters.</td>
 </tr>
 </tbody>
 </table>
 <h3 id="parameter-notes">Parameter notes</h3>
 <ul>
-<li><strong><code>file_path</code></strong> should be the relative path within WikiVault, matching the path returned by <code>write_wiki_page</code> or visible in <code>list_wiki_pages</code> results. Use the canonical path, not an alias or title string.</li>
-<li><strong><code>summary</code></strong> must be concise and self-contained. It should describe <em>what changed and why</em> in enough detail that someone reading <code>log.md</code> weeks later can understand the action without context. Hard limit: 200 characters.</li>
+<li><strong><code>file_path</code></strong> should be the relative path as returned by <a href="../write-wiki-page/"><code>write_wiki_page</code></a> or <a href="../list-wiki-pages/"><code>list_wiki_pages</code></a>. Use the same path you passed to the write operation for consistency.</li>
+<li><strong><code>summary</code></strong> should be specific enough to be meaningful when reviewed later. Include <em>what</em> changed and <em>why</em> if possible — e.g. <code>"Updated goals and status section with Q3 decisions from captured thoughts"</code> rather than <code>"Updated page"</code>.</li>
 </ul>
 <h2 id="returns">Returns</h2>
-<p>Confirmation that the log entry was written to <code>log.md</code>, including the timestamp applied to the entry.</p>
-<h2 id="when-to-call">When to call</h2>
+<p>Confirmation that the log entry was appended, including the timestamp that was recorded in <code>log.md</code>.</p>
+<div class="highlight"><pre><span></span><code>Appended log entry at 2026-05-23T08:05:18Z → wiki/projects/Atlas.md: &quot;Updated goals and status section with Q3 decisions from captured thoughts&quot;
+</code></pre></div>
+<h2 id="when-to-call-this-tool">When to call this tool</h2>
+<p>Call <code>append_wiki_log</code> after:</p>
+<ol>
+<li>Every successful <code>write_wiki_page</code> — pass the same <code>file_path</code> that was written.</li>
+<li>Any significant decision, such as deciding <em>not</em> to create a page and why.</li>
+<li>A <code>migrate_vault_file</code> import that you want to record explicitly.</li>
+</ol>
+<p>Do not skip this call after writes. The <code>log.md</code> file is the canonical history of LLM-driven changes to WikiVault and is relied on for auditing and debugging.</p>
+<h2 id="usage-examples">Usage examples</h2>
+<h3 id="after-updating-an-existing-project-page">After updating an existing project page</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;file_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki/projects/Atlas.md&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Updated goals and status section with Q3 decisions from captured thoughts&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="after-creating-a-new-person-page">After creating a new person page</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;file_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki/people/Alice-Smith.md&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Created new person page for Alice Smith based on three captured thoughts&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="after-deciding-not-to-create-a-page">After deciding not to create a page</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;file_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki/concepts/machine-learning.md&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Skipped creation — existing page already covers this topic; no update needed&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="typical-write-log-sequence">Typical write + log sequence</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Step 1 — read first (if the page may exist)</span>
+<span class="p">{</span><span class="w"> </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;read_wiki_page&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki/projects/Atlas.md&quot;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="c1">// Step 2 — write the updated content</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;write_wiki_page&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Atlas&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki_project&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;## Goals\n\n...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;q3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;infrastructure&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1">// Step 3 — log the action immediately after</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;append_wiki_log&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;file_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki/projects/Atlas.md&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Updated goals and status section with Q3 decisions from captured thoughts&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="related-tools">Related tools</h2>
 <table>
 <thead>
 <tr>
-<th>Trigger</th>
-<th>Required?</th>
+<th>Tool</th>
+<th>Relationship</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>After <code>write_wiki_page</code> (create or overwrite)</td>
-<td>✅ Always</td>
+<td><a href="../write-wiki-page/"><code>write_wiki_page</code></a></td>
+<td>Primary trigger — always follow a write with <code>append_wiki_log</code></td>
 </tr>
 <tr>
-<td>After any significant decision about wiki structure</td>
-<td>✅ Yes</td>
+<td><a href="../read-wiki-page/"><code>read_wiki_page</code></a></td>
+<td>Call before writing; the log records what the subsequent write changed</td>
 </tr>
 <tr>
-<td>After <code>migrate_vault_file</code></td>
-<td>✅ Yes</td>
-</tr>
-<tr>
-<td>After a read-only operation (<code>read_wiki_page</code>, <code>search_wiki</code>, <code>list_wiki_pages</code>)</td>
-<td>❌ No</td>
+<td><a href="../migrate-vault-file/"><code>migrate_vault_file</code></a></td>
+<td>May also warrant a log entry after import</td>
 </tr>
 </tbody>
 </table>
-<h2 id="usage-examples">Usage examples</h2>
-<h3 id="basic-logging-a-page-update">Basic: logging a page update</h3>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;file_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki/people/Alice-Smith.md&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Added Q3 promotion note and updated role to Staff Engineer&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="logging-a-new-page-creation">Logging a new page creation</h3>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;file_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki/projects/Project-Phoenix.md&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Created new project page synthesising 4 captured thoughts from discovery phase&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="logging-a-migration">Logging a migration</h3>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;file_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;raw/articles/notes-on-distributed-systems.md&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Migrated from MainVault; stripped Dataview blocks; indexed in Supabase&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="typical-write-sequence">Typical write sequence</h3>
-<p>Every wiki write operation should follow this three-step pattern:</p>
-<ol>
-<li><code>read_wiki_page</code> — read current content to avoid clobbering</li>
-<li><code>write_wiki_page</code> — write the updated content</li>
-<li><code>append_wiki_log</code> — record what was done</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="c1">// Step 3 — called immediately after write_wiki_page succeeds</span>
-<span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;file_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki/concepts/Second-Brain.md&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Expanded definition section; linked to new wiki/projects/Cortex-Setup.md&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<h2 id="audit-trail-behaviour">Audit trail behaviour</h2>
-<ul>
-<li>All entries are appended to a single <code>log.md</code> file at the root of WikiVault.</li>
-<li>Each entry is automatically timestamped by the server at the moment of the call.</li>
-<li>Entries are append-only — <code>append_wiki_log</code> never modifies or deletes existing log lines.</li>
-<li>The log is human-readable and can be reviewed directly in any markdown viewer.</li>
-</ul>
 
 
 

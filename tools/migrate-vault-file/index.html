@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="One-time import tool that copies a file from MainVault into WikiVault raw/, adds standardised frontmatter, strips Dataview blocks, generates vector embeddings, and indexes the result in Supabase.">
+        <meta name="description" content="Import a single Markdown file from MainVault into WikiVault, adding standardised frontmatter, stripping Dataview blocks, and indexing the content in Supabase.">
       
       
       
@@ -773,10 +773,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#behaviour-notes" class="md-nav__link">
+  <a href="#what-the-tool-does" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Behaviour notes
+        What the tool does
       
     </span>
   </a>
@@ -796,10 +796,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#import-a-single-article" class="md-nav__link">
+  <a href="#migrate-a-book-notes-file" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Import a single article
+        Migrate a book-notes file
       
     </span>
   </a>
@@ -807,10 +807,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#re-import-a-book-note-replacing-any-existing-copy" class="md-nav__link">
+  <a href="#re-import-a-file-overwriting-the-existing-wikivault-copy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Re-import a book note, replacing any existing copy
+        Re-import a file, overwriting the existing WikiVault copy
       
     </span>
   </a>
@@ -818,10 +818,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#import-a-daily-note" class="md-nav__link">
+  <a href="#migrate-a-daily-note" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Import a daily note
+        Migrate a daily note
       
     </span>
   </a>
@@ -834,10 +834,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-use-this-tool" class="md-nav__link">
+  <a href="#behaviour-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When to use this tool
+        Behaviour notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related tools
       
     </span>
   </a>
@@ -926,10 +937,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#behaviour-notes" class="md-nav__link">
+  <a href="#what-the-tool-does" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Behaviour notes
+        What the tool does
       
     </span>
   </a>
@@ -949,10 +960,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#import-a-single-article" class="md-nav__link">
+  <a href="#migrate-a-book-notes-file" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Import a single article
+        Migrate a book-notes file
       
     </span>
   </a>
@@ -960,10 +971,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#re-import-a-book-note-replacing-any-existing-copy" class="md-nav__link">
+  <a href="#re-import-a-file-overwriting-the-existing-wikivault-copy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Re-import a book note, replacing any existing copy
+        Re-import a file, overwriting the existing WikiVault copy
       
     </span>
   </a>
@@ -971,10 +982,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#import-a-daily-note" class="md-nav__link">
+  <a href="#migrate-a-daily-note" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Import a daily note
+        Migrate a daily note
       
     </span>
   </a>
@@ -987,10 +998,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-use-this-tool" class="md-nav__link">
+  <a href="#behaviour-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When to use this tool
+        Behaviour notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related tools
       
     </span>
   </a>
@@ -1015,8 +1037,8 @@
 
 
 <h1 id="migrate_vault_file">migrate_vault_file</h1>
-<p>Copies a file from MainVault into the WikiVault <code>raw/</code> folder, applies standardised frontmatter, strips Dataview blocks, generates vector embeddings, and indexes the result in Supabase. The original MainVault source file is never modified.</p>
-<p>Use this tool during a one-time vault migration or to import individual articles on demand. It is scoped to <code>raw_*</code> page types only — for managed wiki entries (<code>wiki_person</code>, <code>wiki_project</code>, etc.), use <a href="../write-wiki-page/"><code>write_wiki_page</code></a> instead.</p>
+<p>Copies a Markdown file from MainVault into WikiVault's <code>raw/</code> subfolder. During the copy the tool adds standardised frontmatter, strips Dataview blocks, embeds the content, and indexes it in Supabase. The original MainVault file is never modified.</p>
+<p>This is a one-time import tool — use it during an initial vault migration or to bring in individual articles, books, daily notes, or attachments on demand.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -1034,21 +1056,21 @@
 <td>string</td>
 <td>Yes</td>
 <td>—</td>
-<td>Absolute path to the MainVault source file, e.g. <code>/Users/me/MainVault/Articles/transformer-paper.md</code></td>
+<td>Absolute filesystem path to the MainVault source file, e.g. <code>"/Users/me/MainVault/Books/Thinking Fast and Slow.md"</code></td>
 </tr>
 <tr>
 <td><code>target_type</code></td>
 <td>string (enum)</td>
 <td>Yes</td>
 <td>—</td>
-<td>Destination subfolder type. One of: <code>raw_article</code>, <code>raw_book</code>, <code>raw_daily</code>, <code>raw_attachment</code></td>
+<td>Destination subfolder category. One of: <code>raw_article</code>, <code>raw_book</code>, <code>raw_daily</code>, <code>raw_attachment</code></td>
 </tr>
 <tr>
 <td><code>force</code></td>
 <td>boolean</td>
 <td>No</td>
 <td><code>false</code></td>
-<td>If <code>true</code>, overwrites an existing WikiVault file at the computed target path</td>
+<td>If <code>true</code>, overwrites the file if it already exists in WikiVault. If <code>false</code> (default), the tool refuses to overwrite an existing file.</td>
 </tr>
 </tbody>
 </table>
@@ -1057,78 +1079,107 @@
 <thead>
 <tr>
 <th>Value</th>
-<th>Description</th>
+<th>Use for</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>raw_article</code></td>
-<td>An article or essay imported from MainVault</td>
+<td>Articles, blog posts, clippings</td>
 </tr>
 <tr>
 <td><code>raw_book</code></td>
-<td>A book note or summary</td>
+<td>Book notes and highlights</td>
 </tr>
 <tr>
 <td><code>raw_daily</code></td>
-<td>A daily note</td>
+<td>Daily notes</td>
 </tr>
 <tr>
 <td><code>raw_attachment</code></td>
-<td>An attachment or supporting file</td>
+<td>Attachments and miscellaneous files</td>
 </tr>
 </tbody>
 </table>
-<p>The exact destination path within <code>raw/</code> is determined by the server based on <code>target_type</code>.</p>
 <h2 id="returns">Returns</h2>
-<p>On success, returns a confirmation that includes the relative path of the newly created WikiVault file and a summary of the transformations applied (frontmatter added, Dataview blocks stripped, embedding stored, Supabase index entry created). The exact response structure is server-defined.</p>
-<h2 id="behaviour-notes">Behaviour notes</h2>
-<ul>
-<li><strong>Non-destructive</strong>: the original MainVault file is never modified or deleted.</li>
-<li><strong>Dataview stripping</strong>: Dataview query blocks in the source are removed before the file is written to WikiVault.</li>
-<li><strong>Frontmatter</strong>: standardised frontmatter is added to the WikiVault copy automatically; you do not need to supply it.</li>
-<li><strong>Embedding + indexing</strong>: the imported file is embedded and indexed in Supabase so it is immediately searchable via <code>search_wiki</code> and <code>search_all</code>.</li>
-<li><strong>Overwrite guard</strong>: if the target file already exists in WikiVault and <code>force</code> is <code>false</code>, the tool will not overwrite it. Set <code>force: true</code> to replace an existing file.</li>
-</ul>
+<p>The tool returns a confirmation of the migration. The exact response schema is not specified in the tool definition; expect at minimum a success or error status and the destination location within WikiVault.</p>
+<p>If the file already exists in WikiVault and <code>force</code> is <code>false</code>, the tool returns an error rather than overwriting.</p>
+<h2 id="what-the-tool-does">What the tool does</h2>
+<p>The tool definition specifies these operations:</p>
+<ol>
+<li>Copies the file from <code>source_path</code> into the WikiVault <code>raw/</code> subfolder determined by <code>target_type</code>.</li>
+<li>Adds standardised frontmatter to the copied file.</li>
+<li>Strips any Dataview blocks from the content.</li>
+<li>Embeds the resulting content.</li>
+<li>Indexes the entry in Supabase.</li>
+</ol>
+<p>The original file at <code>source_path</code> is not touched.</p>
+<blockquote>
+<p><strong>Note:</strong> Specific frontmatter fields generated, exact subfolder paths within <code>raw/</code>, and internal step ordering are implementation details not exposed by the tool definition.</p>
+</blockquote>
 <h2 id="usage-examples">Usage examples</h2>
-<h3 id="import-a-single-article">Import a single article</h3>
+<h3 id="migrate-a-book-notes-file">Migrate a book-notes file</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;migrate_vault_file&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;source_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/Users/me/MainVault/Articles/transformer-paper.md&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;target_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;raw_article&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;force&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="nt">&quot;source_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/Users/me/MainVault/Books/Thinking Fast and Slow.md&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;target_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;raw_book&quot;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="re-import-a-book-note-replacing-any-existing-copy">Re-import a book note, replacing any existing copy</h3>
+<h3 id="re-import-a-file-overwriting-the-existing-wikivault-copy">Re-import a file, overwriting the existing WikiVault copy</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;migrate_vault_file&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;source_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/Users/me/MainVault/Books/thinking-fast-and-slow.md&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;target_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;raw_book&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;source_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/Users/me/MainVault/Articles/Decision Making Under Uncertainty.md&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;target_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;raw_article&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;force&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="import-a-daily-note">Import a daily note</h3>
+<h3 id="migrate-a-daily-note">Migrate a daily note</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;migrate_vault_file&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;source_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/Users/me/MainVault/Daily/2024-01-15.md&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;source_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/Users/me/MainVault/Daily/2024-03-15.md&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;target_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;raw_daily&quot;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="when-to-use-this-tool">When to use this tool</h2>
+<h2 id="behaviour-notes">Behaviour notes</h2>
 <ul>
-<li><strong>Bulk migration</strong>: iterating over MainVault files and importing them into WikiVault in a single pass.</li>
-<li><strong>On-demand import</strong>: a specific source file needs to be made searchable in WikiVault without manually rewriting it.</li>
-<li><strong>Re-indexing</strong>: a previously imported file has changed in MainVault and needs to be reimported with <code>force: true</code>.</li>
+<li><strong>Safe by default:</strong> Without <code>force: true</code>, the tool will not silently overwrite an existing WikiVault file. This prevents accidental data loss during incremental migrations.</li>
+<li><strong>Non-destructive:</strong> The MainVault source file is never modified, regardless of the <code>force</code> setting.</li>
+<li><strong>Dataview cleanup:</strong> Dataview query blocks are removed during import since they are not meaningful outside the MainVault context.</li>
+<li><strong>Automatic embedding and indexing:</strong> After the file is written, it is embedded and indexed in Supabase, making it immediately searchable via <a href="../search-wiki/"><code>search_wiki</code></a> and <a href="../search-all/"><code>search_all</code></a>.</li>
 </ul>
-<p>Do <strong>not</strong> use <code>migrate_vault_file</code> for:
-- Creating or updating managed wiki pages — use <code>write_wiki_page</code> for those.
-- Files you have already written directly into WikiVault via <code>write_wiki_page</code>.</p>
+<h2 id="related-tools">Related tools</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>When to use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../write-wiki-page/"><code>write_wiki_page</code></a></td>
+<td>Create or update structured wiki pages (people, projects, concepts) — not raw imports</td>
+</tr>
+<tr>
+<td><a href="../search-wiki/"><code>search_wiki</code></a></td>
+<td>Search for the imported file after migration</td>
+</tr>
+<tr>
+<td><a href="../list-wiki-pages/"><code>list_wiki_pages</code></a></td>
+<td>Browse all raw files to confirm what has been migrated</td>
+</tr>
+<tr>
+<td><a href="../append-wiki-log/"><code>append_wiki_log</code></a></td>
+<td>Log the migration action for audit purposes</td>
+</tr>
+</tbody>
+</table>
 
 
 

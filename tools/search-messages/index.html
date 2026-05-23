@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Semantic search across all stored AI chat conversation messages from past sessions.">
+        <meta name="description" content="Search past AI chat conversation messages by semantic similarity to retrieve context from previous sessions.">
       
       
       
@@ -548,6 +548,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameter-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameter notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -565,18 +582,57 @@
   <a href="#usage-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Usage Examples
+        Usage examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-a-past-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Find a past decision
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#when-to-use" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#retrieve-more-results-for-a-broad-topic" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When to Use
+        Retrieve more results for a broad topic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#locate-a-specific-fact-mentioned-in-passing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Locate a specific fact mentioned in passing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-the-right-search-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing the right search tool
       
     </span>
   </a>
@@ -830,6 +886,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameter-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameter notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -847,18 +920,57 @@
   <a href="#usage-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Usage Examples
+        Usage examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-a-past-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Find a past decision
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#when-to-use" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#retrieve-more-results-for-a-broad-topic" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When to Use
+        Retrieve more results for a broad topic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#locate-a-specific-fact-mentioned-in-passing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Locate a specific fact mentioned in passing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-the-right-search-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing the right search tool
       
     </span>
   </a>
@@ -882,9 +994,9 @@
 
 
 
-<h1 id="search_messages">search_messages</h1>
-<p>Search across all past AI chat conversation messages by semantic similarity. Use to find things discussed in previous chat sessions — distinct from searching captured thoughts or wiki pages, which have their own dedicated tools.</p>
-<p>This tool targets the conversation history store. Reach for it when a user asks "didn't we discuss…" or wants to recall something said in a prior session rather than something they explicitly saved as a note.</p>
+<h1 id="search_messages"><code>search_messages</code></h1>
+<p>Search across all past AI chat conversation messages by semantic similarity. Use this tool when you need to find something discussed in a previous chat session — a decision, a design choice, a fact mentioned in passing — and the user does not know exactly when or in which session it came up.</p>
+<p><strong>Scope:</strong> <code>search_messages</code> covers only the conversation message history store. It does not search captured thoughts or WikiVault pages. Use <a href="../search-all/"><code>search_all</code></a> to query all stores simultaneously.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -900,7 +1012,7 @@
 <tr>
 <td><code>query</code></td>
 <td>string</td>
-<td>✅ Yes</td>
+<td>Yes</td>
 <td>—</td>
 <td>What to search for in chat history</td>
 </tr>
@@ -909,39 +1021,79 @@
 <td>number</td>
 <td>No</td>
 <td><code>10</code></td>
-<td>Maximum number of results to return</td>
+<td>Maximum number of message results to return</td>
 </tr>
 </tbody>
 </table>
-<h2 id="returns">Returns</h2>
-<p>A ranked list of past chat conversation message matches. Each result is semantically related to the query string. The number of results is capped by <code>limit</code>.</p>
-<h2 id="usage-examples">Usage Examples</h2>
-<p><strong>Basic search:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;deployment pipeline discussion&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p><strong>Limiting results:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;deployment pipeline discussion&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Returns up to 5 past chat messages semantically related to deployment pipelines.</p>
-<p><strong>Recalling a previous decision:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;which database did we decide to use for the analytics service&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
-<span class="p">}</span>
-</code></pre></div>
-<h2 id="when-to-use">When to Use</h2>
+<h3 id="parameter-notes">Parameter notes</h3>
 <ul>
-<li>The user asks "didn't we talk about X?" or "what did we decide about Y?"</li>
-<li>You need to recall context from a previous session that was never explicitly captured as a note.</li>
-<li>The information you're looking for originated in a conversation rather than in a deliberate save action.</li>
+<li><strong><code>query</code></strong> — A natural-language phrase or question describing what you are looking for. Matching is by semantic similarity, not keyword — phrasing does not need to be exact.</li>
+<li><strong><code>limit</code></strong> — Controls how many messages are returned. Increase if you expect the topic to span many turns or sessions. There is no built-in similarity threshold parameter for this tool; results are ranked by score and truncated at <code>limit</code>.</li>
 </ul>
-<hr />
-<p><em>Tool: <code>search_messages</code> — Cortex MCP server v2.0.0</em></p>
+<h2 id="returns">Returns</h2>
+<p>A ranked list of matching chat messages. Each result includes:</p>
+<ul>
+<li><strong>Message content</strong> — the text of the matching message</li>
+<li><strong>Session context</strong> — information identifying which conversation session the message belongs to</li>
+<li><strong>Similarity score</strong> — relevance score indicating how closely the message matches the query</li>
+</ul>
+<p>Results are ordered from most to least similar.</p>
+<h2 id="usage-examples">Usage examples</h2>
+<h3 id="find-a-past-decision">Find a past decision</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_messages&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;what did we decide about the API design?&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Use this when the user asks "didn't we talk about this before?" and you need to surface the relevant portion of a prior session.</p>
+<h3 id="retrieve-more-results-for-a-broad-topic">Retrieve more results for a broad topic</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_messages&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;authentication strategy OAuth JWT&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Increasing <code>limit</code> is useful when a topic was discussed across multiple sessions or messages.</p>
+<h3 id="locate-a-specific-fact-mentioned-in-passing">Locate a specific fact mentioned in passing</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_messages&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;the deadline for the launch was moved to Q3&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="choosing-the-right-search-tool">Choosing the right search tool</h2>
+<table>
+<thead>
+<tr>
+<th>You want to search…</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Past chat conversations</td>
+<td><code>search_messages</code></td>
+</tr>
+<tr>
+<td>Captured thoughts and notes</td>
+<td><a href="../search-thoughts/"><code>search_thoughts</code></a></td>
+</tr>
+<tr>
+<td>WikiVault pages</td>
+<td><a href="../search-wiki/"><code>search_wiki</code></a></td>
+</tr>
+<tr>
+<td>Everything at once</td>
+<td><a href="../search-all/"><code>search_all</code></a></td>
+</tr>
+</tbody>
+</table>
+<p><code>search_messages</code> is the only tool that reaches into conversation history. If a user references something "we talked about" in a previous session, start here before falling back to <code>search_all</code>.</p>
 
 
 

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Semantic similarity search over captured thoughts; does not search WikiVault pages.">
+        <meta name="description" content="Search captured thoughts by semantic similarity — scoped to thoughts only, not WikiVault pages.">
       
       
       
@@ -507,10 +507,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#default-search" class="md-nav__link">
+  <a href="#basic-search" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Default search
+        Basic search
       
     </span>
   </a>
@@ -518,10 +518,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#targeted-high-precision-search" class="md-nav__link">
+  <a href="#wide-search-with-more-results" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Targeted high-precision search
+        Wide search with more results
       
     </span>
   </a>
@@ -529,10 +529,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#broad-exploratory-search" class="md-nav__link">
+  <a href="#high-precision-search" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Broad exploratory search
+        High-precision search
       
     </span>
   </a>
@@ -541,6 +541,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope-limitation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope limitation
+      
+    </span>
+  </a>
   
 </li>
       
@@ -929,10 +940,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#default-search" class="md-nav__link">
+  <a href="#basic-search" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Default search
+        Basic search
       
     </span>
   </a>
@@ -940,10 +951,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#targeted-high-precision-search" class="md-nav__link">
+  <a href="#wide-search-with-more-results" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Targeted high-precision search
+        Wide search with more results
       
     </span>
   </a>
@@ -951,10 +962,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#broad-exploratory-search" class="md-nav__link">
+  <a href="#high-precision-search" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Broad exploratory search
+        High-precision search
       
     </span>
   </a>
@@ -963,6 +974,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope-limitation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope limitation
+      
+    </span>
+  </a>
   
 </li>
       
@@ -995,8 +1017,8 @@
 
 
 <h1 id="search_thoughts">search_thoughts</h1>
-<p>Search captured thoughts by meaning using semantic similarity. Use this tool when a user asks about a topic, person, or idea they may have previously noted. Results are ranked by relevance score.</p>
-<p><strong>Scope:</strong> This tool searches only the Thoughts store. It does not search WikiVault pages. Use <a href="../search-all/"><code>search_all</code></a> for combined results across both thoughts and wiki pages.</p>
+<p>Search your captured notes by meaning. <code>search_thoughts</code> finds notes that are semantically relevant to your query — matching by concept and intent, not just keywords.</p>
+<p><strong>Scope:</strong> this tool searches captured thoughts only. It does not search WikiVault pages. Use <a href="../search-all/"><code>search_all</code></a> to query both sources in a single call.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -1014,7 +1036,7 @@
 <td>string</td>
 <td>Yes</td>
 <td>—</td>
-<td>The topic, person, or idea to search for</td>
+<td>What to search for</td>
 </tr>
 <tr>
 <td><code>limit</code></td>
@@ -1028,70 +1050,84 @@
 <td>number</td>
 <td>No</td>
 <td><code>0.5</code></td>
-<td>Minimum similarity score; must be between <code>0</code> and <code>1</code></td>
+<td>Minimum similarity score, between 0 and 1 (inclusive). Lower values return more results; higher values return only close matches.</td>
 </tr>
 </tbody>
 </table>
 <h3 id="threshold-guidance">Threshold guidance</h3>
-<p>The <code>threshold</code> parameter controls how closely a thought must match the query to appear in results. This is a continuous spectrum — no specific values are prescribed:</p>
-<ul>
-<li><strong>Higher values</strong> (closer to <code>1</code>) return only the most closely matching thoughts, reducing noise at the cost of recall.</li>
-<li><strong>Lower values</strong> (closer to <code>0</code>) return a broader set of results, useful for exploratory searches where you are not sure exactly how the information was phrased.</li>
-</ul>
-<p>Start with the default (<code>0.5</code>) and adjust based on the results you receive.</p>
-<h2 id="returns">Returns</h2>
-<p>A ranked list of thought entries that meet the similarity threshold. Each entry includes the thought content, associated metadata extracted at capture time (such as type, topics, and people), a similarity score, and a timestamp. Results are ordered from highest to lowest similarity score.</p>
-<p>The exact shape of each returned entry reflects what was stored when <a href="../capture-thought/"><code>capture_thought</code></a> processed the content.</p>
-<h2 id="usage-examples">Usage examples</h2>
-<h3 id="default-search">Default search</h3>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OAuth migration decision&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Returns up to 10 thoughts semantically related to OAuth migration decisions at the default threshold of <code>0.5</code>.</p>
-<h3 id="targeted-high-precision-search">Targeted high-precision search</h3>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OAuth migration decision&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.6</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Returns up to 5 thoughts closely matching "OAuth migration decision". Raising the threshold above the default filters out looser matches.</p>
-<h3 id="broad-exploratory-search">Broad exploratory search</h3>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;team morale concerns&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Returns up to 20 thoughts loosely related to team morale, casting a wider net to surface anything that might be relevant.</p>
-<h2 id="related-tools">Related tools</h2>
 <table>
 <thead>
 <tr>
-<th>Tool</th>
-<th>When to use instead</th>
+<th>Threshold</th>
+<th>Effect</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="../search-all/"><code>search_all</code></a></td>
-<td>Search both thoughts and wiki pages in a single call</td>
+<td><code>0.3–0.4</code></td>
+<td>Wide net — returns loosely related results; useful when recall matters more than precision</td>
 </tr>
 <tr>
-<td><a href="../search-wiki/"><code>search_wiki</code></a></td>
-<td>Search only WikiVault pages by semantic similarity</td>
+<td><code>0.5</code></td>
+<td>Default balance between relevance and coverage</td>
 </tr>
 <tr>
-<td><a href="../search-messages/"><code>search_messages</code></a></td>
-<td>Search past AI chat conversation history</td>
-</tr>
-<tr>
-<td><a href="../list-thoughts/"><code>list_thoughts</code></a></td>
-<td>Browse thoughts chronologically with type/topic/person filters rather than searching by meaning</td>
+<td><code>0.7+</code></td>
+<td>High precision — only returns strongly relevant results; may miss useful context</td>
 </tr>
 </tbody>
 </table>
+<h2 id="returns">Returns</h2>
+<p>A ranked list of matching thoughts. Each result includes the thought's content and associated metadata as stored at capture time. Results are ordered by descending similarity score.</p>
+<blockquote>
+<p><strong>Note:</strong> The exact response schema is determined by the server runtime. Field names and structure should be treated as implementation details until confirmed against a live response.</p>
+</blockquote>
+<h2 id="usage-examples">Usage examples</h2>
+<h3 id="basic-search">Basic search</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_thoughts&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;decisions about the product roadmap&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Returns up to 10 thoughts with similarity ≥ 0.5 related to product roadmap decisions.</p>
+<h3 id="wide-search-with-more-results">Wide search with more results</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_thoughts&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;decisions about the product roadmap&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Casts a wider net — useful when you suspect relevant notes may be phrased differently or only tangentially related to the query.</p>
+<h3 id="high-precision-search">High-precision search</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_thoughts&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Alice&#39;s feedback on the onboarding flow&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Returns only highly relevant results — appropriate when you want to surface a specific note you know exists.</p>
+<h2 id="scope-limitation">Scope limitation</h2>
+<p><code>search_thoughts</code> does not search WikiVault pages (people, projects, concepts, areas, topics, or raw content). If you need results from both sources:</p>
+<ul>
+<li>Use <a href="../search-all/"><code>search_all</code></a> for a combined query across thoughts and wiki pages. Results from <code>search_all</code> are tagged by source (<code>[thought]</code> or <code>[wiki]</code>).</li>
+<li>Use <a href="../search-wiki/"><code>search_wiki</code></a> to search wiki pages only.</li>
+</ul>
+<h2 id="related-tools">Related tools</h2>
+<ul>
+<li><a href="../capture-thought/"><code>capture_thought</code></a> — save a new thought</li>
+<li><a href="../list-thoughts/"><code>list_thoughts</code></a> — browse thoughts chronologically with filters (type, topic, person, date range)</li>
+<li><a href="../thought-stats/"><code>thought_stats</code></a> — get a count and breakdown of all captured thoughts</li>
+<li><a href="../search-all/"><code>search_all</code></a> — semantic search across thoughts and wiki pages together</li>
+<li><a href="../search-messages/"><code>search_messages</code></a> — search past AI chat conversation history</li>
+</ul>
 
 
 

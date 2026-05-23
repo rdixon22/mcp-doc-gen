@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Browse recently captured thoughts with optional filters; retrieves a chronological list rather than searching by meaning.">
+        <meta name="description" content="Browse recently captured thoughts in chronological order with optional filters for type, topic, person, and recency.">
       
       
       
@@ -492,6 +492,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type values
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -509,19 +526,19 @@
   <a href="#usage-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Usage examples
+        Usage Examples
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Usage examples">
+    <nav class="md-nav" aria-label="Usage Examples">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#browse-recent-thoughts-no-filters" class="md-nav__link">
+  <a href="#recent-thoughts-no-filters" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Browse recent thoughts (no filters)
+        Recent thoughts (no filters)
       
     </span>
   </a>
@@ -529,10 +546,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#list-all-captured-tasks" class="md-nav__link">
+  <a href="#tasks-from-the-last-7-days" class="md-nav__link">
     <span class="md-ellipsis">
       
-        List all captured tasks
+        Tasks from the last 7 days
       
     </span>
   </a>
@@ -540,10 +557,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#tasks-mentioning-alice-smith-from-the-last-7-days" class="md-nav__link">
+  <a href="#all-person_notes-mentioning-a-specific-colleague" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tasks mentioning Alice Smith from the last 7 days
+        All person_notes mentioning a specific colleague
       
     </span>
   </a>
@@ -551,10 +568,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#ideas-tagged-with-a-specific-topic-larger-result-set" class="md-nav__link">
+  <a href="#ideas-tagged-with-a-given-topic" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ideas tagged with a specific topic, larger result set
+        Ideas tagged with a given topic
       
     </span>
   </a>
@@ -562,10 +579,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#recent-observations-last-3-days" class="md-nav__link">
+  <a href="#recent-activity-across-all-types" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Recent observations (last 3 days)
+        Recent activity across all types
       
     </span>
   </a>
@@ -578,21 +595,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-use-list_thoughts-vs-other-tools" class="md-nav__link">
+  <a href="#when-to-use-list_thoughts-vs-search_thoughts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When to use list_thoughts vs. other tools
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Notes
+        When to use list_thoughts vs search_thoughts
       
     </span>
   </a>
@@ -902,6 +908,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type values
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -919,19 +942,19 @@
   <a href="#usage-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Usage examples
+        Usage Examples
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Usage examples">
+    <nav class="md-nav" aria-label="Usage Examples">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#browse-recent-thoughts-no-filters" class="md-nav__link">
+  <a href="#recent-thoughts-no-filters" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Browse recent thoughts (no filters)
+        Recent thoughts (no filters)
       
     </span>
   </a>
@@ -939,10 +962,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#list-all-captured-tasks" class="md-nav__link">
+  <a href="#tasks-from-the-last-7-days" class="md-nav__link">
     <span class="md-ellipsis">
       
-        List all captured tasks
+        Tasks from the last 7 days
       
     </span>
   </a>
@@ -950,10 +973,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#tasks-mentioning-alice-smith-from-the-last-7-days" class="md-nav__link">
+  <a href="#all-person_notes-mentioning-a-specific-colleague" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tasks mentioning Alice Smith from the last 7 days
+        All person_notes mentioning a specific colleague
       
     </span>
   </a>
@@ -961,10 +984,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#ideas-tagged-with-a-specific-topic-larger-result-set" class="md-nav__link">
+  <a href="#ideas-tagged-with-a-given-topic" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ideas tagged with a specific topic, larger result set
+        Ideas tagged with a given topic
       
     </span>
   </a>
@@ -972,10 +995,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#recent-observations-last-3-days" class="md-nav__link">
+  <a href="#recent-activity-across-all-types" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Recent observations (last 3 days)
+        Recent activity across all types
       
     </span>
   </a>
@@ -988,21 +1011,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-use-list_thoughts-vs-other-tools" class="md-nav__link">
+  <a href="#when-to-use-list_thoughts-vs-search_thoughts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When to use list_thoughts vs. other tools
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Notes
+        When to use list_thoughts vs search_thoughts
       
     </span>
   </a>
@@ -1027,8 +1039,8 @@
 
 
 <h1 id="list_thoughts">list_thoughts</h1>
-<p>Browse recently captured thoughts with optional filters. Use this tool when you want a list of thoughts rather than a semantic search — for example, to audit recent captures, review open tasks, or see what was noted about a specific person or topic.</p>
-<p>All parameters are optional. Omit all of them to retrieve the most recently captured thoughts up to the default limit.</p>
+<p>Browse recently captured thoughts in reverse-chronological order. Use this tool when the user wants to <strong>review recent activity</strong> or <strong>enumerate thoughts by category</strong> — not when they're querying by meaning. For semantic search, use <a href="../search-thoughts/"><code>search_thoughts</code></a> instead.</p>
+<p>All parameters are optional and combinable. Omitting all parameters returns the 10 most recently captured thoughts.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -1053,21 +1065,21 @@
 <td>string</td>
 <td>No</td>
 <td>—</td>
-<td>Filter by thought type. Accepted values: <code>observation</code>, <code>task</code>, <code>idea</code>, <code>reference</code>, <code>person_note</code>.</td>
+<td>Filter to a single thought type. Must be one of: <code>observation</code>, <code>task</code>, <code>idea</code>, <code>reference</code>, <code>person_note</code>.</td>
 </tr>
 <tr>
 <td><code>topic</code></td>
 <td>string</td>
 <td>No</td>
 <td>—</td>
-<td>Filter by topic tag.</td>
+<td>Filter by topic tag (exact match against auto-extracted topics).</td>
 </tr>
 <tr>
 <td><code>person</code></td>
 <td>string</td>
 <td>No</td>
 <td>—</td>
-<td>Filter by person mentioned.</td>
+<td>Filter by person mentioned in the thought.</td>
 </tr>
 <tr>
 <td><code>days</code></td>
@@ -1078,87 +1090,136 @@
 </tr>
 </tbody>
 </table>
-<h2 id="returns">Returns</h2>
-<p>An ordered list of thought entries matching the supplied filters. Each entry includes the thought's content, metadata, and timestamp. No filters applied returns up to <code>limit</code> thoughts.</p>
-<h2 id="usage-examples">Usage examples</h2>
-<h3 id="browse-recent-thoughts-no-filters">Browse recent thoughts (no filters)</h3>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;list_thoughts&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Returns up to 10 recently captured thoughts.</p>
-<h3 id="list-all-captured-tasks">List all captured tasks</h3>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;list_thoughts&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;task&quot;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="tasks-mentioning-alice-smith-from-the-last-7-days">Tasks mentioning Alice Smith from the last 7 days</h3>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;list_thoughts&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;task&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;person&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Alice Smith&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;days&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Returns task-type thoughts that mention Alice Smith and were captured within the last 7 days.</p>
-<h3 id="ideas-tagged-with-a-specific-topic-larger-result-set">Ideas tagged with a specific topic, larger result set</h3>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;list_thoughts&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;idea&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;topic&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;product-strategy&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="recent-observations-last-3-days">Recent observations (last 3 days)</h3>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;list_thoughts&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;observation&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;days&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<h2 id="when-to-use-list_thoughts-vs-other-tools">When to use <code>list_thoughts</code> vs. other tools</h2>
+<h3 id="type-values"><code>type</code> values</h3>
 <table>
 <thead>
 <tr>
-<th>Goal</th>
-<th>Recommended tool</th>
+<th>Value</th>
+<th>When to use</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Browse or audit recent captures by recency</td>
-<td><code>list_thoughts</code></td>
+<td><code>observation</code></td>
+<td>Factual notes, things noticed</td>
 </tr>
 <tr>
-<td>Find thoughts by meaning or topic without knowing exact tags</td>
-<td><a href="../search-thoughts/"><code>search_thoughts</code></a></td>
+<td><code>task</code></td>
+<td>Action items, to-dos</td>
 </tr>
 <tr>
-<td>Search across both thoughts and wiki pages</td>
-<td><a href="../search-all/"><code>search_all</code></a></td>
+<td><code>idea</code></td>
+<td>Speculative or creative thoughts</td>
 </tr>
 <tr>
-<td>Get aggregate counts and breakdowns</td>
-<td><a href="../thought-stats/"><code>thought_stats</code></a></td>
+<td><code>reference</code></td>
+<td>Links, citations, source material</td>
+</tr>
+<tr>
+<td><code>person_note</code></td>
+<td>Notes about a specific person</td>
 </tr>
 </tbody>
 </table>
-<h2 id="notes">Notes</h2>
+<h2 id="returns">Returns</h2>
+<p>An ordered list of thought entries matching the applied filters. Each entry includes:</p>
 <ul>
-<li>All parameters are optional and combinable — supply any combination of <code>type</code>, <code>topic</code>, <code>person</code>, and <code>days</code> to narrow results.</li>
-<li>When no filters are provided, results are limited to <code>limit</code> entries (default 10).</li>
-<li>Use <a href="../search-thoughts/"><code>search_thoughts</code></a> if you want to find thoughts by semantic similarity rather than by explicit metadata filters.</li>
+<li><strong>content</strong> — the captured text</li>
+<li><strong>type</strong> — auto-classified thought type</li>
+<li><strong>topics</strong> — extracted topic tags</li>
+<li><strong>people</strong> — people mentioned</li>
+<li><strong>action_items</strong> — any action items extracted</li>
+<li><strong>captured_at</strong> — ISO 8601 timestamp</li>
 </ul>
+<p>Results are sorted newest-first.</p>
+<h2 id="usage-examples">Usage Examples</h2>
+<h3 id="recent-thoughts-no-filters">Recent thoughts (no filters)</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;list_thoughts&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Returns the 10 most recently captured thoughts.</p>
+<hr />
+<h3 id="tasks-from-the-last-7-days">Tasks from the last 7 days</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;list_thoughts&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;task&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;days&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Returns up to 10 tasks captured in the past week.</p>
+<hr />
+<h3 id="all-person_notes-mentioning-a-specific-colleague">All person_notes mentioning a specific colleague</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;list_thoughts&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;person_note&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;person&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Alice Smith&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Returns up to 25 notes that mention Alice Smith, newest first.</p>
+<hr />
+<h3 id="ideas-tagged-with-a-given-topic">Ideas tagged with a given topic</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;list_thoughts&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;idea&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;topic&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;product-strategy&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Returns ideas tagged <code>product-strategy</code>.</p>
+<hr />
+<h3 id="recent-activity-across-all-types">Recent activity across all types</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;list_thoughts&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;days&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Returns up to 20 thoughts captured in the last 3 days, regardless of type.</p>
+<h2 id="when-to-use-list_thoughts-vs-search_thoughts">When to use <code>list_thoughts</code> vs <code>search_thoughts</code></h2>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Show me what I captured recently"</td>
+<td><code>list_thoughts</code></td>
+</tr>
+<tr>
+<td>"What tasks do I have from this week?"</td>
+<td><code>list_thoughts</code> with <code>type=task</code>, <code>days=7</code></td>
+</tr>
+<tr>
+<td>"Show all notes about Alice"</td>
+<td><code>list_thoughts</code> with <code>person=Alice</code></td>
+</tr>
+<tr>
+<td>"What have I captured about machine learning?"</td>
+<td><a href="../search-thoughts/"><code>search_thoughts</code></a></td>
+</tr>
+<tr>
+<td>"Find thoughts related to the Q3 planning discussion"</td>
+<td><a href="../search-thoughts/"><code>search_thoughts</code></a></td>
+</tr>
+<tr>
+<td>"Search across thoughts and wiki pages together"</td>
+<td><a href="../search-all/"><code>search_all</code></a></td>
+</tr>
+</tbody>
+</table>
 
 
 

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Returns an aggregate summary of all captured thoughts: total count, type breakdown, top topics, and most-mentioned people.">
+        <meta name="description" content="Returns a high-level statistical summary of all captured thoughts: total count, type breakdown, top topics, and most-mentioned people.">
       
       
       
@@ -531,14 +531,25 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Returns">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example-response" class="md-nav__link">
+  <a href="#example-weekly-review-orientation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example response
+        Example: Weekly review orientation
       
     </span>
   </a>
@@ -551,21 +562,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usage-example" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Usage example
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage-guidance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Usage guidance
+        When to use
       
     </span>
   </a>
@@ -858,14 +858,25 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Returns">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example-response" class="md-nav__link">
+  <a href="#example-weekly-review-orientation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example response
+        Example: Weekly review orientation
       
     </span>
   </a>
@@ -878,21 +889,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usage-example" class="md-nav__link">
+  <a href="#when-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Usage example
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage-guidance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Usage guidance
+        When to use
       
     </span>
   </a>
@@ -916,71 +916,56 @@
 
 
 
-<h1 id="thought_stats"><code>thought_stats</code></h1>
-<p>Returns a high-level aggregate summary of everything stored in the Thoughts store. Use it to understand the volume and shape of your captured knowledge before running targeted searches or deciding which wiki pages to create.</p>
+<h1 id="thought_stats">thought_stats</h1>
+<p>Returns a high-level statistical summary of all captured thoughts. Use this to understand the breadth and composition of your captured knowledge at a glance — without needing to retrieve individual entries.</p>
 <h2 id="parameters">Parameters</h2>
 <p>This tool takes no parameters.</p>
 <h2 id="returns">Returns</h2>
-<p>A JSON object with the following fields:</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>total</code></td>
-<td>number</td>
-<td>Total number of captured thoughts</td>
-</tr>
-<tr>
-<td><code>by_type</code></td>
-<td>object</td>
-<td>Count per thought type: <code>observation</code>, <code>task</code>, <code>idea</code>, <code>reference</code>, <code>person_note</code></td>
-</tr>
-<tr>
-<td><code>top_topics</code></td>
-<td>string[]</td>
-<td>Most-frequent topic tags, ordered by frequency</td>
-</tr>
-<tr>
-<td><code>top_people</code></td>
-<td>string[]</td>
-<td>Most-mentioned people, ordered by frequency</td>
-</tr>
-</tbody>
-</table>
-<h3 id="example-response">Example response</h3>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">342</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;by_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;observation&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;task&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">87</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;idea&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">65</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">43</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;person_note&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;top_topics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;auth&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;product&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ml&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;infra&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;onboarding&quot;</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;top_people&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Alice Smith&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Bob Jones&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Carol Wu&quot;</span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
-<h2 id="usage-example">Usage example</h2>
+<p>A structured summary containing:</p>
+<ul>
+<li><strong>Total count</strong> — the number of captured thoughts</li>
+<li><strong>Type breakdown</strong> — count of thoughts per type (e.g. how many are tasks, ideas, observations, etc.)</li>
+<li><strong>Top topics</strong> — the most frequently tagged topics across all thoughts</li>
+<li><strong>Top people</strong> — the most frequently mentioned people across all thoughts</li>
+</ul>
+<p>The exact field names and structure depend on the server's response format.</p>
+<h2 id="usage">Usage</h2>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;thought_stats&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="usage-guidance">Usage guidance</h2>
-<p><code>thought_stats</code> is a zero-cost orientation step. Call it:</p>
+<h3 id="example-weekly-review-orientation">Example: Weekly review orientation</h3>
+<p>Before a weekly review, call <code>thought_stats</code> to see how many entries were logged, which types dominate (e.g. tasks vs. ideas), and which topics appeared most this period.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;thought_stats&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Example response (illustrative):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">47</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;by_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;task&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;idea&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;observation&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;person_note&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;top_topics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;product-strategy&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;engineering&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;hiring&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;top_people&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Alice Smith&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Bob Chen&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Note:</strong> The response shape above is illustrative. The actual fields returned depend on the server implementation.</p>
+</blockquote>
+<h2 id="when-to-use">When to use</h2>
 <ul>
-<li><strong>Before a session</strong> to get a sense of how much has been captured and in which areas, so you can calibrate how deep to search.</li>
-<li><strong>Before creating wiki pages</strong> to identify which topics and people have enough accumulated thoughts to warrant synthesising into a structured page.</li>
-<li><strong>As a health check</strong> to spot imbalances — for example, a high <code>task</code> count relative to <code>observation</code> might indicate a backlog worth reviewing.</li>
+<li><strong>Session start</strong> — run once to orient yourself before querying or writing new entries.</li>
+<li><strong>After bulk capture</strong> — confirm that a batch of thoughts was stored and categorised as expected.</li>
+<li><strong>Weekly or periodic review</strong> — identify which topics and people dominated a given period before drilling into specifics.</li>
 </ul>
-<p>Because it aggregates the entire store, it gives no information about individual thoughts. Follow it with <a href="../search-thoughts/"><code>search_thoughts</code></a> or <a href="../list-thoughts/"><code>list_thoughts</code></a> to drill into specific areas surfaced by the stats.</p>
+<p><code>thought_stats</code> gives an aggregate view. To retrieve individual entries, use the thought browsing and search tools available in this server.</p>
 
 
 

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Save a new note or thought to Cortex with automatic embedding and metadata extraction.">
+        <meta name="description" content="Save a new atomic note or thought to Cortex with automatic embedding and metadata extraction.">
       
       
       
@@ -440,10 +440,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#content-guidance" class="md-nav__link">
+  <a href="#parameter-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        content guidance
+        Parameter notes
       
     </span>
   </a>
@@ -460,17 +460,6 @@
     <span class="md-ellipsis">
       
         Returns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#when-to-use" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        When to use
       
     </span>
   </a>
@@ -501,10 +490,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#capture-an-observation" class="md-nav__link">
+  <a href="#capture-a-task" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Capture an observation
+        Capture a task
       
     </span>
   </a>
@@ -512,10 +501,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#capture-a-task" class="md-nav__link">
+  <a href="#capture-an-insight-from-reading" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Capture a task
+        Capture an insight from reading
       
     </span>
   </a>
@@ -528,10 +517,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
+  <a href="#best-practices" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notes
+        Best practices
       
     </span>
   </a>
@@ -901,10 +890,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#content-guidance" class="md-nav__link">
+  <a href="#parameter-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        content guidance
+        Parameter notes
       
     </span>
   </a>
@@ -921,17 +910,6 @@
     <span class="md-ellipsis">
       
         Returns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#when-to-use" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        When to use
       
     </span>
   </a>
@@ -962,10 +940,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#capture-an-observation" class="md-nav__link">
+  <a href="#capture-a-task" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Capture an observation
+        Capture a task
       
     </span>
   </a>
@@ -973,10 +951,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#capture-a-task" class="md-nav__link">
+  <a href="#capture-an-insight-from-reading" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Capture a task
+        Capture an insight from reading
       
     </span>
   </a>
@@ -989,10 +967,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
+  <a href="#best-practices" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notes
+        Best practices
       
     </span>
   </a>
@@ -1017,7 +995,8 @@
 
 
 <h1 id="capture_thought">capture_thought</h1>
-<p>Save a new note or thought to Cortex. Automatically embeds and extracts metadata (topics, type, people, action items). Use when the user wants to save an insight, decision, observation, or task.</p>
+<p>Save a new note or thought to the Cortex Thoughts store. The server automatically generates a vector embedding and extracts metadata — including a type classification, topics, people mentioned, and any action items — from the content you provide.</p>
+<p>Use this tool whenever the user wants to preserve a discrete piece of information: an insight from reading, a decision made in a meeting, an observation, or a task to follow up on.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -1033,45 +1012,50 @@
 <tr>
 <td><code>content</code></td>
 <td>string</td>
-<td>Yes</td>
+<td>✅ Yes</td>
 <td>—</td>
 <td>The thought to capture — a clear, self-contained statement</td>
 </tr>
 </tbody>
 </table>
-<h3 id="content-guidance"><code>content</code> guidance</h3>
-<p>Write <code>content</code> as a complete, standalone statement that will make sense when read back later without surrounding context. Include relevant names, project references, and decisions inline. A vague fragment like <code>"discussed auth"</code> is less useful than <code>"Decided to migrate the auth service to OAuth 2.0 by end of Q3 — owner: Alice Smith"</code>.</p>
+<h3 id="parameter-notes">Parameter notes</h3>
+<p><strong><code>content</code></strong> — Write this as a standalone statement that will be meaningful without additional context. Include who was involved, what was decided, and why if relevant. A thought that reads as complete in isolation will surface more usefully in future searches.</p>
+<blockquote>
+<p>✅ Good: <code>"Decided to defer the API redesign until Q3 because the mobile team needs the existing endpoints stable through the launch."</code></p>
+<p>⚠️ Weak: <code>"API redesign deferred"</code> — lacks context that may not be recoverable later.</p>
+</blockquote>
 <h2 id="returns">Returns</h2>
-<p>The tool returns a confirmation that the thought was saved, along with the extracted metadata Cortex derived automatically — which may include the inferred thought type, topics, people mentioned, and any action items detected in the content. The exact shape of the returned object is determined by the server at runtime.</p>
-<h2 id="when-to-use">When to use</h2>
-<ul>
-<li>The user explicitly asks to save, capture, note, or remember something.</li>
-<li>An important insight, decision, or task surfaces during a conversation that should be persisted beyond the current session.</li>
-<li>You want to create a record that can later be retrieved via <a href="../search-thoughts/"><code>search_thoughts</code></a>, <a href="../list-thoughts/"><code>list_thoughts</code></a>, or <a href="../thought-stats/"><code>thought_stats</code></a>.</li>
-</ul>
+<p>A confirmation that the entry was saved, including the assigned UUID and the metadata extracted from the content. The exact fields returned depend on the server implementation; treat returned metadata (type classification, topics, people) as illustrative of what the server may extract, not as a guaranteed schema.</p>
 <h2 id="usage-examples">Usage examples</h2>
 <h3 id="capture-a-decision">Capture a decision</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Decided to migrate the auth service to OAuth 2.0 by end of Q3 — owner: Alice Smith&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Cortex will automatically extract topics (e.g. <code>auth</code>, <code>oauth</code>), identify <code>Alice Smith</code> as a person mentioned, and classify the thought type based on the content.</p>
-<h3 id="capture-an-observation">Capture an observation</h3>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The onboarding funnel drop-off rate spiked 12% after the v2.4 release — likely caused by the new email verification step&quot;</span>
+<span class="w">  </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;capture_thought&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Decided to use Supabase pgvector for semantic search instead of a dedicated vector DB — simpler infrastructure, good enough performance for our scale, and we already have Supabase in the stack.&quot;</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="capture-a-task">Capture a task</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Follow up with the infrastructure team about the load balancer timeout settings before the next deploy&quot;</span>
+<span class="w">  </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;capture_thought&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Follow up with Sarah by end of week about the budget approval for the new hire — she mentioned needing the headcount justification document.&quot;</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="notes">Notes</h2>
-<ul>
-<li>Pass the full context in <code>content</code> — Cortex uses the text itself to generate the embedding and infer metadata, so richer input produces more useful extraction and retrieval.</li>
-<li>There is no separate <code>type</code> or <code>topic</code> parameter on this tool; all classification is derived automatically from the content string.</li>
-<li>After capturing, use <a href="../search-thoughts/"><code>search_thoughts</code></a> to verify the thought is retrievable by meaning, or <a href="../list-thoughts/"><code>list_thoughts</code></a> to browse recent entries chronologically.</li>
-</ul>
+<h3 id="capture-an-insight-from-reading">Capture an insight from reading</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;capture_thought&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;From Thinking Fast and Slow: System 1 thinking explains why people anchor on the first number they hear in negotiations — important to set the anchor deliberately.&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="best-practices">Best practices</h2>
+<p><strong>Write self-contained statements.</strong> Each thought is stored as an atomic unit. Future retrieval depends on the content alone — there is no surrounding conversation to provide context. Include names, dates, and rationale when they matter.</p>
+<p><strong>One idea per capture.</strong> If a meeting produced three distinct decisions, call <code>capture_thought</code> three times. Granular entries are easier to find and link to wiki pages later.</p>
+<p><strong>Consider downstream wiki updates.</strong> After capturing a thought about a person, project, or concept that already has a wiki page, check whether the wiki page should be updated to reflect the new information. Use <a href="../read-wiki-page/"><code>read_wiki_page</code></a> to retrieve the existing page and <a href="../write-wiki-page/"><code>write_wiki_page</code></a> to update it — always read before writing.</p>
+<p><strong>Use search to avoid duplication.</strong> Before capturing a thought you may have already saved, run <a href="../search-thoughts/"><code>search_thoughts</code></a> to check for near-duplicates.</p>
 
 
 
