@@ -1,0 +1,1328 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Create or fully overwrite a WikiVault page with automatic frontmatter generation, vector embedding, and Supabase indexing.">
+      
+      
+      
+      
+        <link rel="prev" href="../search-messages/">
+      
+      
+        <link rel="next" href="../read-wiki-page/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>write_wiki_page - cortex — MCP Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#write_wiki_page" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="cortex — MCP Documentation" class="md-header__button md-logo" aria-label="cortex — MCP Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            cortex — MCP Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              write_wiki_page
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="cortex — MCP Documentation" class="md-nav__button md-logo" aria-label="cortex — MCP Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    cortex — MCP Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../capture-thought/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    capture_thought
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-thoughts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    search_thoughts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../list-thoughts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    list_thoughts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../thought-stats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    thought_stats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-messages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    search_messages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    write_wiki_page
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    write_wiki_page
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#page-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Page Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Returns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-new-person-page-safe-page-is-known-not-to-exist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a new person page (safe — page is known not to exist)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-an-existing-page-read-first-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update an existing page (read-first pattern)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-concept-stub-for-later-expansion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a concept stub for later expansion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#synthesise-multiple-captured-thoughts-into-a-project-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synthesise multiple captured thoughts into a project page
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocol-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protocol Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../read-wiki-page/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    read_wiki_page
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-wiki/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    search_wiki
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../list-wiki-pages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    list_wiki_pages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../append-wiki-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    append_wiki_log
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-all/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    search_all
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migrate-vault-file/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    migrate_vault_file
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#page-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Page Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Returns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-new-person-page-safe-page-is-known-not-to-exist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a new person page (safe — page is known not to exist)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-an-existing-page-read-first-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update an existing page (read-first pattern)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-concept-stub-for-later-expansion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a concept stub for later expansion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#synthesise-multiple-captured-thoughts-into-a-project-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synthesise multiple captured thoughts into a project page
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocol-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protocol Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="write_wiki_page">write_wiki_page</h1>
+<p>Creates a new WikiVault page or fully overwrites an existing one. On write, Cortex automatically builds YAML frontmatter, generates vector embeddings, and indexes the page in Supabase — you only provide the markdown body.</p>
+<blockquote>
+<p><strong>⚠ Read before you write.</strong> This tool performs a full overwrite. Always call <a href="../read-wiki-page/"><code>read_wiki_page</code></a> first if the page may already exist. Calling <code>write_wiki_page</code> without reading first risks permanently discarding content.</p>
+</blockquote>
+<h2 id="parameters">Parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>✅ Yes</td>
+<td>—</td>
+<td>Human-readable page title, e.g. <code>"Alice Smith"</code>. Used to derive the filename and frontmatter.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>string (enum)</td>
+<td>✅ Yes</td>
+<td>—</td>
+<td>Page type — determines which WikiVault subfolder the file is placed in. See <a href="#page-types">Page Types</a> below.</td>
+</tr>
+<tr>
+<td><code>body</code></td>
+<td>string</td>
+<td>✅ Yes</td>
+<td>—</td>
+<td>Full markdown content of the page. Do <strong>not</strong> include frontmatter — it is generated automatically.</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>string[]</td>
+<td>No</td>
+<td><code>[]</code></td>
+<td>Topic tags in <code>lowercase-kebab</code> format, e.g. <code>["engineering", "q4-planning"]</code>.</td>
+</tr>
+<tr>
+<td><code>page_sources</code></td>
+<td>string[]</td>
+<td>No</td>
+<td><code>[]</code></td>
+<td>Provenance references: source URLs, <code>raw/</code> file paths, or Cortex entry UUIDs.</td>
+</tr>
+<tr>
+<td><code>cortex_ids</code></td>
+<td>string[]</td>
+<td>No</td>
+<td><code>[]</code></td>
+<td>Supabase <code>entries</code> table UUIDs of the captured thoughts this page synthesises. Links the wiki page back to its source thoughts.</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>string (enum)</td>
+<td>No</td>
+<td><code>"active"</code></td>
+<td>Page lifecycle status: <code>active</code>, <code>archived</code>, or <code>stub</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="page-types">Page Types</h3>
+<p>The <code>type</code> value determines the destination subfolder within WikiVault:</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Subfolder</th>
+<th>Intended use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>wiki_person</code></td>
+<td><code>wiki/people/</code></td>
+<td>Individual people — colleagues, contacts, authors</td>
+</tr>
+<tr>
+<td><code>wiki_project</code></td>
+<td><code>wiki/projects/</code></td>
+<td>Projects and initiatives</td>
+</tr>
+<tr>
+<td><code>wiki_concept</code></td>
+<td><code>wiki/concepts/</code></td>
+<td>Ideas, frameworks, and mental models</td>
+</tr>
+<tr>
+<td><code>wiki_area</code></td>
+<td><code>wiki/areas/</code></td>
+<td>Ongoing areas of responsibility</td>
+</tr>
+<tr>
+<td><code>wiki_topic</code></td>
+<td><code>wiki/topics/</code></td>
+<td>Broad topic summaries</td>
+</tr>
+<tr>
+<td><code>raw_article</code></td>
+<td><code>raw/articles/</code></td>
+<td>Imported articles (prefer <a href="../migrate-vault-file/"><code>migrate_vault_file</code></a> for MainVault imports)</td>
+</tr>
+<tr>
+<td><code>raw_book</code></td>
+<td><code>raw/books/</code></td>
+<td>Book notes and summaries</td>
+</tr>
+<tr>
+<td><code>raw_daily</code></td>
+<td><code>raw/daily/</code></td>
+<td>Daily notes</td>
+</tr>
+<tr>
+<td><code>raw_attachment</code></td>
+<td><code>raw/attachments/</code></td>
+<td>Supporting attachments</td>
+</tr>
+</tbody>
+</table>
+<h2 id="returns">Returns</h2>
+<p>A confirmation object containing:</p>
+<ul>
+<li><strong><code>file_path</code></strong> — the relative path of the written file within WikiVault (e.g. <code>wiki/people/Alice-Smith.md</code>)</li>
+<li><strong><code>frontmatter</code></strong> — the generated YAML frontmatter applied to the file</li>
+<li><strong><code>status</code></strong> — success confirmation and indexing status</li>
+</ul>
+<h2 id="usage-examples">Usage Examples</h2>
+<h3 id="create-a-new-person-page-safe-page-is-known-not-to-exist">Create a new person page (safe — page is known not to exist)</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Alice Smith&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki_person&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;## Role\n\nEngineering Lead on the Platform team.\n\n## Notes\n\n- Prefers async communication\n- Leading the Q4 reliability push\n\n## Action Items\n\n- [ ] Share architecture doc by Friday&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;engineering&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;leadership&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;platform&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="update-an-existing-page-read-first-pattern">Update an existing page (read-first pattern)</h3>
+<p>Always read before writing to an existing page:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Step 1 — read_wiki_page</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Alice Smith&quot;</span>
+<span class="p">}</span>
+
+<span class="c1">// Step 2 — write_wiki_page (with merged/updated body)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Alice Smith&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki_person&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;## Role\n\nEngineering Lead on the Platform team.\n\n## Notes\n\n- Prefers async communication\n- Leading the Q4 reliability push\n- Joined the architecture review board (updated 2026-05)\n\n## Action Items\n\n- [x] Share architecture doc by Friday\n- [ ] Review onboarding proposal&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;engineering&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;leadership&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;platform&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;cortex_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;3f8a1c2d-4e5b-6789-abcd-ef0123456789&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="create-a-concept-stub-for-later-expansion">Create a concept stub for later expansion</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Second Brain&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki_concept&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A system for capturing, organising, and retrieving personal knowledge.\n\n*Stub — to be expanded.*&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;knowledge-management&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;productivity&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;stub&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="synthesise-multiple-captured-thoughts-into-a-project-page">Synthesise multiple captured thoughts into a project page</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Project Nightingale&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki_project&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;## Overview\n\nInternal data pipeline modernisation project.\n\n## Decisions\n\n- Migrating from Airflow to Prefect\n- Target completion: Q3 2026\n\n## Key People\n\n- [[Alice Smith]] — Tech Lead\n- [[Bob Torres]] — PM&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;data-engineering&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;infrastructure&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;q3-2026&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;cortex_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;1a2b3c4d-0000-0000-0000-111111111111&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;5e6f7a8b-0000-0000-0000-222222222222&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;page_sources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;raw/articles/prefect-migration-notes.md&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="protocol-notes">Protocol Notes</h2>
+<ol>
+<li><strong>Always call <code>read_wiki_page</code> first</strong> if there is any chance the page exists. <code>write_wiki_page</code> is a full overwrite — it does not merge or patch.</li>
+<li><strong>Do not include frontmatter in <code>body</code>.</strong> Cortex builds it automatically from <code>title</code>, <code>type</code>, <code>tags</code>, <code>status</code>, and other parameters. Adding frontmatter to the body will result in duplicate or malformed YAML.</li>
+<li><strong>After every write</strong>, call <a href="../append-wiki-log/"><code>append_wiki_log</code></a> with the file path and a one-line summary of what changed. This maintains the audit trail in <code>log.md</code>.</li>
+<li><strong>Use <code>cortex_ids</code></strong> to link synthesised wiki pages back to the source captured thoughts. This preserves provenance and makes the knowledge graph navigable.</li>
+<li><strong>Tags must be <code>lowercase-kebab</code></strong> — e.g. <code>machine-learning</code>, not <code>Machine Learning</code> or <code>MachineLearning</code>.</li>
+</ol>
+<h2 id="related-tools">Related Tools</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>When to use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../read-wiki-page/"><code>read_wiki_page</code></a></td>
+<td>Read a page before overwriting it</td>
+</tr>
+<tr>
+<td><a href="../search-wiki/"><code>search_wiki</code></a></td>
+<td>Find a page when you don't know its exact title</td>
+</tr>
+<tr>
+<td><a href="../list-wiki-pages/"><code>list_wiki_pages</code></a></td>
+<td>Browse all pages of a given type</td>
+</tr>
+<tr>
+<td><a href="../append-wiki-log/"><code>append_wiki_log</code></a></td>
+<td>Log the write action after completing it</td>
+</tr>
+<tr>
+<td><a href="../migrate-vault-file/"><code>migrate_vault_file</code></a></td>
+<td>Import files from MainVault into WikiVault <code>raw/</code></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
