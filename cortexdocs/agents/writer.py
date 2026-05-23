@@ -33,7 +33,7 @@ Your response IS the raw file content. Output rules:
 - For tool pages: always include a Parameters section (markdown table), a Returns section, and at least one Usage example in a code block.
 - For the overview page (index.md): write CONCEPTUAL content — what the server does, its data model, functional areas (named groups of tools, no per-tool tables), multi-step usage workflows, architecture notes. Do not reproduce the full tool listing; the tools index page handles that.
 - For the tools index page (tools/index.md): write a TECHNICAL REFERENCE — one table per functional group with tool name + one-line description, "Choosing the right search/write tool" decision tables, and any required protocol notes (e.g. read-before-write as a numbered list). No server overview prose.
-- When linking to a tool page from any index page, use the path `tools/<tool-name>.md` with hyphens (not underscores), e.g. `[capture_thought](tools/capture-thought.md)`.
+- Links to tool pages must use **relative paths** from the file's own location. From `index.md` (root): `[capture_thought](tools/capture-thought.md)`. From `tools/index.md` (already inside `tools/`): `[capture_thought](capture-thought.md)` — no `tools/` prefix. Always use hyphens (not underscores) in filenames.
 - No "In this document..." intros. No "Conclusion" sections.
 
 ## Required frontmatter
