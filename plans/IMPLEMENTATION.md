@@ -450,3 +450,204 @@ If Day 3 slips significantly, ship with Phase 1 only:
 - The eval still runs, just without Tier 3 questions.
 
 The interview demo works equally well at Day 2 completion. Phase 2 makes it better, not necessary.
+
+---
+
+## Days 5–6 — Pipeline visualisation layer
+
+**Goal:** A live web UI showing the pipeline executing in real time: animated node graph, per-node status, and drill-down into the structured log files for completed nodes. Demonstrates agent orchestration monitoring skills.
+
+**Fallback option — LangSmith Studio:** Before committing to a custom build, note that LangSmith (formerly LangGraph Studio, now Anthropic/LangChain's hosted observability product) gives you automatic trace visualisation with near-zero setup — set `LANGCHAIN_TRACING_V2=true` and `LANGCHAIN_API_KEY`, and every run appears in the LangSmith dashboard with a node-by-node timeline, token usage, and input/output inspection. Worth mentioning in the demo as "what the ecosystem provides for free." However, it is a third-party SaaS dashboard for post-hoc tracing — not a live animated "watch it run" experience, and not something you own. Use it as a demo point, not as the Day 5 deliverable.
+
+**Chosen approach — Option B: FastAPI + SSE + vanilla JS.** The LangGraph streaming API (`graph.astream_events()`) emits fine-grained events as the graph runs. A thin FastAPI server consumes these and forwards them to the browser as Server-Sent Events. A single-page frontend (one HTML file, no build toolchain) listens to the SSE stream and animates a pre-drawn SVG of the pipeline graph. Because the graph topology is fixed and known, the SVG can be hand-crafted with precision. No React, no Webpack, no npm — just Python on the server side and vanilla JS on the client.
+
+---
+
+### Day 5 — Server and streaming integration
+
+**34. `cortexdocs/viz/server.py`** — FastAPI app with two routes:
+
+```python
+GET /               → serve viz/static/index.html
+GET /stream?config= → SSE endpoint — runs the pipeline and streams events
+GET /logs/{filename} → return a log file as JSON (for the drill-down panel)
+```
+
+The `/stream` endpoint:
+- Accepts query params mirroring the CLI (`server_cmd`, `repo`, `no_eval`, `from_stage`)
+- Instantiates `Settings`, builds the LangGraph graph, and calls `graph.astream_events(state, config)`
+- Maps each event to a small JSON envelope and writes it to the SSE stream:
+
+```python
+async def stream_pipeline(request: Request):
+    async def generate():
+        async for event in graph.astream_events(state, run_config, version="v2"):
+            kind = event["event"]
+            name = event.get("name", "")
+            if kind == "on_chain_start" and name in NODE_NAMES:
+                yield sse_event("node_start", {"node": name})
+            elif kind == "on_chain_end" and name in NODE_NAMES:
+                data = event.get("data", {})
+                log_file = _find_log_for_node(name)
+                yield sse_event("node_end", {"node": name, "log": log_file})
+            elif kind == "on_llm_start":
+                yield sse_event("llm_start", {"node": name, "model": event["metadata"].get("ls_model_name")})
+            elif kind == "on_llm_end":
+                usage = event["data"]["output"].usage_metadata
+                yield sse_event("llm_end", {"node": name, "usage": usage})
+    return EventSourceResponse(generate())
+```
+
+`NODE_NAMES` is the set of node names defined in `graph.py` (`"planner"`, `"writer"`, `"reviewer"`, `"render"`, etc.).
+
+**35. `cortexdocs/viz/static/index.html`** — single HTML file, embedded CSS and JS. Structure:
+
+```
+┌─────────────────────────────────────────────────────┐
+│  CortexDocs  [Run ▶]  [Phase 1 only ☐]              │
+├───────────────────────┬─────────────────────────────┤
+│                       │                             │
+│   Pipeline graph SVG  │   Log / detail panel        │
+│                       │                             │
+│  [discover]           │  Click any completed node   │
+│      │                │  to inspect its log entry.  │
+│  [planner]            │                             │
+│      │                │  { "agent": "writer",       │
+│  [writer] ◄──────┐    │    "input_tokens": 8142,   │
+│      │           │    │    "output_tokens": 923,    │
+│  [reviewer] ─────┘    │    ...                      │
+│      │                │  }                          │
+│  [render]             │                             │
+│                       │                             │
+├───────────────────────┴─────────────────────────────┤
+│  Token usage bar  [input ████░░ 12k] [output █░ 2k] │
+└─────────────────────────────────────────────────────┘
+```
+
+**Node states and CSS classes:**
+- `idle` — grey fill, no animation
+- `active` — blue fill, CSS `@keyframes` pulse on the border (2s infinite)
+- `done` — green fill, static; clickable — clicking loads the log in the detail panel
+- `partial` — amber fill (page shipped after hitting revision cap)
+- `error` — red fill
+
+The SVG graph is hand-drawn with `<rect>` nodes, `<path>` arrows, and `<text>` labels. The writer↔reviewer back-edge is drawn as a curved arrow that animates (stroke-dashoffset) when a revision is in flight.
+
+**36. `cortexdocs/viz/static/app.js`** — ~150 lines of vanilla JS:
+
+```javascript
+const nodeEls = {};  // node name → SVG element
+
+function connect(params) {
+    const src = new EventSource(`/stream?${params}`);
+    src.addEventListener("node_start", e => {
+        const { node } = JSON.parse(e.data);
+        setNodeState(node, "active");
+    });
+    src.addEventListener("node_end", e => {
+        const { node, log } = JSON.parse(e.data);
+        setNodeState(node, "done");
+        nodeEls[node].onclick = () => loadLog(log);
+    });
+    src.addEventListener("llm_end", e => {
+        const { usage } = JSON.parse(e.data);
+        updateTokenBar(usage);
+    });
+    src.addEventListener("done", () => src.close());
+    src.addEventListener("error", e => { /* show error state */ });
+}
+
+function setNodeState(name, state) {
+    nodeEls[name].setAttribute("data-state", state);
+    // CSS [data-state=active] selector does the animation
+}
+
+async function loadLog(filename) {
+    const resp = await fetch(`/logs/${filename}`);
+    const log = await resp.json();
+    document.getElementById("detail").textContent = JSON.stringify(log, null, 2);
+}
+```
+
+**37. `cortexdocs/cli.py` update** — add a `viz` command:
+
+```
+python -m cortexdocs viz          # start the viz server on http://localhost:8001
+python -m cortexdocs viz --port N
+```
+
+Launches `uvicorn cortexdocs.viz.server:app --port 8001 --reload`.
+
+**38. `Makefile` update:**
+
+```makefile
+viz:
+    python3 -m cortexdocs viz
+```
+
+**Done criteria for Day 5:**
+- `make viz` opens a browser page
+- Clicking "Run" sends the pipeline command to the server and starts the SSE stream
+- Each node transitions through idle → active → done in real time as the pipeline executes
+- Clicking a completed node shows its raw JSON log in the detail panel
+
+---
+
+### Day 6 — Polish and demo integration
+
+**39. Token usage bar** — cumulative input/output/cache_read totals displayed as a progress bar at the bottom, updated on each `llm_end` event. Shows the cache hit benefit visually (cache_read grows faster than input after the first page).
+
+**40. Writer↔reviewer loop counter** — when the reviewer sends revision notes, animate the back-edge arrow and display a revision counter badge on the writer node (e.g. `rev 1/2`). This makes the bounded review loop visible without requiring the viewer to read logs.
+
+**41. Page-level progress** — below the writer node, show a small progress indicator: `page 3 / 14 — tools/list-thoughts.md`. Updates on each `node_start` event for the writer.
+
+**42. Phase 1 / Phase 2 toggle** — the Run panel has a checkbox to enable repo enrichment. When checked, the SVG animates in the ingest and researcher nodes above the planner (they are hidden in Phase 1 mode). This makes the two-phase architecture visible without explanation.
+
+**43. Demo integration** — update README with the viz section and a screenshot. During the live demo, start the viz server before the presentation, show it idling, then click Run. The pipeline animates over ~3–4 minutes (Phase 1). While it runs, narrate what each node is doing. When it finishes, click the reviewer node and show the revision notes it generated for one of the hallucinated-return-schema pages.
+
+**Done criteria for Day 6:**
+- Token bar shows live cumulative usage with cache hit visible
+- Revision back-edge animates on reviewer → writer transitions
+- Page progress label updates throughout the writer loop
+- Phase 1 / Phase 2 toggle shows/hides the Phase 2 nodes in the SVG
+- Screenshot in README
+
+---
+
+### Build order (Days 5–6)
+
+```
+viz/server.py (FastAPI + SSE skeleton)
+    └── wire graph.astream_events()
+          └── index.html (static SVG graph)
+                └── app.js (EventSource listener + node state)
+                      └── [Day 5 done — live node animation]
+                            └── token bar
+                                  └── revision back-edge animation
+                                        └── page progress label
+                                              └── Phase 1/2 toggle
+                                                    └── [Day 6 done]
+```
+
+---
+
+### Key dependencies (Days 5–6)
+
+| Package | Purpose |
+|---|---|
+| `fastapi` | Already available via langgraph deps |
+| `uvicorn` | Already in the virtualenv |
+| `sse-starlette` | `EventSourceResponse` — already installed |
+
+No new packages required. `fastapi`, `uvicorn`, and `sse-starlette` are all already present in the virtualenv as transitive dependencies of `langgraph`.
+
+---
+
+### Risks (Days 5–6)
+
+| Risk | Mitigation |
+|---|---|
+| `astream_events` event names differ from expected | Test with a short mock graph first; print raw events to confirm `on_chain_start`/`on_chain_end` fire on named nodes |
+| SSE connection drops mid-run | Add a `reconnect` field in each SSE event and track last-seen node in the client; reconnect resumes from last known state |
+| SVG hand-drawing is tedious | Draw it once in a vector editor (Figma/Inkscape) and export; the node names are text attributes the JS can query by id |
+| Pipeline run takes too long for a live demo | The `--from-stage write` flag skips discovery; with a warm cache the 14-page write/review loop completes in ~3 minutes |
