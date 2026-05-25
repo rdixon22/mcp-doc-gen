@@ -57,14 +57,27 @@ def generate(
     if from_stage is None or from_stage == "discover":
         manifest = asyncio.run(_run_discover(settings))
     else:
-        console.print(f"[dim]Skipping discovery — loading manifest from disk[/dim]")
-        import json
+        console.print("[dim]Skipping discovery — loading manifest from disk[/dim]")
         from cortexdocs.discovery.models import MCPServerManifest
         manifest = MCPServerManifest.model_validate_json(
             (settings.output_dir / "manifest.json").read_text()
         )
 
-    _run_pipeline(settings, manifest, from_stage)
+    # For --from-stage write: also load cached research (skip ingest + researcher)
+    research = None
+    if from_stage in ("write", "render") and settings.repo_path:
+        research_path = settings.output_dir / "research.json"
+        if research_path.exists():
+            from cortexdocs.agents.state import ResearchOutput
+            research = ResearchOutput.model_validate_json(research_path.read_text())
+            console.print(f"[dim]Loaded research from {research_path}[/dim]")
+        else:
+            console.print(
+                f"[yellow]Warning:[/yellow] --from-stage {from_stage} requested but "
+                f"{research_path} not found — will run without research context"
+            )
+
+    _run_pipeline(settings, manifest, from_stage, research)
 
 
 @app.command()
@@ -136,7 +149,9 @@ async def _run_discover(settings: Settings):
     return manifest
 
 
-def _run_pipeline(settings: Settings, manifest, from_stage: str | None) -> None:
+def _run_pipeline(settings: Settings, manifest, from_stage: str | None, research=None) -> None:
+    import time
+
     from langgraph.checkpoint.sqlite import SqliteSaver
 
     from cortexdocs.agents.graph import build_graph, initial_state
@@ -144,10 +159,21 @@ def _run_pipeline(settings: Settings, manifest, from_stage: str | None) -> None:
     console.print()
     db_path = str(settings.output_dir / "checkpoints.db")
 
+    # When resuming from write/render, skip the Phase 2 graph nodes even if REPO_PATH is set.
+    # We inject any cached research directly into the initial state instead.
+    graph_settings = settings
+    if from_stage in ("write", "render") and settings.repo_path:
+        graph_settings = settings.model_copy(update={"repo_path": None})
+
     with SqliteSaver.from_conn_string(db_path) as checkpointer:
-        graph = build_graph(settings, checkpointer)
+        graph = build_graph(graph_settings, checkpointer)
         state = initial_state(manifest, settings)
-        import time
+
+        # Inject pre-loaded research when skipping the researcher node
+        if research is not None:
+            state["research"] = research
+            state["repo_enriched"] = True
+
         run_config = {
             "configurable": {
                 "thread_id": f"run-{int(time.time())}",
@@ -158,7 +184,6 @@ def _run_pipeline(settings: Settings, manifest, from_stage: str | None) -> None:
         try:
             final_state = graph.invoke(state, config=run_config)
         except NotImplementedError as e:
-            # Expected while stub nodes are still in place
             console.print(f"\n[yellow]Pipeline stopped at stub:[/yellow] {e}")
             return
 

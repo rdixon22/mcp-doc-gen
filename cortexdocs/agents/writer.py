@@ -36,6 +36,15 @@ Your response IS the raw file content. Output rules:
 - Links to tool pages must use **relative paths** from the file's own location. From `index.md` (root): `[capture_thought](tools/capture-thought.md)`. From `tools/index.md` (already inside `tools/`): `[capture_thought](capture-thought.md)` — no `tools/` prefix. Always use hyphens (not underscores) in filenames.
 - No "In this document..." intros. No "Conclusion" sections.
 
+## Phase 2 pages (architecture.md, setup.md, extending.md)
+
+When a research report is provided alongside the manifest, you may write Phase 2 pages. These pages should:
+- Draw on the `architecture_summary`, `module_summaries`, `setup_steps`, and `extension_points` from the research report.
+- Be specific and concrete — name actual files, environment variables, data stores, and external services from the research.
+- For `architecture.md`: cover the runtime stack, data flow, external services, and how the MCP layer fits on top. Include a text-based component diagram.
+- For `setup.md`: numbered steps from "clone the repo" to "server running". Include every env var. Cover both stdio and HTTP startup modes.
+- For `extending.md`: step-by-step guide to adding a new MCP tool. Reference the actual registration pattern from the research. Include a minimal code example.
+
 ## Required frontmatter
 
 Every page MUST begin with this YAML frontmatter block:
@@ -110,6 +119,22 @@ def writer_node(state: PipelineState, config: RunnableConfig) -> dict:
     instructions += "\nProduce the complete page now."
 
     manifest_json = manifest.model_dump_json(indent=2)
+    research = state.get("research")
+
+    # Build cached content blocks — manifest first, research second (both reused every call)
+    cached_blocks: list[dict] = [
+        {
+            "type": "text",
+            "text": f"MCP server manifest:\n\n```json\n{manifest_json}\n```",
+            "cache_control": {"type": "ephemeral"},
+        }
+    ]
+    if research:
+        cached_blocks.append({
+            "type": "text",
+            "text": f"Research report (repo analysis):\n\n```json\n{research.model_dump_json(indent=2)}\n```",
+            "cache_control": {"type": "ephemeral"},
+        })
 
     with agent_log(
         "writer", settings.writer_model, settings.log_dir,
@@ -123,16 +148,8 @@ def writer_node(state: PipelineState, config: RunnableConfig) -> dict:
                 {
                     "role": "user",
                     "content": [
-                        {
-                            "type": "text",
-                            # Manifest is identical for every writer call — cache it
-                            "text": f"MCP server manifest:\n\n```json\n{manifest_json}\n```",
-                            "cache_control": {"type": "ephemeral"},
-                        },
-                        {
-                            "type": "text",
-                            "text": instructions,
-                        },
+                        *cached_blocks,
+                        {"type": "text", "text": instructions},
                     ],
                 }
             ],

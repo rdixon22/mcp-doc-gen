@@ -13,7 +13,7 @@ console = Console()
 _SYSTEM_PROMPT = """\
 You are a technical documentation reviewer for an MCP (Model Context Protocol) server.
 
-Review the submitted documentation page against the provided tool definition (ground truth).
+Review the submitted documentation page against the provided ground truth sources.
 Then call the submit_review tool with your verdict.
 
 ## Checklist — flag issues under "revise", not "approved"
@@ -23,8 +23,9 @@ Then call the submit_review tool with your verdict.
 3. **Return value** — described, even if brief.
 4. **Usage example** — at least one concrete example present for tool pages.
 5. **Frontmatter validity** — all required fields present: title, description, audience, topics, mcp_tools, doc_phase, reviewed, generated_at, model.
-6. **No hallucination** — no claims about implementation, internals, or behaviour that cannot be verified from the tool definition alone.
+6. **No hallucination** — no claims about implementation, internals, or behaviour that cannot be verified from the provided ground truth sources.
 7. **No wrapping** — the page must NOT be enclosed in triple backticks or any outer code fence. The frontmatter `---` must be the very first line.
+8. **Implementation accuracy** (Phase 2 pages only) — if a research note is provided, any implementation claims (data stores used, external services called, file paths mentioned) must not contradict it.
 
 ## notes field
 
@@ -82,7 +83,8 @@ def reviewer_node(state: PipelineState, config: RunnableConfig) -> dict:
             "revision_counts": revision_counts,
         }
 
-    # Build review context — include the manifest tool def as ground truth for tool pages
+    # Build review context: manifest tool def (always for tool pages) + research note (Phase 2)
+    research = state.get("research")
     tool_context = ""
     if spec.page_id.startswith("tool-"):
         tool_name = spec.page_id[len("tool-"):].replace("-", "_")
@@ -92,6 +94,13 @@ def reviewer_node(state: PipelineState, config: RunnableConfig) -> dict:
                 f"Tool definition from manifest (authoritative ground truth):\n"
                 f"```json\n{json.dumps(tool.model_dump(), indent=2)}\n```\n\n"
             )
+        if research:
+            note = next((n for n in research.tool_notes if n.tool_name == tool_name), None)
+            if note:
+                tool_context += (
+                    f"Implementation note from repo research:\n"
+                    f"```json\n{json.dumps(note.model_dump(), indent=2)}\n```\n\n"
+                )
 
     review_prompt = (
         f"{tool_context}"
@@ -131,9 +140,10 @@ def reviewer_node(state: PipelineState, config: RunnableConfig) -> dict:
             update={"review_status": "revise", "reviewer_notes": notes}
         )
         pages[current_index] = revised_page
+        notes_preview = next(iter((notes or "").splitlines()), "")[:80]
         console.print(
             f"  [yellow]↺[/yellow]  {spec.filename}: revision {revision_counts[spec.page_id]}"
-            f"/{settings.max_revision_rounds} — {(notes or '').splitlines()[0][:80]}"
+            f"/{settings.max_revision_rounds} — {notes_preview}"
         )
         return {
             "pages": pages,

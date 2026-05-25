@@ -1,16 +1,16 @@
 generate:
-	python3 -m cortexdocs generate
+	REPO_PATH= uv run python3 -m cortexdocs generate --no-eval
 
-generate-phase1:
-	python3 -m cortexdocs generate --no-eval
+generate-phase2:
+	uv run python3 -m cortexdocs generate --no-eval
 
 serve:
-	python3 -m cortexdocs serve
+	uv run python3 -m cortexdocs serve
 
 eval:
-	python3 -m cortexdocs eval-docs
+	uv run python3 -m cortexdocs eval-docs
 
 deploy:
-	mkdocs gh-deploy --config-file output/mkdocs.yml
+	uv run mkdocs gh-deploy --config-file output/mkdocs.yml
 
-.PHONY: generate generate-phase1 serve eval deploy
+.PHONY: generate generate-phase2 serve eval deploy

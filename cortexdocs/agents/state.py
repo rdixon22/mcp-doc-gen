@@ -1,9 +1,41 @@
 from typing import Any, Literal, TypedDict
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 from cortexdocs.discovery.models import MCPServerManifest
 
+
+# ---------------------------------------------------------------------------
+# Phase 2 — Research output models (produced by researcher_node)
+# ---------------------------------------------------------------------------
+
+class ModuleSummary(BaseModel):
+    path: str
+    purpose: str
+    key_exports: list[str]
+    dependencies: list[str]
+
+
+class ToolImplementationNote(BaseModel):
+    tool_name: str              # matches MCPToolDef.name
+    implementation_file: str
+    how_it_works: str           # 2–4 sentence prose
+    dependencies: list[str]     # external services, libs
+
+
+class ResearchOutput(BaseModel):
+    repo_name: str
+    repo_purpose: str
+    architecture_summary: str
+    module_summaries: list[ModuleSummary] = []
+    tool_notes: list[ToolImplementationNote] = []
+    setup_steps: list[str] = []
+    extension_points: list[str] = []
+
+
+# ---------------------------------------------------------------------------
+# Pipeline models
+# ---------------------------------------------------------------------------
 
 class DocPageSpec(BaseModel):
     page_id: str              # slug, e.g. "tool-capture-thought"
@@ -31,9 +63,9 @@ class PipelineState(TypedDict):
     manifest: MCPServerManifest
 
     # Phase 2 (None when running Phase 1 only)
-    # Typed as Any to avoid circular imports before ingest/agents modules exist
+    # ingested_repo typed as Any to avoid importing ingest.models here
     ingested_repo: Any | None
-    research: Any | None
+    research: ResearchOutput | None
     repo_enriched: bool
 
     # Writer / reviewer shared state

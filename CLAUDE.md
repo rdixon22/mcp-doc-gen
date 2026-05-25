@@ -84,8 +84,8 @@ plans/                      # BRIEF.md, ARCHITECTURE.md, IMPLEMENTATION.md
 | Phase 1: Planner → Writer → Reviewer | Complete |
 | Phase 1: Render (site + machine artifacts) | Complete |
 | Phase 1: Deploy (mkdocs gh-deploy) | Complete |
-| Phase 2: Ingest (walker.py) | **Stub** |
-| Phase 2: Researcher agent | **Stub** |
+| Phase 2: Ingest (walker.py) | Complete |
+| Phase 2: Researcher agent | Complete |
 | Eval harness | **Stub** (Day 4) |
 
 ## Key design decisions
@@ -102,15 +102,17 @@ plans/                      # BRIEF.md, ARCHITECTURE.md, IMPLEMENTATION.md
 
 ## Running the project
 
+Always use `uv run` — bare `python3` uses the system Python which lacks the project's virtualenv.
+
 ```bash
 # Install deps (first time, or after pulling)
 uv sync
 
-# Phase 1 only (no repo enrichment)
+# Phase 1 only (no repo enrichment) — or: make generate
 REPO_PATH= uv run python3 -m cortexdocs generate --no-eval
 
-# Phase 1 + Phase 2 (when Phase 2 is implemented)
-uv run python3 -m cortexdocs generate
+# Phase 1 + Phase 2 (repo enrichment) — or: make generate-phase2
+uv run python3 -m cortexdocs generate --no-eval
 
 # Re-run from write stage (cached manifest, skips discovery)
 REPO_PATH= uv run python3 -m cortexdocs generate --no-eval --from-stage write

@@ -10,7 +10,7 @@ from cortexdocs.logging_util import accumulate_usage, agent_log
 
 console = Console()
 
-_SYSTEM_PROMPT = """\
+_SYSTEM_PROMPT_PHASE1 = """\
 You are a technical documentation planner for MCP (Model Context Protocol) servers.
 
 Given a server manifest, produce a complete documentation plan as a structured list of pages.
@@ -31,6 +31,40 @@ Always include these pages, in this order:
   - For tool pages: what the tool does, every parameter (name, type, required/optional, description), return value, at least one concrete usage example
   - For the overview (index.md): CONCEPTUAL content only — server purpose, data model (what stores exist and how they differ), functional areas (named groupings of tools, not individual tool tables), typical multi-step usage workflows, architecture notes. Do NOT include per-tool tables or a full tool listing — that is the tools index page's job.
   - For the tools index (tools/index.md): TECHNICAL REFERENCE — one table per functional group listing tool name + one-line description, a "Choosing the right search tool" decision table, a "Choosing the right write tool" decision table, the read-before-write protocol (as a numbered list, not a code block). No server overview prose — that belongs in index.md.
+
+## Output format
+
+Call the create_doc_plan tool with the complete plan. Do not include any explanation outside the tool call.
+"""
+
+_SYSTEM_PROMPT_PHASE2 = """\
+You are a technical documentation planner for MCP (Model Context Protocol) servers.
+
+You have been given both the server manifest (Phase 1) and a structured research report produced by \
+analysing the server's source code (Phase 2). Produce a complete documentation plan.
+
+## Required pages
+
+Phase 1 pages (always included):
+1. Overview page  — page_id: "overview", filename: "index.md"
+2. Tools index    — page_id: "tools-index", filename: "tools/index.md"
+3. One page per tool — page_id: "tool-{tool-name}", filename: "tools/{tool-name}.md"
+   where {tool-name} is the tool name with underscores replaced by hyphens, e.g. capture_thought → tools/capture-thought.md
+
+Phase 2 pages (include because research is available):
+4. Architecture   — page_id: "architecture", filename: "architecture.md"
+5. Setup guide    — page_id: "setup", filename: "setup.md"
+6. Extension guide — page_id: "extending", filename: "extending.md"
+
+## Page spec rules
+
+- audience: always "both"
+- phase: 1 for protocol-only pages, 2 for pages that require research
+- key_points: 3–5 bullet points the writer MUST cover on this page
+  - Phase 1 page rules: same as Phase 1 planner (see tool schemas, overview/index distinctions)
+  - architecture.md: runtime stack, data stores and schemas, how the MCP layer sits on top, request lifecycle, external services
+  - setup.md: prerequisites, environment variables, database setup steps, how to start the server in both stdio and HTTP modes
+  - extending.md: how to add a new MCP tool — registration pattern, relevant files, conventions, testing approach
 
 ## Output format
 
@@ -69,29 +103,37 @@ def planner_node(state: PipelineState, config: RunnableConfig) -> dict:
     client = anthropic.Anthropic(api_key=settings.anthropic_api_key)
 
     manifest = state["manifest"]
+    research = state.get("research")
     manifest_json = manifest.model_dump_json(indent=2)
     tool_count = len(manifest.tools)
+    phase = 2 if research else 1
 
-    console.print(f"[bold]Planner:[/bold] building doc plan for {tool_count} tools...")
+    console.print(f"[bold]Planner:[/bold] building doc plan for {tool_count} tools (Phase {phase})...")
 
-    with agent_log("planner", settings.writer_model, settings.log_dir, f"{tool_count} tools, {manifest.server_name}") as log:
+    system_prompt = _SYSTEM_PROMPT_PHASE2 if research else _SYSTEM_PROMPT_PHASE1
+
+    # Build message content — manifest always first (cached), research appended if present
+    content: list[dict] = [
+        {
+            "type": "text",
+            "text": f"MCP server manifest:\n\n```json\n{manifest_json}\n```",
+            "cache_control": {"type": "ephemeral"},
+        }
+    ]
+    if research:
+        content.append({
+            "type": "text",
+            "text": f"Research report:\n\n```json\n{research.model_dump_json(indent=2)}\n```",
+            "cache_control": {"type": "ephemeral"},
+        })
+    content.append({"type": "text", "text": "Create the documentation plan."})
+
+    with agent_log("planner", settings.writer_model, settings.log_dir, f"{tool_count} tools, phase={phase}") as log:
         response = client.messages.create(
             model=settings.writer_model,
             max_tokens=8192,
-            system=_SYSTEM_PROMPT,
-            messages=[
-                {
-                    "role": "user",
-                    "content": [
-                        {
-                            "type": "text",
-                            "text": f"Here is the MCP server manifest:\n\n```json\n{manifest_json}\n```\n\nCreate the documentation plan.",
-                            # Cache the manifest — it will be reused by every Writer call too
-                            "cache_control": {"type": "ephemeral"},
-                        }
-                    ],
-                }
-            ],
+            system=system_prompt,
+            messages=[{"role": "user", "content": content}],
             tools=[_TOOL_DEF],
             tool_choice={"type": "tool", "name": "create_doc_plan"},
         )
@@ -106,8 +148,12 @@ def planner_node(state: PipelineState, config: RunnableConfig) -> dict:
         plan_data = tool_block.input
         log["full_output"] = json.dumps(plan_data)
 
+    pages_raw = plan_data["pages"]
+    # The model occasionally returns the array as a JSON string rather than a parsed list
+    if isinstance(pages_raw, str):
+        pages_raw = json.loads(pages_raw)
     doc_plan = DocPlan(
-        pages=[DocPageSpec(**p) for p in plan_data["pages"]]
+        pages=[DocPageSpec(**p) for p in pages_raw]
     )
 
     console.print(f"[green]✓[/green] Doc plan: {len(doc_plan.pages)} pages")

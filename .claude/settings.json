@@ -1,4 +1,10 @@
 {
+  "permissions": {
+    "allow": [
+      "Read(//Users/robdixon/Documents/dev/AI/ai-local-test/src/**)",
+      "Bash(uv run *)"
+    ]
+  },
   "enabledPlugins": {
     "langchain-skills@langchain-skills": true
   }
