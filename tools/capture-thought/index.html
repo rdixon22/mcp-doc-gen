@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Save a new atomic note or thought to Cortex with automatic embedding and metadata extraction.">
+        <meta name="description" content="Save a free-text note to Cortex with automatic embedding and LLM-extracted metadata.">
       
       
       
@@ -198,6 +198,63 @@
   
   
   
+  
+    <li class="md-tabs__item">
+      <a href="../../architecture/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architecture
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../setup/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Setup Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../extending/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Extension Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
     
   
   
@@ -280,6 +337,87 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -301,10 +439,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -322,8 +460,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -436,23 +574,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Parameters">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#parameter-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Parameter notes
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -479,10 +600,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#capture-a-decision" class="md-nav__link">
+  <a href="#capturing-a-decision" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Capture a decision
+        Capturing a decision
       
     </span>
   </a>
@@ -490,10 +611,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#capture-a-task" class="md-nav__link">
+  <a href="#capturing-a-task" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Capture a task
+        Capturing a task
       
     </span>
   </a>
@@ -501,10 +622,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#capture-an-insight-from-reading" class="md-nav__link">
+  <a href="#capturing-an-observation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Capture an insight from reading
+        Capturing an observation
       
     </span>
   </a>
@@ -517,10 +638,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
+  <a href="#deduplication-behaviour" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Best practices
+        Deduplication behaviour
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related tools
       
     </span>
   </a>
@@ -886,23 +1029,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Parameters">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#parameter-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Parameter notes
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -929,10 +1055,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#capture-a-decision" class="md-nav__link">
+  <a href="#capturing-a-decision" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Capture a decision
+        Capturing a decision
       
     </span>
   </a>
@@ -940,10 +1066,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#capture-a-task" class="md-nav__link">
+  <a href="#capturing-a-task" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Capture a task
+        Capturing a task
       
     </span>
   </a>
@@ -951,10 +1077,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#capture-an-insight-from-reading" class="md-nav__link">
+  <a href="#capturing-an-observation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Capture an insight from reading
+        Capturing an observation
       
     </span>
   </a>
@@ -967,10 +1093,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
+  <a href="#deduplication-behaviour" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Best practices
+        Deduplication behaviour
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related tools
       
     </span>
   </a>
@@ -995,13 +1143,17 @@
 
 
 <h1 id="capture_thought">capture_thought</h1>
-<p>Save a new note or thought to the Cortex Thoughts store. The server automatically generates a vector embedding and extracts metadata — including a type classification, topics, people mentioned, and any action items — from the content you provide.</p>
-<p>Use this tool whenever the user wants to preserve a discrete piece of information: an insight from reading, a decision made in a meeting, an observation, or a task to follow up on.</p>
+<p>Saves a note or thought to Cortex. On every capture the server runs two operations automatically:</p>
+<ol>
+<li><strong>Embedding</strong> — generates a 4096-dimensional vector (<code>qwen3-embedding</code> via Ollama) and stores it in the <code>entries</code> table with pgvector for semantic retrieval.</li>
+<li><strong>Metadata extraction</strong> — calls an LLM (via <code>extractMetadata</code>) to classify the thought and pull out structured fields: <code>type</code>, <code>topics</code>, <code>people</code>, and <code>action_items</code>.</li>
+</ol>
+<p>Deduplication is handled server-side using a SHA-256 fingerprint of the normalised content. Re-submitting identical content returns <code>duplicate: true</code> and does not create a new row.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
 <tr>
-<th>Parameter</th>
+<th>Name</th>
 <th>Type</th>
 <th>Required</th>
 <th>Default</th>
@@ -1018,44 +1170,82 @@
 </tr>
 </tbody>
 </table>
-<h3 id="parameter-notes">Parameter notes</h3>
-<p><strong><code>content</code></strong> — Write this as a standalone statement that will be meaningful without additional context. Include who was involved, what was decided, and why if relevant. A thought that reads as complete in isolation will surface more usefully in future searches.</p>
-<blockquote>
-<p>✅ Good: <code>"Decided to defer the API redesign until Q3 because the mobile team needs the existing endpoints stable through the launch."</code></p>
-<p>⚠️ Weak: <code>"API redesign deferred"</code> — lacks context that may not be recoverable later.</p>
-</blockquote>
+<p>Write <code>content</code> as a single, self-contained statement. Fragmentary phrases yield weaker metadata extraction and lower-quality embeddings.</p>
 <h2 id="returns">Returns</h2>
-<p>A confirmation that the entry was saved, including the assigned UUID and the metadata extracted from the content. The exact fields returned depend on the server implementation; treat returned metadata (type classification, topics, people) as illustrative of what the server may extract, not as a guaranteed schema.</p>
+<p>A text response containing:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>UUID of the created or existing entry</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>LLM-assigned content type (e.g. observation, task, idea)</td>
+</tr>
+<tr>
+<td><code>topics</code></td>
+<td>List of topic tags extracted from the content</td>
+</tr>
+<tr>
+<td><code>people</code></td>
+<td>People mentioned in the thought</td>
+</tr>
+<tr>
+<td><code>action_items</code></td>
+<td>Any action items detected</td>
+</tr>
+<tr>
+<td><code>duplicate</code></td>
+<td><code>true</code> if identical content was already stored; the existing entry is returned</td>
+</tr>
+</tbody>
+</table>
 <h2 id="usage-examples">Usage examples</h2>
-<h3 id="capture-a-decision">Capture a decision</h3>
+<h3 id="capturing-a-decision">Capturing a decision</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;capture_thought&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;capture_thought&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Decided to use Supabase pgvector for semantic search instead of a dedicated vector DB — simpler infrastructure, good enough performance for our scale, and we already have Supabase in the stack.&quot;</span>
+<span class="w">    </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Decided to migrate the auth layer to Clerk before the Q3 launch; keeps us off the OAuth maintenance path.&quot;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="capture-a-task">Capture a task</h3>
+<h3 id="capturing-a-task">Capturing a task</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;capture_thought&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;capture_thought&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Follow up with Sarah by end of week about the budget approval for the new hire — she mentioned needing the headcount justification document.&quot;</span>
+<span class="w">    </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Follow up with Jordan about the infrastructure budget by end of week.&quot;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="capture-an-insight-from-reading">Capture an insight from reading</h3>
+<h3 id="capturing-an-observation">Capturing an observation</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;capture_thought&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;capture_thought&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;From Thinking Fast and Slow: System 1 thinking explains why people anchor on the first number they hear in negotiations — important to set the anchor deliberately.&quot;</span>
+<span class="w">    </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Users consistently abandon the onboarding flow at step 4 — the permissions prompt is the likely friction point.&quot;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="best-practices">Best practices</h2>
-<p><strong>Write self-contained statements.</strong> Each thought is stored as an atomic unit. Future retrieval depends on the content alone — there is no surrounding conversation to provide context. Include names, dates, and rationale when they matter.</p>
-<p><strong>One idea per capture.</strong> If a meeting produced three distinct decisions, call <code>capture_thought</code> three times. Granular entries are easier to find and link to wiki pages later.</p>
-<p><strong>Consider downstream wiki updates.</strong> After capturing a thought about a person, project, or concept that already has a wiki page, check whether the wiki page should be updated to reflect the new information. Use <a href="../read-wiki-page/"><code>read_wiki_page</code></a> to retrieve the existing page and <a href="../write-wiki-page/"><code>write_wiki_page</code></a> to update it — always read before writing.</p>
-<p><strong>Use search to avoid duplication.</strong> Before capturing a thought you may have already saved, run <a href="../search-thoughts/"><code>search_thoughts</code></a> to check for near-duplicates.</p>
+<h2 id="deduplication-behaviour">Deduplication behaviour</h2>
+<p>If you submit the same <code>content</code> a second time, the <code>upsert_entry</code> RPC detects the fingerprint match and returns the existing entry unchanged. The response will include <code>duplicate: true</code>. No new row is written.</p>
+<h2 id="implementation-notes">Implementation notes</h2>
+<ul>
+<li>Embedding and metadata extraction run in parallel before the database write, so latency scales with the slower of the two (typically the LLM metadata call).</li>
+<li>The ingestion source is recorded as <code>'mcp'</code> in the <code>entries</code> table, which allows thought-only search tools to distinguish captured notes from wiki pages.</li>
+<li>The tool is backed by the shared <code>captureThought()</code> helper in <code>src/server/lib/capture.ts</code>, used by the HTTP REST API, the Discord bot, and this MCP tool — all three paths produce identical entries.</li>
+</ul>
+<h2 id="related-tools">Related tools</h2>
+<ul>
+<li><a href="../search-thoughts/"><code>search_thoughts</code></a> — find previously captured thoughts by semantic similarity</li>
+<li><a href="../list-thoughts/"><code>list_thoughts</code></a> — browse thoughts chronologically with optional filters</li>
+<li><a href="../thought-stats/"><code>thought_stats</code></a> — aggregate counts, type breakdown, top topics and people</li>
+</ul>
 
 
 

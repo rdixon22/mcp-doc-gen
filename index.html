@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A personal knowledge-management MCP server maintaining two distinct stores: atomic Thoughts and long-form WikiVault pages, both semantically searchable.">
+        <meta name="description" content="Cortex is a local-first AI second-brain exposing thought capture, semantic search, and LLM-curated wiki management as MCP tools.">
       
       
       
       
       
-        <link rel="next" href="tools/">
+        <link rel="next" href="architecture/">
       
       
         
@@ -23,7 +23,7 @@
     
     
       
-        <title>Cortex MCP Server — Overview - cortex — MCP Documentation</title>
+        <title>Cortex MCP Server Overview - cortex — MCP Documentation</title>
       
     
     
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Cortex MCP Server — Overview
+              Cortex MCP Server Overview
             
           </span>
         </div>
@@ -188,6 +188,63 @@
     
   
   Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="architecture/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architecture
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="setup/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Setup Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="extending/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Extension Guide
 
       </a>
     </li>
@@ -314,41 +371,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#two-stores-one-system" class="md-nav__link">
+  <a href="#what-cortex-does" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Two Stores, One System
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Two Stores, One System">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#thoughts-store" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Thoughts Store
+        What Cortex Does
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#wikivault-store" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#data-model" class="md-nav__link">
     <span class="md-ellipsis">
       
-        WikiVault Store
+        Data Model
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -365,10 +405,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-thought-capture-retrieval" class="md-nav__link">
+  <a href="#thought-capture-and-retrieval" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Thought Capture &amp; Retrieval
+        Thought Capture and Retrieval
       
     </span>
   </a>
@@ -376,10 +416,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-wiki-authoring" class="md-nav__link">
+  <a href="#wiki-management" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Wiki Authoring
+        Wiki Management
       
     </span>
   </a>
@@ -387,10 +427,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-cross-store-search" class="md-nav__link">
+  <a href="#cross-corpus-search" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Cross-Store Search
+        Cross-Corpus Search
       
     </span>
   </a>
@@ -398,21 +438,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-conversation-memory" class="md-nav__link">
+  <a href="#vault-migration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Conversation Memory
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-vault-migration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Vault Migration
+        Vault Migration
       
     </span>
   </a>
@@ -425,71 +454,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#typical-workflows" class="md-nav__link">
+  <a href="#mcp-transport" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Typical Workflows
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Typical Workflows">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#capture-synthesise" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Capture → Synthesise
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#research-write" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Research → Write
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#browse-promote" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Browse → Promote
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#import-link" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Import → Link
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Architecture Notes
+        MCP Transport
       
     </span>
   </a>
@@ -497,10 +465,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reference" class="md-nav__link">
+  <a href="#companion-interfaces" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reference
+        Companion Interfaces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-step-usage-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Step Usage Workflows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-at-a-glance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture at a Glance
       
     </span>
   </a>
@@ -511,6 +501,87 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -535,10 +606,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   
@@ -556,8 +627,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -965,41 +1036,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#two-stores-one-system" class="md-nav__link">
+  <a href="#what-cortex-does" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Two Stores, One System
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Two Stores, One System">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#thoughts-store" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Thoughts Store
+        What Cortex Does
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#wikivault-store" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#data-model" class="md-nav__link">
     <span class="md-ellipsis">
       
-        WikiVault Store
+        Data Model
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1016,10 +1070,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-thought-capture-retrieval" class="md-nav__link">
+  <a href="#thought-capture-and-retrieval" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Thought Capture &amp; Retrieval
+        Thought Capture and Retrieval
       
     </span>
   </a>
@@ -1027,10 +1081,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-wiki-authoring" class="md-nav__link">
+  <a href="#wiki-management" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Wiki Authoring
+        Wiki Management
       
     </span>
   </a>
@@ -1038,10 +1092,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-cross-store-search" class="md-nav__link">
+  <a href="#cross-corpus-search" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Cross-Store Search
+        Cross-Corpus Search
       
     </span>
   </a>
@@ -1049,21 +1103,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-conversation-memory" class="md-nav__link">
+  <a href="#vault-migration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Conversation Memory
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-vault-migration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Vault Migration
+        Vault Migration
       
     </span>
   </a>
@@ -1076,71 +1119,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#typical-workflows" class="md-nav__link">
+  <a href="#mcp-transport" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Typical Workflows
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Typical Workflows">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#capture-synthesise" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Capture → Synthesise
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#research-write" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Research → Write
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#browse-promote" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Browse → Promote
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#import-link" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Import → Link
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Architecture Notes
+        MCP Transport
       
     </span>
   </a>
@@ -1148,10 +1130,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reference" class="md-nav__link">
+  <a href="#companion-interfaces" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reference
+        Companion Interfaces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-step-usage-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Step Usage Workflows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-at-a-glance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture at a Glance
       
     </span>
   </a>
@@ -1175,118 +1179,143 @@
 
 
 
-<h1 id="cortex-mcp-server-overview">Cortex MCP Server — Overview</h1>
-<p>Cortex is a personal knowledge-management MCP server (v2.0.0) that gives AI agents and human developers a unified interface for capturing, retrieving, and synthesising personal knowledge. It maintains two complementary stores — <strong>Thoughts</strong> and <strong>WikiVault</strong> — each with its own data model and access patterns, plus cross-store search that spans both simultaneously.</p>
-<h2 id="two-stores-one-system">Two Stores, One System</h2>
-<h3 id="thoughts-store">Thoughts Store</h3>
-<p>Thoughts are atomic, self-contained notes captured from any source — the web, Discord, direct MCP calls, or conversation. When a thought is saved, Cortex automatically:</p>
-<ul>
-<li>Embeds the content as a vector for semantic search</li>
-<li>Extracts structured metadata: <strong>type</strong> (<code>observation</code>, <code>task</code>, <code>idea</code>, <code>reference</code>, <code>person_note</code>), <strong>topics</strong>, <strong>people mentioned</strong>, and <strong>action items</strong></li>
-</ul>
-<p>Thoughts are persisted as rows in <strong>Supabase</strong>, queryable by meaning, by metadata filter, or chronologically. They are the raw material of your knowledge base — quick, unedited, and accumulating over time.</p>
-<h3 id="wikivault-store">WikiVault Store</h3>
-<p>WikiVault contains long-form, LLM-maintained <strong>Markdown pages</strong> organised into typed subfolders:</p>
+<h1 id="cortex-mcp-server-overview">Cortex MCP Server Overview</h1>
+<p>Cortex is a local-first AI second-brain: a system for capturing fleeting notes ("thoughts"), maintaining a structured knowledge wiki, and making everything semantically searchable — all from within an AI assistant conversation via MCP tools.</p>
+<p>The server is designed so that nothing leaves your machine. Embeddings are generated by a local Ollama instance, persistence lives in a local Supabase Postgres database with pgvector, and the wiki is a directory of plain markdown files on your filesystem.</p>
+<h2 id="what-cortex-does">What Cortex Does</h2>
+<p>Cortex manages two complementary knowledge stores:</p>
+<p><strong>Thoughts</strong> are atomic, self-contained notes — observations, decisions, ideas, tasks, person notes, or references. When a thought is captured, Cortex automatically generates a vector embedding and calls a local LLM to extract structured metadata: the note type, topic tags, people mentioned, and any action items. Thoughts are stored in a Supabase <code>entries</code> table and are immediately searchable by semantic similarity.</p>
+<p><strong>WikiVault</strong> is a curated, LLM-maintained knowledge base of structured pages — people, projects, concepts, areas, topics, and imported raw materials (articles, books, daily notes). Pages are markdown files with YAML frontmatter stored in a configurable directory (default <code>~/Documents/Obsidian/WikiVault/</code>). Each page is also indexed into the same <code>entries</code> table so thoughts and wiki content can be searched together or independently. An <code>index.md</code> is rebuilt automatically, and every significant write is appended to <code>log.md</code> as an audit trail.</p>
+<h2 id="data-model">Data Model</h2>
+<p>All searchable content shares a single <code>entries</code> table in Supabase Postgres:</p>
 <table>
 <thead>
 <tr>
-<th>Type</th>
-<th>Subfolder purpose</th>
+<th>Column</th>
+<th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>wiki_person</code></td>
-<td>People profiles</td>
+<td><code>content</code></td>
+<td>Raw text of the thought or wiki page body</td>
 </tr>
 <tr>
-<td><code>wiki_project</code></td>
-<td>Project pages</td>
+<td><code>embedding</code></td>
+<td>4096-dimensional vector from <code>qwen3-embedding</code> via Ollama</td>
 </tr>
 <tr>
-<td><code>wiki_concept</code></td>
-<td>Concepts and ideas</td>
+<td><code>source</code></td>
+<td>Origin: <code>web</code>, <code>discord</code>, <code>mcp</code>, <code>api</code>, or <code>wiki</code></td>
 </tr>
 <tr>
-<td><code>wiki_area</code></td>
-<td>Life/work areas</td>
+<td><code>metadata</code></td>
+<td>JSONB: <code>type</code>, <code>topics</code>, <code>people</code>, <code>action_items</code></td>
 </tr>
 <tr>
-<td><code>wiki_topic</code></td>
-<td>Topic overviews</td>
+<td><code>file_path</code>, <code>title</code>, <code>page_type</code></td>
+<td>Wiki-only: filesystem location and page classification</td>
 </tr>
 <tr>
-<td><code>raw_article</code></td>
-<td>Imported articles</td>
-</tr>
-<tr>
-<td><code>raw_book</code></td>
-<td>Imported book notes</td>
-</tr>
-<tr>
-<td><code>raw_daily</code></td>
-<td>Daily notes</td>
-</tr>
-<tr>
-<td><code>raw_attachment</code></td>
-<td>Other imported files</td>
+<td><code>tags</code>, <code>wikilinks</code>, <code>page_sources</code>, <code>cortex_ids</code></td>
+<td>Wiki-only: relational context</td>
 </tr>
 </tbody>
 </table>
-<p>Each page is a <strong>Markdown file on the filesystem</strong> with auto-generated YAML frontmatter (you supply only the body). Pages are also indexed in Supabase alongside their vector embeddings, making them semantically searchable. WikiVault pages are the synthesised, curated layer — built from raw thoughts, imported content, and deliberate authoring.</p>
+<p>Deduplication is handled by a <code>upsert_entry</code> Postgres RPC that computes a SHA-256 fingerprint over normalized content. Semantic search uses a <code>match_entries</code> RPC with pgvector cosine similarity. Chat messages are stored in a separate <code>messages</code> table, also embedded and searchable.</p>
 <h2 id="functional-areas">Functional Areas</h2>
-<h3 id="1-thought-capture-retrieval">1. Thought Capture &amp; Retrieval</h3>
-<p>Save new insights, decisions, tasks, or observations with <a href="tools/capture-thought/">capture_thought</a>. Retrieve them semantically with <a href="tools/search-thoughts/">search_thoughts</a>, browse them chronologically with <a href="tools/list-thoughts/">list_thoughts</a>, or get an aggregate summary with <a href="tools/thought-stats/">thought_stats</a>.</p>
-<h3 id="2-wiki-authoring">2. Wiki Authoring</h3>
-<p>Create and maintain WikiVault pages with <a href="tools/write-wiki-page/">write_wiki_page</a> and <a href="tools/read-wiki-page/">read_wiki_page</a>. Browse pages by type or tag with <a href="tools/list-wiki-pages/">list_wiki_pages</a>. Every write should be preceded by a read (to avoid clobbering existing content) and followed by an <a href="tools/append-wiki-log/">append_wiki_log</a> call to maintain an audit trail.</p>
-<h3 id="3-cross-store-search">3. Cross-Store Search</h3>
-<p><a href="tools/search-all/">search_all</a> performs a single semantic query across both Thoughts and WikiVault simultaneously, returning results tagged <code>[thought]</code> or <code>[wiki]</code> by source. Use this when you need the broadest context before answering a question or starting a new wiki entry.</p>
-<h3 id="4-conversation-memory">4. Conversation Memory</h3>
-<p><a href="tools/search-messages/">search_messages</a> searches across all past AI chat session messages by semantic similarity — useful for recovering context from earlier conversations that wasn't formally captured as a thought.</p>
-<h3 id="5-vault-migration">5. Vault Migration</h3>
-<p><a href="tools/migrate-vault-file/">migrate_vault_file</a> is a one-time import tool that copies a file from an external MainVault into WikiVault's <code>raw/</code> subfolder, adding standardised frontmatter, stripping Dataview blocks, and indexing it in Supabase. The original source file is never modified.</p>
-<h2 id="typical-workflows">Typical Workflows</h2>
-<h3 id="capture-synthesise">Capture → Synthesise</h3>
-<ol>
-<li>User shares an insight; call <code>capture_thought</code> to save it with automatic metadata extraction.</li>
-<li>Later, call <code>search_thoughts</code> or <code>list_thoughts</code> to gather related thoughts on the same topic.</li>
-<li>Call <code>read_wiki_page</code> to check whether a relevant wiki page already exists.</li>
-<li>Call <code>write_wiki_page</code> to create or update a concept/person/project page that synthesises the captured thoughts, passing their UUIDs in <code>cortex_ids</code>.</li>
-<li>Call <code>append_wiki_log</code> to record what was written and why.</li>
-</ol>
-<h3 id="research-write">Research → Write</h3>
-<ol>
-<li>Call <code>search_all</code> with a broad query to surface everything Cortex knows on a topic across both stores.</li>
-<li>Review <code>[thought]</code> and <code>[wiki]</code> results to understand the current state of knowledge.</li>
-<li>Call <code>read_wiki_page</code> on the most relevant existing page.</li>
-<li>Call <code>write_wiki_page</code> with an updated or new page body.</li>
-<li>Call <code>append_wiki_log</code>.</li>
-</ol>
-<h3 id="browse-promote">Browse → Promote</h3>
-<ol>
-<li>Call <code>list_thoughts</code> filtered by <code>type: "idea"</code> and a recent <code>days</code> window to find ideas worth developing.</li>
-<li>For each promising idea, call <code>search_wiki</code> to see if a wiki concept page already exists.</li>
-<li>Call <code>write_wiki_page</code> with type <code>wiki_concept</code> to promote the idea into a permanent entry.</li>
-<li>Call <code>append_wiki_log</code>.</li>
-</ol>
-<h3 id="import-link">Import → Link</h3>
-<ol>
-<li>Call <code>migrate_vault_file</code> to import a Markdown article from MainVault into WikiVault as <code>raw_article</code>.</li>
-<li>Call <code>search_wiki</code> to find existing wiki pages related to the article's content.</li>
-<li>Call <code>read_wiki_page</code> on the most relevant page, then <code>write_wiki_page</code> to add a reference to the imported article via <code>page_sources</code>.</li>
-<li>Call <code>append_wiki_log</code>.</li>
-</ol>
-<h2 id="architecture-notes">Architecture Notes</h2>
+<h3 id="thought-capture-and-retrieval">Thought Capture and Retrieval</h3>
+<p><a href="tools/capture-thought/"><code>capture_thought</code></a> is the primary ingestion tool. It takes a single string and handles embedding, metadata extraction, and deduplication automatically. Retrieval is served by three tools that cover different query patterns:</p>
 <ul>
-<li><strong>Transport</strong>: stdio — Cortex runs as a local process; all MCP communication is over standard input/output.</li>
-<li><strong>Semantic search</strong>: vector embeddings are stored and queried in Supabase using pgvector. Both thoughts and wiki pages are embedded on write.</li>
-<li><strong>Filesystem layout</strong>: WikiVault pages live in typed subfolders on disk. The <code>type</code> parameter of <code>write_wiki_page</code> and <code>migrate_vault_file</code> determines the destination subfolder automatically.</li>
-<li><strong>Frontmatter</strong>: never include frontmatter in the <code>body</code> parameter of <code>write_wiki_page</code> — the server builds it from the structured parameters (<code>title</code>, <code>type</code>, <code>tags</code>, <code>status</code>, etc.).</li>
-<li><strong>Audit trail</strong>: <code>append_wiki_log</code> writes a timestamped one-line entry to <code>log.md</code> after every wiki write. Treat this as mandatory protocol, not optional.</li>
-<li><strong>Read-before-write</strong>: always call <code>read_wiki_page</code> before <code>write_wiki_page</code> when a page might already exist. Passing <code>write_wiki_page</code> without reading first risks silently overwriting curated content.</li>
+<li><a href="tools/search-thoughts/"><code>search_thoughts</code></a> — semantic similarity search over thoughts only</li>
+<li><a href="tools/list-thoughts/"><code>list_thoughts</code></a> — chronological browse with filters for type, topic, person, and recency</li>
+<li><a href="tools/thought-stats/"><code>thought_stats</code></a> — aggregate overview: total count, type breakdown, top topics and people</li>
 </ul>
-<h2 id="reference">Reference</h2>
-<p>See the <a href="tools/">Tools Reference</a> for a complete listing of all tools, parameter tables, and decision guidance for choosing between overlapping search and write tools.</p>
+<h3 id="wiki-management">Wiki Management</h3>
+<p>The wiki tools follow a read-before-write discipline. <a href="tools/read-wiki-page/"><code>read_wiki_page</code></a> retrieves a page by title or file path (pure filesystem, no database). <a href="tools/write-wiki-page/"><code>write_wiki_page</code></a> creates or overwrites a page — it merges frontmatter, auto-extracts <code>[[wikilinks]]</code>, re-embeds, and re-indexes. <a href="tools/append-wiki-log/"><code>append_wiki_log</code></a> appends an audit entry to <code>log.md</code> and should be called after every significant wiki action.</p>
+<p>Browsing is handled by:
+- <a href="tools/search-wiki/"><code>search_wiki</code></a> — semantic search restricted to wiki pages, with optional page-type filter
+- <a href="tools/list-wiki-pages/"><code>list_wiki_pages</code></a> — filesystem scan returning title, type, tags, and path; no database required</p>
+<h3 id="cross-corpus-search">Cross-Corpus Search</h3>
+<p><a href="tools/search-all/"><code>search_all</code></a> queries the unified <code>entries</code> table without a source filter, returning both thoughts and wiki pages ranked by relevance. Results are labelled <code>[thought]</code> or <code>[wiki:type]</code>. It uses a lower default similarity threshold (0.45) for broader recall and is the right choice when you want the fullest possible context.</p>
+<p><a href="tools/search-messages/"><code>search_messages</code></a> searches the separate chat history (<code>messages</code> table), covering everything discussed in past AI conversation sessions.</p>
+<h3 id="vault-migration">Vault Migration</h3>
+<p><a href="tools/migrate-vault-file/"><code>migrate_vault_file</code></a> is a one-time import tool for bringing files from a MainVault (e.g. an existing Obsidian vault) into WikiVault's <code>raw/</code> subtree. It strips Dataview blocks, adds standardized frontmatter, embeds, and indexes — without modifying the source file.</p>
+<h2 id="mcp-transport">MCP Transport</h2>
+<p>Cortex supports two transports, both backed by the same <code>createCortexServer()</code> factory in <code>src/server/routes/mcp.ts</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Transport</th>
+<th>Entry point</th>
+<th>When to use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>stdio</strong></td>
+<td><code>src/server/mcp-stdio.ts</code></td>
+<td>Claude Desktop — spawned as a subprocess</td>
+</tr>
+<tr>
+<td><strong>Streamable HTTP</strong></td>
+<td><code>POST /mcp</code> on port 3001</td>
+<td>Cursor, custom agents, any HTTP MCP client</td>
+</tr>
+</tbody>
+</table>
+<p>The HTTP endpoint accepts an optional <code>x-cortex-key</code> header or <code>?key=</code> query parameter for authentication. If <code>MCP_ACCESS_KEY</code> is not set in the environment, authentication is skipped entirely.</p>
+<h2 id="companion-interfaces">Companion Interfaces</h2>
+<p>The same Node.js/Express process that hosts the MCP endpoint also serves:</p>
+<ul>
+<li><strong>REST API</strong> — <code>/api/thoughts</code>, <code>/api/wiki</code>, <code>/api/chat</code>, <code>/api/conversations</code> — used by the web UI and available for direct HTTP clients</li>
+<li><strong>React web UI</strong> — Vite + React 19 frontend on port 5173 with Capture, Browse, Search, and Stats tabs</li>
+<li><strong>Discord bot</strong> — optional; auto-captures messages in a configured channel and responds to <code>!search</code>, <code>!recent</code>, <code>!ask</code>, and <code>!stats</code> commands</li>
+</ul>
+<p>All three share the same core library functions in <code>src/server/lib/</code> — particularly <code>captureThought()</code> in <code>capture.ts</code> and the wiki operations in <code>wiki.ts</code> — so behavior is consistent regardless of which interface is used.</p>
+<h2 id="multi-step-usage-workflows">Multi-Step Usage Workflows</h2>
+<p><strong>Capturing and synthesizing knowledge</strong></p>
+<ol>
+<li>Call <code>capture_thought</code> as insights arise throughout a session — each is embedded and tagged automatically.</li>
+<li>Later, call <code>search_thoughts</code> or <code>search_all</code> to retrieve relevant prior context on a topic.</li>
+<li>Call <code>search_wiki</code> or <code>read_wiki_page</code> to check whether a structured page already exists.</li>
+<li>Call <code>read_wiki_page</code> to read the existing page before modifying it.</li>
+<li>Call <code>write_wiki_page</code> to create or update the wiki page, synthesizing newly captured thoughts.</li>
+<li>Call <code>append_wiki_log</code> to record what was done.</li>
+</ol>
+<p><strong>Answering a question with full context</strong></p>
+<ol>
+<li>Call <code>search_all</code> with a broad query to get the widest possible picture.</li>
+<li>Follow up with <code>search_messages</code> to surface anything discussed in prior chat sessions.</li>
+<li>Use <code>list_thoughts</code> with a <code>person</code> or <code>topic</code> filter for targeted retrieval.</li>
+<li>Call <code>read_wiki_page</code> on any directly relevant wiki entries.</li>
+</ol>
+<p><strong>Onboarding existing notes</strong></p>
+<ol>
+<li>Call <code>migrate_vault_file</code> for each MainVault file, specifying the appropriate <code>target_type</code>.</li>
+<li>Call <code>search_wiki</code> to verify the imported content is indexed and searchable.</li>
+<li>Create or update wiki summary pages with <code>write_wiki_page</code>, linking to the raw imports via <code>page_sources</code>.</li>
+</ol>
+<h2 id="architecture-at-a-glance">Architecture at a Glance</h2>
+<div class="highlight"><pre><span></span><code>Claude Desktop          Cursor / custom agents
+      │                         │
+  stdio transport       HTTP POST /mcp
+      │                         │
+      └────────┬────────────────┘
+               │
+      createCortexServer()   ←── src/server/routes/mcp.ts
+               │
+       ┌───────┼───────────────────────┐
+       │       │                       │
+  capture.ts  wiki.ts            supabase.ts / ollama.ts
+  (ingestion) (filesystem)       (persistence / inference)
+       │                               │
+  entries table              Ollama (qwen3-embedding,
+  messages table              glm-4.7-flash, glm-5:cloud)
+  (local Supabase            WikiVault markdown directory
+   + pgvector)
+</code></pre></div>
+<p>The MCP layer is a thin registration wrapper. All meaningful logic lives in <code>src/server/lib/</code>, making it straightforward to add new tools, REST routes, or ingestion sources that share the same capabilities.</p>
 
 
 

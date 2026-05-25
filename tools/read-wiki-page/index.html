@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Read the full content and frontmatter of a WikiVault page by title or relative file path.">
+        <meta name="description" content="Read the full frontmatter and body of a WikiVault page by title or relative file path.">
       
       
       
@@ -198,6 +198,63 @@
   
   
   
+  
+    <li class="md-tabs__item">
+      <a href="../../architecture/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architecture
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../setup/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Setup Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../extending/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Extension Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
     
   
   
@@ -280,6 +337,87 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -301,10 +439,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -322,8 +460,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -604,6 +742,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identifier-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identifier resolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -611,17 +766,6 @@
     <span class="md-ellipsis">
       
         Returns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#read-before-write-protocol" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Read-before-write protocol
       
     </span>
   </a>
@@ -641,10 +785,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#look-up-a-person-page-by-title" class="md-nav__link">
+  <a href="#read-by-title" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Look up a person page by title
+        Read by title
       
     </span>
   </a>
@@ -652,10 +796,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#look-up-a-page-by-relative-file-path" class="md-nav__link">
+  <a href="#read-by-relative-file-path" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Look up a page by relative file path
+        Read by relative file path
       
     </span>
   </a>
@@ -663,10 +807,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#full-update-workflow" class="md-nav__link">
+  <a href="#case-insensitive-title-lookup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Full update workflow
+        Case-insensitive title lookup
       
     </span>
   </a>
@@ -679,10 +823,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
+  <a href="#read-before-write-pattern" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notes
+        Read-before-write pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related tools
       
     </span>
   </a>
@@ -880,6 +1046,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identifier-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identifier resolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -887,17 +1070,6 @@
     <span class="md-ellipsis">
       
         Returns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#read-before-write-protocol" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Read-before-write protocol
       
     </span>
   </a>
@@ -917,10 +1089,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#look-up-a-person-page-by-title" class="md-nav__link">
+  <a href="#read-by-title" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Look up a person page by title
+        Read by title
       
     </span>
   </a>
@@ -928,10 +1100,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#look-up-a-page-by-relative-file-path" class="md-nav__link">
+  <a href="#read-by-relative-file-path" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Look up a page by relative file path
+        Read by relative file path
       
     </span>
   </a>
@@ -939,10 +1111,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#full-update-workflow" class="md-nav__link">
+  <a href="#case-insensitive-title-lookup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Full update workflow
+        Case-insensitive title lookup
       
     </span>
   </a>
@@ -955,10 +1127,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
+  <a href="#read-before-write-pattern" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notes
+        Read-before-write pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related tools
       
     </span>
   </a>
@@ -983,7 +1177,10 @@
 
 
 <h1 id="read_wiki_page">read_wiki_page</h1>
-<p>Read the full content and frontmatter of a WikiVault page identified by either a human-readable title or a relative file path. <strong>Always call this before <a href="../write-wiki-page/"><code>write_wiki_page</code></a> if the page may already exist</strong> — never overwrite content you have not read.</p>
+<p>Read the full content and frontmatter of a WikiVault page. This is a <strong>pure filesystem operation</strong> — no database queries or embedding calls are made.</p>
+<blockquote>
+<p><strong>Required before writing.</strong> Always call <code>read_wiki_page</code> before <a href="../write-wiki-page/"><code>write_wiki_page</code></a> when a page may already exist. <code>write_wiki_page</code> overwrites the file; reading first ensures you preserve existing content and frontmatter fields.</p>
+</blockquote>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -1005,21 +1202,22 @@
 </tr>
 </tbody>
 </table>
+<h3 id="identifier-resolution">Identifier resolution</h3>
+<p>The tool selects its lookup strategy based on the value of <code>identifier</code>:</p>
+<ul>
+<li><strong>Relative file path</strong> — if <code>identifier</code> contains a <code>/</code>, the file is read directly from the WikiVault root. Example: <code>"wiki/people/Alice-Smith.md"</code>.</li>
+<li><strong>Title</strong> — if <code>identifier</code> contains no <code>/</code>, the tool scans the WikiVault filesystem via <code>listWikiPages</code> and matches against page titles <strong>case-insensitively</strong>. Example: <code>"alice smith"</code> will match a page titled <code>"Alice Smith"</code>.</li>
+</ul>
+<p>Use the file path form when you already know the exact location (faster, unambiguous). Use the title form when you have only the human-readable name.</p>
 <h2 id="returns">Returns</h2>
-<p>The tool returns the page's full Markdown body and its parsed frontmatter fields, along with the resolved file path. The exact shape of the response object is determined by the server runtime.</p>
-<p>When the page does not exist, the tool returns a signal indicating the page was not found. This allows a caller to safely proceed with a new <code>write_wiki_page</code> call.</p>
-<h2 id="read-before-write-protocol">Read-before-write protocol</h2>
-<p>Wiki writes must be preceded by a read whenever the page may already exist. This prevents clobbering data that was written in a previous session or by another tool call.</p>
+<p>A formatted text block containing:</p>
 <ol>
-<li>Call <code>read_wiki_page</code> with the target page title or path.</li>
-<li>If the page exists, inspect the returned body and frontmatter.</li>
-<li>Merge new information with the existing content.</li>
-<li>Call <code>write_wiki_page</code> with the merged body.</li>
-<li>Call <code>append_wiki_log</code> to record the action.</li>
+<li>All frontmatter fields (title, type, tags, status, created, updated, wikilinks, sources, etc.)</li>
+<li>The full markdown body</li>
 </ol>
-<p>If <code>read_wiki_page</code> returns a not-found signal, you may call <code>write_wiki_page</code> directly to create the page.</p>
+<p>Returns an error message if no matching page is found.</p>
 <h2 id="usage-examples">Usage examples</h2>
-<h3 id="look-up-a-person-page-by-title">Look up a person page by title</h3>
+<h3 id="read-by-title">Read by title</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;read_wiki_page&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -1027,7 +1225,7 @@
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="look-up-a-page-by-relative-file-path">Look up a page by relative file path</h3>
+<h3 id="read-by-relative-file-path">Read by relative file path</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;read_wiki_page&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -1035,33 +1233,59 @@
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="full-update-workflow">Full update workflow</h3>
-<div class="highlight"><pre><span></span><code>// Step 1 — read current state
-read_wiki_page({ identifier: &quot;Alice Smith&quot; })
-
-// Step 2 — merge new facts into the returned body
-// (done by the agent before the next call)
-
-// Step 3 — write the merged result back
-write_wiki_page({
-  title: &quot;Alice Smith&quot;,
-  type: &quot;wiki_person&quot;,
-  body: &quot;&lt;merged markdown&gt;&quot;,
-  tags: [&quot;engineering&quot;, &quot;team-lead&quot;]
-})
-
-// Step 4 — log the action
-append_wiki_log({
-  file_path: &quot;wiki/people/Alice-Smith.md&quot;,
-  summary: &quot;Updated role and project assignments for Alice Smith&quot;
-})
+<h3 id="case-insensitive-title-lookup">Case-insensitive title lookup</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;read_wiki_page&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;machine learning&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
-<h2 id="notes">Notes</h2>
+<p>This will match a page titled <code>"Machine Learning"</code>, <code>"machine learning"</code>, or any other capitalisation variant.</p>
+<h2 id="read-before-write-pattern">Read-before-write pattern</h2>
+<p>The canonical update workflow:</p>
+<ol>
+<li>Call <code>read_wiki_page</code> with the page title or path.</li>
+<li>Inspect the returned frontmatter and body.</li>
+<li>Merge your changes into the existing content.</li>
+<li>Call <a href="../write-wiki-page/"><code>write_wiki_page</code></a> with the complete updated body and all preserved fields.</li>
+<li>Call <a href="../append-wiki-log/"><code>append_wiki_log</code></a> to record the action.</li>
+</ol>
+<p>Skipping step 1 risks clobbering existing data — frontmatter fields like <code>created</code>, <code>wikilinks</code>, <code>cortex_ids</code>, and <code>page_sources</code> are not automatically carried forward by <code>write_wiki_page</code> unless you supply them explicitly.</p>
+<h2 id="implementation-notes">Implementation notes</h2>
 <ul>
-<li>Both identifier forms (title string and relative path) resolve to the same page. Use whichever you have available.</li>
-<li>Frontmatter is built automatically by <code>write_wiki_page</code> and is not supplied manually in the body. The returned frontmatter from <code>read_wiki_page</code> reflects whatever the server has stored.</li>
-<li>This tool is read-only — it never modifies the vault.</li>
+<li>Implemented in <code>src/server/routes/mcp.ts</code>; filesystem operations are handled by <code>src/server/lib/wiki.ts</code> (<code>readWikiPage</code>, <code>listWikiPages</code>).</li>
+<li>Title lookup iterates the result of <code>listWikiPages</code> (a directory scan) and compares titles case-insensitively. Only the frontmatter <code>title</code> field is matched — not filenames.</li>
+<li>No Supabase or Ollama calls are made; the tool works even if the database or inference service is unavailable.</li>
+<li>The WikiVault root is configured via the <code>WIKI_VAULT_PATH</code> environment variable (default: <code>~/Documents/Obsidian/WikiVault/</code>).</li>
 </ul>
+<h2 id="related-tools">Related tools</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>When to use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../write-wiki-page/"><code>write_wiki_page</code></a></td>
+<td>Create or overwrite a page — always read first</td>
+</tr>
+<tr>
+<td><a href="../search-wiki/"><code>search_wiki</code></a></td>
+<td>Find pages by meaning when you don't know the exact title</td>
+</tr>
+<tr>
+<td><a href="../list-wiki-pages/"><code>list_wiki_pages</code></a></td>
+<td>Browse all pages of a given type</td>
+</tr>
+<tr>
+<td><a href="../append-wiki-log/"><code>append_wiki_log</code></a></td>
+<td>Record an action after writing</td>
+</tr>
+</tbody>
+</table>
 
 
 

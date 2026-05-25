@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Create or overwrite a WikiVault Markdown page with automatic frontmatter, embedding, and Supabase indexing.">
+        <meta name="description" content="Create or overwrite a WikiVault markdown page, with automatic frontmatter generation, wikilink extraction, embedding, and Supabase indexing.">
       
       
       
@@ -198,6 +198,63 @@
   
   
   
+  
+    <li class="md-tabs__item">
+      <a href="../../architecture/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architecture
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../setup/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Setup Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../extending/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Extension Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
     
   
   
@@ -280,6 +337,87 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -301,10 +439,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -322,8 +460,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -568,6 +706,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-happens-on-write" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What happens on write
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#parameters" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -607,17 +756,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#read-before-write-protocol" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Read-before-write protocol
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#usage-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -630,10 +768,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#create-a-new-project-page" class="md-nav__link">
+  <a href="#create-a-new-person-page" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Create a new project page
+        Create a new person page
       
     </span>
   </a>
@@ -641,10 +779,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#update-an-existing-person-page-safe-pattern" class="md-nav__link">
+  <a href="#update-an-existing-page-read-first-pattern" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Update an existing person page (safe pattern)
+        Update an existing page (read-first pattern)
       
     </span>
   </a>
@@ -652,21 +790,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#create-a-stub-for-later-expansion" class="md-nav__link">
+  <a href="#create-a-project-stub-with-source-tracing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Create a stub for later expansion
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#import-with-source-attribution" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Import with source attribution
+        Create a project stub with source tracing
       
     </span>
   </a>
@@ -679,10 +806,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
+  <a href="#wikilinks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notes
+        Wikilinks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frontmatter-generated-automatically" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontmatter generated automatically
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related tools
       
     </span>
   </a>
@@ -900,6 +1049,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-happens-on-write" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What happens on write
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#parameters" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -939,17 +1099,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#read-before-write-protocol" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Read-before-write protocol
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#usage-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -962,10 +1111,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#create-a-new-project-page" class="md-nav__link">
+  <a href="#create-a-new-person-page" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Create a new project page
+        Create a new person page
       
     </span>
   </a>
@@ -973,10 +1122,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#update-an-existing-person-page-safe-pattern" class="md-nav__link">
+  <a href="#update-an-existing-page-read-first-pattern" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Update an existing person page (safe pattern)
+        Update an existing page (read-first pattern)
       
     </span>
   </a>
@@ -984,21 +1133,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#create-a-stub-for-later-expansion" class="md-nav__link">
+  <a href="#create-a-project-stub-with-source-tracing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Create a stub for later expansion
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#import-with-source-attribution" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Import with source attribution
+        Create a project stub with source tracing
       
     </span>
   </a>
@@ -1011,10 +1149,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
+  <a href="#wikilinks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notes
+        Wikilinks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frontmatter-generated-automatically" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontmatter generated automatically
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related tools
       
     </span>
   </a>
@@ -1038,11 +1198,19 @@
 
 
 
-<h1 id="write_wiki_page"><code>write_wiki_page</code></h1>
-<p>Creates or fully overwrites a WikiVault Markdown page. Frontmatter is built automatically — supply only the body. After writing, the content is embedded and indexed in Supabase.</p>
+<h1 id="write_wiki_page">write_wiki_page</h1>
+<p>Creates or overwrites a WikiVault page. Used to maintain LLM-curated wiki entries for people, projects, concepts, areas, topics, and raw imported content.</p>
 <blockquote>
-<p><strong>⚠ Read before you write.</strong> If the page may already exist, call <a href="../read-wiki-page/"><code>read_wiki_page</code></a> first. This tool performs a full overwrite — any content not included in <code>body</code> will be lost.</p>
+<p><strong>⚠ Read before you write.</strong> Always call <a href="../read-wiki-page/"><code>read_wiki_page</code></a> first if the page may already exist. This tool performs a full overwrite — calling it without reading first will silently discard existing content.</p>
 </blockquote>
+<h2 id="what-happens-on-write">What happens on write</h2>
+<ol>
+<li>A kebab-case file path is derived from <code>title</code> and <code>type</code> (e.g. <code>wiki/people/Alice-Smith.md</code>).</li>
+<li><code>writeWikiPage</code> merges the call with any existing frontmatter: <code>created</code> is preserved, <code>updated</code> is bumped to now, and <code>[[wikilinks]]</code> in the body are automatically extracted and stored in the frontmatter <code>wikilinks[]</code> array.</li>
+<li>The page is written to the WikiVault filesystem with auto-generated YAML frontmatter. Do <strong>not</strong> include frontmatter in <code>body</code>.</li>
+<li>The body is embedded via Ollama (<code>qwen3-embedding</code>) and upserted into Supabase via the <code>upsert_entry</code> RPC (<code>source='wiki'</code>).</li>
+<li>For new pages, <code>index.md</code> is rebuilt. Every write should be followed by <a href="../append-wiki-log/"><code>append_wiki_log</code></a> to maintain the audit trail.</li>
+</ol>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -1058,49 +1226,49 @@
 <tr>
 <td><code>title</code></td>
 <td>string</td>
-<td>✅ Yes</td>
+<td>✅</td>
 <td>—</td>
-<td>Human-readable page title, e.g. <code>"Alice Smith"</code>. Used to derive the filename and frontmatter.</td>
+<td>Human-readable page title, e.g. <code>"Alice Smith"</code>. Used to derive the file name.</td>
 </tr>
 <tr>
 <td><code>type</code></td>
 <td>string (enum)</td>
-<td>✅ Yes</td>
+<td>✅</td>
 <td>—</td>
 <td>Page type — determines the destination subfolder. See <a href="#page-types">Page types</a> below.</td>
 </tr>
 <tr>
 <td><code>body</code></td>
 <td>string</td>
-<td>✅ Yes</td>
+<td>✅</td>
 <td>—</td>
-<td>Full Markdown body. Do <strong>not</strong> include frontmatter — it is built automatically.</td>
+<td>Full markdown body. Do not include YAML frontmatter — it is generated automatically.</td>
 </tr>
 <tr>
 <td><code>tags</code></td>
-<td>array of strings</td>
-<td>No</td>
+<td>string[]</td>
+<td>❌</td>
 <td><code>[]</code></td>
-<td>Topic tags in <code>lowercase-kebab</code> format, e.g. <code>["machine-learning", "research"]</code>.</td>
+<td>Topic tags in lowercase-kebab format, e.g. <code>["machine-learning", "nlp"]</code>.</td>
 </tr>
 <tr>
 <td><code>page_sources</code></td>
-<td>array of strings</td>
-<td>No</td>
+<td>string[]</td>
+<td>❌</td>
 <td><code>[]</code></td>
-<td>Source URLs, <code>raw/</code> file paths, or entry UUIDs that this page is derived from.</td>
+<td>Source URLs, <code>raw/</code> file paths, or entry UUIDs that this page was derived from.</td>
 </tr>
 <tr>
 <td><code>cortex_ids</code></td>
-<td>array of strings</td>
-<td>No</td>
+<td>string[]</td>
+<td>❌</td>
 <td><code>[]</code></td>
-<td>Supabase <code>entries</code> table UUIDs that this page synthesises. Links wiki content back to raw captured thoughts.</td>
+<td>UUIDs from the Supabase <code>entries</code> table that this wiki page synthesises. Enables traceability back to captured thoughts.</td>
 </tr>
 <tr>
 <td><code>status</code></td>
 <td>string (enum)</td>
-<td>No</td>
+<td>❌</td>
 <td><code>"active"</code></td>
 <td>Page lifecycle status: <code>active</code>, <code>archived</code>, or <code>stub</code>.</td>
 </tr>
@@ -1112,34 +1280,34 @@
 <tr>
 <th>Value</th>
 <th>Destination subfolder</th>
-<th>Use for</th>
+<th>Typical use</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>wiki_person</code></td>
 <td><code>wiki/people/</code></td>
-<td>Individual people</td>
+<td>Person profiles</td>
 </tr>
 <tr>
 <td><code>wiki_project</code></td>
 <td><code>wiki/projects/</code></td>
-<td>Projects and initiatives</td>
+<td>Project pages</td>
 </tr>
 <tr>
 <td><code>wiki_concept</code></td>
 <td><code>wiki/concepts/</code></td>
-<td>Ideas, frameworks, terms</td>
+<td>Definitions, ideas</td>
 </tr>
 <tr>
 <td><code>wiki_area</code></td>
 <td><code>wiki/areas/</code></td>
-<td>Ongoing areas of responsibility</td>
+<td>Life/work areas</td>
 </tr>
 <tr>
 <td><code>wiki_topic</code></td>
 <td><code>wiki/topics/</code></td>
-<td>Subject-matter topic hubs</td>
+<td>Topic overviews</td>
 </tr>
 <tr>
 <td><code>raw_article</code></td>
@@ -1149,7 +1317,7 @@
 <tr>
 <td><code>raw_book</code></td>
 <td><code>raw/books/</code></td>
-<td>Book notes</td>
+<td>Imported book notes</td>
 </tr>
 <tr>
 <td><code>raw_daily</code></td>
@@ -1159,84 +1327,126 @@
 <tr>
 <td><code>raw_attachment</code></td>
 <td><code>raw/attachments/</code></td>
-<td>Supporting files</td>
+<td>Misc imported files</td>
 </tr>
 </tbody>
 </table>
 <h2 id="returns">Returns</h2>
-<p>A confirmation object containing:</p>
-<ul>
-<li><strong><code>file_path</code></strong> — relative path of the written file within WikiVault (e.g. <code>wiki/projects/Project-Alpha.md</code>)</li>
-<li><strong><code>supabase_id</code></strong> — the Supabase record ID for the indexed page</li>
-</ul>
-<h2 id="read-before-write-protocol">Read-before-write protocol</h2>
-<p>Always follow this sequence when a page may already exist:</p>
-<ol>
-<li>Call <code>read_wiki_page</code> with the page title or file path.</li>
-<li>If the page exists, merge the existing content with any new information.</li>
-<li>Call <code>write_wiki_page</code> with the merged <code>body</code>.</li>
-<li>Call <code>append_wiki_log</code> to record what was done.</li>
-</ol>
-<p>Skipping step 1 risks silently deleting content that was previously written.</p>
+<p>A text response confirming:
+- The file path the page was written to
+- Whether it was created new or updated
+- The number of wikilinks extracted from the body
+- Confirmation of Supabase indexing</p>
+<p>On error, <code>isError: true</code> is set and the text describes the failure (e.g. invalid type, filesystem write error, embedding failure).</p>
 <h2 id="usage-examples">Usage examples</h2>
-<h3 id="create-a-new-project-page">Create a new project page</h3>
+<h3 id="create-a-new-person-page">Create a new person page</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Project Alpha&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki_project&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;## Overview\n\nProject Alpha is an internal initiative to redesign the onboarding flow.\n\n## Goals\n\n- Reduce time-to-first-value from 14 days to 3 days\n- Improve activation rate by 20%\n\n## Key People\n\n- [[Alice Smith]] — Lead\n- [[Bob Jones]] — Engineering&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;onboarding&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;product&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;q3-2026&quot;</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;write_wiki_page&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Alice Smith&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki_person&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;## Overview\n\nAlice is an ML researcher at DeepMind focused on [[Reinforcement Learning]].\n\n## Notes\n\n- Met at NeurIPS 2024\n- Working on reward modelling for [[RLHF]]&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ml&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;reinforcement-learning&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;deepmind&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="update-an-existing-person-page-safe-pattern">Update an existing person page (safe pattern)</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Step 1 — read</span>
-<span class="n">existing</span> <span class="o">=</span> <span class="n">read_wiki_page</span><span class="p">(</span><span class="n">identifier</span><span class="o">=</span><span class="s2">&quot;Alice Smith&quot;</span><span class="p">)</span>
+<h3 id="update-an-existing-page-read-first-pattern">Update an existing page (read-first pattern)</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Step 1 — always read first</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;read_wiki_page&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Alice Smith&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="c1"># Step 2 — merge new information into existing body</span>
-<span class="n">merged_body</span> <span class="o">=</span> <span class="n">existing</span><span class="p">[</span><span class="s2">&quot;body&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">## Recent Notes</span><span class="se">\n\n</span><span class="s2">Discussed roadmap priorities on 2026-05-20.&quot;</span>
+<span class="c1">// Step 2 — write with updated content</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;write_wiki_page&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Alice Smith&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki_person&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;## Overview\n\nAlice is an ML researcher at DeepMind focused on [[Reinforcement Learning]].\n\n## Notes\n\n- Met at NeurIPS 2024\n- Working on reward modelling for [[RLHF]]\n- Joined as advisor on [[Project Athena]] in Jan 2025&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ml&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;reinforcement-learning&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;deepmind&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="c1"># Step 3 — write merged content</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">write_wiki_page</span><span class="p">(</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Alice Smith&quot;</span><span class="p">,</span>
-    <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;wiki_person&quot;</span><span class="p">,</span>
-    <span class="n">body</span><span class="o">=</span><span class="n">merged_body</span><span class="p">,</span>
-    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;engineering&quot;</span><span class="p">,</span> <span class="s2">&quot;leadership&quot;</span><span class="p">],</span>
-    <span class="n">cortex_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;d3f1a2b4-...&quot;</span><span class="p">,</span> <span class="s2">&quot;89ab12cd-...&quot;</span><span class="p">],</span>
-    <span class="n">status</span><span class="o">=</span><span class="s2">&quot;active&quot;</span>
-<span class="p">)</span>
-
-<span class="c1"># Step 4 — log the action</span>
-<span class="n">append_wiki_log</span><span class="p">(</span>
-    <span class="n">file_path</span><span class="o">=</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;file_path&quot;</span><span class="p">],</span>
-    <span class="n">summary</span><span class="o">=</span><span class="s2">&quot;Updated Alice Smith with roadmap discussion notes from 2026-05-20&quot;</span>
-<span class="p">)</span>
-</code></pre></div>
-<h3 id="create-a-stub-for-later-expansion">Create a stub for later expansion</h3>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Event Sourcing&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki_concept&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;## Event Sourcing\n\n_Stub — to be expanded._\n\nA pattern where state changes are stored as a sequence of events rather than current state.&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;architecture&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;patterns&quot;</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;stub&quot;</span>
+<span class="c1">// Step 3 — log the action</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;append_wiki_log&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;file_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki/people/Alice-Smith.md&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Added Project Athena advisor note&quot;</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="import-with-source-attribution">Import with source attribution</h3>
+<h3 id="create-a-project-stub-with-source-tracing">Create a project stub with source tracing</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Thinking Fast and Slow — Notes&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;raw_book&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;## Key Takeaways\n\n- System 1 vs System 2 thinking\n- Cognitive biases catalogue&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;psychology&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;decision-making&quot;</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;page_sources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://example.com/thinking-fast-slow&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;raw/books/original-import.md&quot;</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;write_wiki_page&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Project Athena&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki_project&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;## Status\n\nEarly-stage. See [[Alice Smith]] for context.\n\n## Goals\n\nTBD.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;active-project&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;cortex_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;3f2a1b4c-8d9e-4f1a-b2c3-d4e5f6a7b8c9&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;stub&quot;</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="notes">Notes</h2>
-<ul>
-<li>The <code>body</code> parameter must be pure Markdown. Do not include a YAML frontmatter block — the server builds frontmatter from <code>title</code>, <code>type</code>, <code>tags</code>, <code>status</code>, <code>page_sources</code>, and <code>cortex_ids</code>.</li>
-<li><code>cortex_ids</code> creates a traceable link between synthesised wiki knowledge and the raw captured thoughts it was derived from. Populate this when the page content is built from specific <code>capture_thought</code> entries.</li>
-<li>This tool performs a <strong>full overwrite</strong>, not a patch. There is no partial-update operation — always read first, merge in memory, then write the complete body.</li>
-<li>After every <code>write_wiki_page</code> call, call <a href="../append-wiki-log/"><code>append_wiki_log</code></a> to maintain an audit trail.</li>
-</ul>
+<h2 id="wikilinks">Wikilinks</h2>
+<p>Any <code>[[Page Title]]</code> reference in <code>body</code> is automatically extracted and written to the frontmatter <code>wikilinks</code> array. This enables forward-link tracking across the vault. You do not need to declare wikilinks separately — just write them naturally in the body.</p>
+<h2 id="frontmatter-generated-automatically">Frontmatter generated automatically</h2>
+<p>The tool builds YAML frontmatter from your parameters plus system fields. Example output for a person page:</p>
+<div class="highlight"><pre><span></span><code><span class="nn">---</span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Alice Smith</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiki_person</span>
+<span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">active</span>
+<span class="nt">tags</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ml</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reinforcement-learning</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deepmind</span>
+<span class="nt">wikilinks</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reinforcement Learning</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RLHF</span>
+<span class="nt">page_sources</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="nt">cortex_ids</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="nt">created</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2025-01-15T10:23:00.000Z</span>
+<span class="nt">updated</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2025-04-02T14:05:00.000Z</span>
+<span class="nn">---</span>
+</code></pre></div>
+<p>Never include a frontmatter block in your <code>body</code> argument. If you do, it will appear as literal text in the rendered page.</p>
+<h2 id="related-tools">Related tools</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>When to use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../read-wiki-page/"><code>read_wiki_page</code></a></td>
+<td><strong>Always call before writing</strong> if the page may exist</td>
+</tr>
+<tr>
+<td><a href="../append-wiki-log/"><code>append_wiki_log</code></a></td>
+<td>Call after every write to maintain the audit trail</td>
+</tr>
+<tr>
+<td><a href="../search-wiki/"><code>search_wiki</code></a></td>
+<td>Find a page when you don't know the exact title</td>
+</tr>
+<tr>
+<td><a href="../list-wiki-pages/"><code>list_wiki_pages</code></a></td>
+<td>Enumerate pages by type to check existence</td>
+</tr>
+<tr>
+<td><a href="../migrate-vault-file/"><code>migrate_vault_file</code></a></td>
+<td>Import a file from MainVault instead of writing from scratch</td>
+</tr>
+</tbody>
+</table>
 
 
 

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Search WikiVault pages by semantic similarity to find the most relevant wiki entries when you do not know the exact page title.">
+        <meta name="description" content="Semantic search over WikiVault pages by meaning, returning results ranked by cosine similarity with score, page type, title, tags, and a body excerpt.">
       
       
       
@@ -198,6 +198,63 @@
   
   
   
+  
+    <li class="md-tabs__item">
+      <a href="../../architecture/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architecture
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../setup/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Setup Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../extending/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Extension Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
     
   
   
@@ -280,6 +337,87 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -301,10 +439,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -322,8 +460,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -646,17 +784,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#threshold-guidance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Threshold guidance
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -674,10 +801,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
+  <a href="#how-it-works" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope
+        How it works
       
     </span>
   </a>
@@ -697,10 +824,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#find-a-concept-page-before-creating-or-updating" class="md-nav__link">
+  <a href="#basic-semantic-search" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Find a concept page before creating or updating
+        Basic semantic search
       
     </span>
   </a>
@@ -708,10 +835,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#find-a-person-page-by-role-or-association" class="md-nav__link">
+  <a href="#search-restricted-to-a-page-type" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Find a person page by role or association
+        Search restricted to a page type
       
     </span>
   </a>
@@ -719,10 +846,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#broad-search-across-all-wiki-content" class="md-nav__link">
+  <a href="#narrow-search-with-a-higher-threshold" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Broad search across all wiki content
+        Narrow search with a higher threshold
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broad-search-with-more-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Broad search with more results
       
     </span>
   </a>
@@ -735,10 +873,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommended-workflow-find-then-write" class="md-nav__link">
+  <a href="#choosing-the-right-search-tool" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Recommended workflow: find-then-write
+        Choosing the right search tool
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
       
     </span>
   </a>
@@ -922,17 +1071,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#threshold-guidance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Threshold guidance
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -950,10 +1088,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
+  <a href="#how-it-works" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope
+        How it works
       
     </span>
   </a>
@@ -973,10 +1111,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#find-a-concept-page-before-creating-or-updating" class="md-nav__link">
+  <a href="#basic-semantic-search" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Find a concept page before creating or updating
+        Basic semantic search
       
     </span>
   </a>
@@ -984,10 +1122,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#find-a-person-page-by-role-or-association" class="md-nav__link">
+  <a href="#search-restricted-to-a-page-type" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Find a person page by role or association
+        Search restricted to a page type
       
     </span>
   </a>
@@ -995,10 +1133,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#broad-search-across-all-wiki-content" class="md-nav__link">
+  <a href="#narrow-search-with-a-higher-threshold" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Broad search across all wiki content
+        Narrow search with a higher threshold
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broad-search-with-more-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Broad search with more results
       
     </span>
   </a>
@@ -1011,10 +1160,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommended-workflow-find-then-write" class="md-nav__link">
+  <a href="#choosing-the-right-search-tool" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Recommended workflow: find-then-write
+        Choosing the right search tool
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
       
     </span>
   </a>
@@ -1039,7 +1199,8 @@
 
 
 <h1 id="search_wiki">search_wiki</h1>
-<p>Search WikiVault pages by semantic similarity. Returns wiki entries ranked by relevance score. Use this tool when you have a concept, name, or topic in mind but do not know the exact page title. For browsing all pages of a given type without a search term, use <a href="../list-wiki-pages/">list_wiki_pages</a> instead. To include captured thoughts in the same query, use <a href="../search-all/">search_all</a>.</p>
+<p>Search WikiVault pages by semantic similarity. Results are ranked by relevance and include a similarity score, page type, title, tags, and a 200-character body excerpt.</p>
+<p>Use this tool when you believe content exists in the wiki but don't know the exact page title. To browse pages by type without a query, use <a href="../list-wiki-pages/"><code>list_wiki_pages</code></a>. To search across both wiki pages and captured thoughts together, use <a href="../search-all/"><code>search_all</code></a>.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -1055,7 +1216,7 @@
 <tr>
 <td><code>query</code></td>
 <td>string</td>
-<td>✅ Yes</td>
+<td>Yes</td>
 <td>—</td>
 <td>What to search for</td>
 </tr>
@@ -1071,14 +1232,14 @@
 <td>number</td>
 <td>No</td>
 <td><code>0.5</code></td>
-<td>Minimum similarity score (0–1); results below this value are excluded</td>
+<td>Minimum similarity score (0–1); results below this score are excluded</td>
 </tr>
 <tr>
 <td><code>type</code></td>
-<td>string (enum)</td>
+<td>string</td>
 <td>No</td>
 <td>—</td>
-<td>Restrict results to one page type (see valid values below)</td>
+<td>Restrict results to one page type (see enum below)</td>
 </tr>
 </tbody>
 </table>
@@ -1117,7 +1278,7 @@
 </tr>
 <tr>
 <td><code>raw_book</code></td>
-<td>Book notes</td>
+<td>Imported books</td>
 </tr>
 <tr>
 <td><code>raw_daily</code></td>
@@ -1125,94 +1286,104 @@
 </tr>
 <tr>
 <td><code>raw_attachment</code></td>
-<td>Attachment files</td>
-</tr>
-</tbody>
-</table>
-<h3 id="threshold-guidance">Threshold guidance</h3>
-<table>
-<thead>
-<tr>
-<th>Threshold</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>0.3–0.4</code></td>
-<td>Broad — returns loosely related pages; useful for exploration</td>
-</tr>
-<tr>
-<td><code>0.5</code></td>
-<td>Default — balanced precision and recall</td>
-</tr>
-<tr>
-<td><code>0.7+</code></td>
-<td>Strict — only highly similar pages; use when confident in query phrasing</td>
+<td>Attachments</td>
 </tr>
 </tbody>
 </table>
 <h2 id="returns">Returns</h2>
-<p>A ranked list of matching WikiVault pages. Each result includes:</p>
+<p>A ranked list of matching wiki pages. Each result includes:</p>
 <ul>
-<li><strong>title</strong> — the page title</li>
-<li><strong>type</strong> — page type (one of the enum values above)</li>
-<li><strong>tags</strong> — array of topic tags</li>
-<li><strong>file_path</strong> — relative path to the page file (e.g. <code>wiki/concepts/Machine-Learning-Infrastructure.md</code>)</li>
-<li><strong>similarity</strong> — similarity score between 0 and 1</li>
-<li><strong>excerpt</strong> — a short snippet of the page content</li>
+<li><strong>Similarity score</strong> — cosine similarity between the query and the page embedding</li>
+<li><strong>Page type</strong> — one of the <code>type</code> enum values above</li>
+<li><strong>Title</strong> — the page's human-readable title</li>
+<li><strong>Tags</strong> — topic tags attached to the page</li>
+<li><strong>Body excerpt</strong> — up to 200 characters of the page body</li>
 </ul>
-<p>Results are ordered by descending similarity score.</p>
-<h2 id="scope">Scope</h2>
-<p><code>search_wiki</code> searches <strong>WikiVault pages only</strong>. It does not search captured thoughts from the MCP, web, or Discord sources. Use:</p>
-<ul>
-<li><a href="../search-thoughts/">search_thoughts</a> — to search only captured thoughts</li>
-<li><a href="../search-all/">search_all</a> — to search both thoughts and wiki pages together</li>
-<li><a href="../list-wiki-pages/">list_wiki_pages</a> — to enumerate pages by type with no query term</li>
-</ul>
+<p>Pages are ordered from most to least similar. Results below the <code>threshold</code> are excluded.</p>
+<h2 id="how-it-works">How it works</h2>
+<ol>
+<li>The query string is embedded using Ollama's configured embedding model.</li>
+<li>The resulting vector is compared against all wiki page embeddings stored in the Supabase <code>entries</code> table (rows with <code>source='wiki'</code>) using the <code>match_entries</code> RPC and cosine similarity.</li>
+<li>If a <code>type</code> parameter is provided, it is passed as a <code>page_type</code> filter to the RPC, restricting matches to that page type.</li>
+<li>Results meeting the similarity threshold are returned, ranked by score, up to <code>limit</code> entries.</li>
+</ol>
 <h2 id="usage-examples">Usage examples</h2>
-<h3 id="find-a-concept-page-before-creating-or-updating">Find a concept page before creating or updating</h3>
-<p>Check whether a concept page already exists before writing a new one:</p>
+<h3 id="basic-semantic-search">Basic semantic search</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_wiki&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;machine learning infrastructure&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki_concept&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
+<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;machine learning approaches for recommendation systems&quot;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>If the top result has a similarity score above <code>0.75</code> and a matching title, read that page with <a href="../read-wiki-page/">read_wiki_page</a> before deciding whether to update it or create a new one.</p>
-<h3 id="find-a-person-page-by-role-or-association">Find a person page by role or association</h3>
+<h3 id="search-restricted-to-a-page-type">Search restricted to a page type</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_wiki&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;backend engineer data pipeline team&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki_person&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Alice Smith&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki_person&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="narrow-search-with-a-higher-threshold">Narrow search with a higher threshold</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_wiki&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GraphQL schema design patterns&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.75</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki_concept&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="broad-search-with-more-results">Broad search with more results</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_wiki&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Q3 product roadmap&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="broad-search-across-all-wiki-content">Broad search across all wiki content</h3>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_wiki&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vector database embedding strategy&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.35</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<h2 id="recommended-workflow-find-then-write">Recommended workflow: find-then-write</h2>
-<p>When an agent needs to create or update a wiki page, always run <code>search_wiki</code> first:</p>
-<ol>
-<li>Call <code>search_wiki</code> with the intended topic and relevant <code>type</code>.</li>
-<li>If a result has similarity ≥ 0.7, call <a href="../read-wiki-page/">read_wiki_page</a> on that result's <code>file_path</code>.</li>
-<li>Decide whether to update the existing page or create a new one.</li>
-<li>Call <a href="../write-wiki-page/">write_wiki_page</a> with the full merged content.</li>
-<li>Call <a href="../append-wiki-log/">append_wiki_log</a> to record the action.</li>
-</ol>
-<p>Skipping step 1–3 risks silently overwriting existing structured knowledge.</p>
+<h2 id="choosing-the-right-search-tool">Choosing the right search tool</h2>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>You know the exact page title or file path</td>
+<td><a href="../read-wiki-page/"><code>read_wiki_page</code></a></td>
+</tr>
+<tr>
+<td>You want to browse all pages of a given type</td>
+<td><a href="../list-wiki-pages/"><code>list_wiki_pages</code></a></td>
+</tr>
+<tr>
+<td>You want wiki pages only, searching by meaning</td>
+<td><code>search_wiki</code> ← you are here</td>
+</tr>
+<tr>
+<td>You want captured thoughts only, searching by meaning</td>
+<td><a href="../search-thoughts/"><code>search_thoughts</code></a></td>
+</tr>
+<tr>
+<td>You want the broadest search across all content</td>
+<td><a href="../search-all/"><code>search_all</code></a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="notes">Notes</h2>
+<ul>
+<li><code>search_wiki</code> only searches pages with <code>source='wiki'</code> in the <code>entries</code> table. Captured thoughts (from web, Discord, MCP, or API) are excluded.</li>
+<li>Lowering <code>threshold</code> (e.g. to <code>0.3</code>) increases recall but may return loosely related pages. Raising it (e.g. to <code>0.7</code>) returns only close matches.</li>
+<li>Pages must be indexed in Supabase to appear in results. Pages written via <a href="../write-wiki-page/"><code>write_wiki_page</code></a> are indexed automatically. If a page was added directly to the filesystem, run a reindex operation before searching.</li>
+<li>The <code>type</code> filter is applied at the database level, not post-hoc — combining it with a high <code>limit</code> will not waste result slots on other page types.</li>
+</ul>
 
 
 

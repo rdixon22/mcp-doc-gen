@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Returns a high-level statistical summary of all captured thoughts: total count, type breakdown, top topics, and most-mentioned people.">
+        <meta name="description" content="Returns an aggregate summary of all captured thoughts: total count, type breakdown, top-10 topics, and top-10 people mentioned.">
       
       
       
@@ -198,6 +198,63 @@
   
   
   
+  
+    <li class="md-tabs__item">
+      <a href="../../architecture/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architecture
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../setup/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Setup Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../extending/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Extension Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
     
   
   
@@ -280,6 +337,87 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -301,10 +439,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -322,8 +460,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -534,38 +672,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
+  <a href="#usage-example" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Usage
+        Usage example
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Usage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example-weekly-review-orientation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example: Weekly review orientation
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-use" class="md-nav__link">
+  <a href="#implementation-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When to use
+        Implementation notes
       
     </span>
   </a>
@@ -861,38 +982,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
+  <a href="#usage-example" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Usage
+        Usage example
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Usage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example-weekly-review-orientation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example: Weekly review orientation
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-use" class="md-nav__link">
+  <a href="#implementation-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When to use
+        Implementation notes
       
     </span>
   </a>
@@ -916,56 +1020,107 @@
 
 
 
-<h1 id="thought_stats">thought_stats</h1>
-<p>Returns a high-level statistical summary of all captured thoughts. Use this to understand the breadth and composition of your captured knowledge at a glance — without needing to retrieve individual entries.</p>
+<h1 id="thought_stats"><code>thought_stats</code></h1>
+<p>Get an aggregate summary of everything captured in Cortex. Returns total thought count, a breakdown by type, the ten most frequently occurring topics, and the ten most frequently mentioned people — all computed in a single pass over the <code>entries</code> table with no embedding or LLM inference required.</p>
+<p>Use this tool to:
+- Quickly gauge how populated the knowledge base is
+- Surface dominant themes and recurring contacts
+- Verify that new captures are being classified correctly
+- Orient yourself before a deeper search or analysis session</p>
 <h2 id="parameters">Parameters</h2>
 <p>This tool takes no parameters.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>(none)</em></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>Stats are always computed across the full corpus of non-wiki entries.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="returns">Returns</h2>
-<p>A structured summary containing:</p>
-<ul>
-<li><strong>Total count</strong> — the number of captured thoughts</li>
-<li><strong>Type breakdown</strong> — count of thoughts per type (e.g. how many are tasks, ideas, observations, etc.)</li>
-<li><strong>Top topics</strong> — the most frequently tagged topics across all thoughts</li>
-<li><strong>Top people</strong> — the most frequently mentioned people across all thoughts</li>
-</ul>
-<p>The exact field names and structure depend on the server's response format.</p>
-<h2 id="usage">Usage</h2>
+<p>A formatted text block containing:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>total</code></td>
+<td>Total number of captured thoughts (non-wiki entries)</td>
+</tr>
+<tr>
+<td><code>by_type</code></td>
+<td>Count for each thought type: <code>observation</code>, <code>task</code>, <code>idea</code>, <code>reference</code>, <code>person_note</code></td>
+</tr>
+<tr>
+<td><code>top_topics</code></td>
+<td>Top 10 topic tags ranked by frequency of occurrence across all thoughts</td>
+</tr>
+<tr>
+<td><code>top_people</code></td>
+<td>Top 10 people mentioned, ranked by frequency</td>
+</tr>
+</tbody>
+</table>
+<p>Results are computed in-memory from the JSONB <code>metadata</code> column of the <code>entries</code> table. Only entries with <code>source != 'wiki'</code> are included — wiki pages are excluded from all stats.</p>
+<h2 id="usage-example">Usage example</h2>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;thought_stats&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="example-weekly-review-orientation">Example: Weekly review orientation</h3>
-<p>Before a weekly review, call <code>thought_stats</code> to see how many entries were logged, which types dominate (e.g. tasks vs. ideas), and which topics appeared most this period.</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;thought_stats&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
-<span class="p">}</span>
+<p>Example response:</p>
+<div class="highlight"><pre><span></span><code>📊 Cortex Stats
+
+Total thoughts: 342
+
+By type:
+  observation   148
+  idea           87
+  task           54
+  reference      32
+  person_note    21
+
+Top topics:
+  1. machine-learning      (67)
+  2. product-strategy      (41)
+  3. reading               (38)
+  4. architecture          (29)
+  5. hiring                (22)
+  6. writing               (19)
+  7. finance               (17)
+  8. health                (14)
+  9. travel                (11)
+  10. open-source           (9)
+
+Top people:
+  1. Alice Smith           (28)
+  2. Bob Chen              (19)
+  3. Carol Nguyen          (11)
+  ...
 </code></pre></div>
-<p><strong>Example response (illustrative):</strong></p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">47</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;by_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;task&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;idea&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;observation&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;person_note&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;top_topics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;product-strategy&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;engineering&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;hiring&quot;</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;top_people&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Alice Smith&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Bob Chen&quot;</span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
-<blockquote>
-<p><strong>Note:</strong> The response shape above is illustrative. The actual fields returned depend on the server implementation.</p>
-</blockquote>
-<h2 id="when-to-use">When to use</h2>
+<h2 id="implementation-notes">Implementation notes</h2>
 <ul>
-<li><strong>Session start</strong> — run once to orient yourself before querying or writing new entries.</li>
-<li><strong>After bulk capture</strong> — confirm that a batch of thoughts was stored and categorised as expected.</li>
-<li><strong>Weekly or periodic review</strong> — identify which topics and people dominated a given period before drilling into specifics.</li>
+<li><strong>No inference required.</strong> <code>thought_stats</code> queries only the <code>entries</code> table — no Ollama embedding call or LLM metadata extraction is made. It is the fastest MCP tool to call.</li>
+<li><strong>In-memory aggregation.</strong> All non-wiki rows are fetched with an exact count, then iterated once in the server process to tally type distribution and topic/people frequency from the <code>metadata</code> JSONB column.</li>
+<li><strong>Scope is fixed.</strong> There is no way to filter by date range or source — the tool always reports on the entire corpus. To examine a slice of thoughts, use <a href="../list-thoughts/"><code>list_thoughts</code></a> with its <code>days</code>, <code>type</code>, or <code>topic</code> filters instead.</li>
+<li><strong>Reflects current state.</strong> Because stats are computed fresh on each call against the live <code>entries</code> table, the numbers always reflect the current state of the database.</li>
 </ul>
-<p><code>thought_stats</code> gives an aggregate view. To retrieve individual entries, use the thought browsing and search tools available in this server.</p>
 
 
 

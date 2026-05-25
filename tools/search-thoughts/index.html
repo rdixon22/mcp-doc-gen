@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Search captured thoughts by semantic similarity — scoped to thoughts only, not WikiVault pages.">
+        <meta name="description" content="Semantic vector search over captured thoughts, returning results ranked by meaning similarity.">
       
       
       
@@ -198,6 +198,63 @@
   
   
   
+  
+    <li class="md-tabs__item">
+      <a href="../../architecture/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architecture
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../setup/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Setup Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../extending/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Extension Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
     
   
   
@@ -280,6 +337,87 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -301,10 +439,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -322,8 +460,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -484,6 +622,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#returns" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -518,10 +667,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#wide-search-with-more-results" class="md-nav__link">
+  <a href="#high-precision-search-with-fewer-results" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Wide search with more results
+        High-precision search with fewer results
       
     </span>
   </a>
@@ -529,10 +678,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#high-precision-search" class="md-nav__link">
+  <a href="#broad-recall-when-phrasing-is-uncertain" class="md-nav__link">
     <span class="md-ellipsis">
       
-        High-precision search
+        Broad recall when phrasing is uncertain
       
     </span>
   </a>
@@ -545,21 +694,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scope-limitation" class="md-nav__link">
+  <a href="#when-to-use-this-tool" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope limitation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Related tools
+        When to use this tool
       
     </span>
   </a>
@@ -917,6 +1055,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#returns" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -951,10 +1100,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#wide-search-with-more-results" class="md-nav__link">
+  <a href="#high-precision-search-with-fewer-results" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Wide search with more results
+        High-precision search with fewer results
       
     </span>
   </a>
@@ -962,10 +1111,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#high-precision-search" class="md-nav__link">
+  <a href="#broad-recall-when-phrasing-is-uncertain" class="md-nav__link">
     <span class="md-ellipsis">
       
-        High-precision search
+        Broad recall when phrasing is uncertain
       
     </span>
   </a>
@@ -978,21 +1127,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scope-limitation" class="md-nav__link">
+  <a href="#when-to-use-this-tool" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope limitation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Related tools
+        When to use this tool
       
     </span>
   </a>
@@ -1017,8 +1155,8 @@
 
 
 <h1 id="search_thoughts">search_thoughts</h1>
-<p>Search your captured notes by meaning. <code>search_thoughts</code> finds notes that are semantically relevant to your query — matching by concept and intent, not just keywords.</p>
-<p><strong>Scope:</strong> this tool searches captured thoughts only. It does not search WikiVault pages. Use <a href="../search-all/"><code>search_all</code></a> to query both sources in a single call.</p>
+<p>Search captured thoughts by meaning using semantic similarity. Unlike keyword search, this tool finds notes that are conceptually related to your query even when the exact words differ.</p>
+<p><strong>Scope:</strong> thoughts only (sources: <code>web</code>, <code>discord</code>, <code>mcp</code>, <code>api</code>). Wiki pages are excluded. Use <a href="../search-all/"><code>search_all</code></a> for combined results across both thoughts and wiki, or <a href="../search-wiki/"><code>search_wiki</code></a> for wiki pages only.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -1050,7 +1188,7 @@
 <td>number</td>
 <td>No</td>
 <td><code>0.5</code></td>
-<td>Minimum similarity score, between 0 and 1 (inclusive). Lower values return more results; higher values return only close matches.</td>
+<td>Minimum similarity score (0–1); results below this are excluded</td>
 </tr>
 </tbody>
 </table>
@@ -1058,76 +1196,76 @@
 <table>
 <thead>
 <tr>
-<th>Threshold</th>
-<th>Effect</th>
+<th>Goal</th>
+<th>Suggested threshold</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>0.3–0.4</code></td>
-<td>Wide net — returns loosely related results; useful when recall matters more than precision</td>
+<td>High precision, exact topic</td>
+<td><code>0.7</code> – <code>0.8</code></td>
 </tr>
 <tr>
+<td>Balanced (default)</td>
 <td><code>0.5</code></td>
-<td>Default balance between relevance and coverage</td>
 </tr>
 <tr>
-<td><code>0.7+</code></td>
-<td>High precision — only returns strongly relevant results; may miss useful context</td>
+<td>Broad recall, uncertain phrasing</td>
+<td><code>0.3</code> – <code>0.4</code></td>
 </tr>
 </tbody>
 </table>
+<p>Lower the threshold when you are unsure how a thought was originally phrased or when the concept may have been captured tangentially. Raise it to filter out loosely related results.</p>
+<h2 id="how-it-works">How it works</h2>
+<p>The query string is embedded using the configured Ollama embedding model. The resulting vector is compared against stored thought embeddings using cosine similarity via the Supabase <code>match_entries</code> RPC, filtered to non-wiki sources. Only results meeting or exceeding <code>threshold</code> are returned, ranked from most to least similar, up to <code>limit</code> results.</p>
 <h2 id="returns">Returns</h2>
-<p>A ranked list of matching thoughts. Each result includes the thought's content and associated metadata as stored at capture time. Results are ordered by descending similarity score.</p>
-<blockquote>
-<p><strong>Note:</strong> The exact response schema is determined by the server runtime. Field names and structure should be treated as implementation details until confirmed against a live response.</p>
-</blockquote>
+<p>A ranked list of matching thoughts. Each result includes:</p>
+<ul>
+<li><strong>Date</strong> — when the thought was captured</li>
+<li><strong>Type</strong> — the classified thought type (e.g. observation, task, idea)</li>
+<li><strong>Topics</strong> — extracted topic tags</li>
+<li><strong>People</strong> — mentioned individuals</li>
+<li><strong>Action items</strong> — any action items extracted from the thought</li>
+<li><strong>Content</strong> — the full text of the thought</li>
+</ul>
+<p>Returns an empty list when no results meet the threshold. Does not return thoughts from wiki pages regardless of threshold.</p>
 <h2 id="usage-examples">Usage examples</h2>
 <h3 id="basic-search">Basic search</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_thoughts&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;decisions about the product roadmap&quot;</span>
+<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;product roadmap priorities for Q3&quot;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Returns up to 10 thoughts with similarity ≥ 0.5 related to product roadmap decisions.</p>
-<h3 id="wide-search-with-more-results">Wide search with more results</h3>
+<h3 id="high-precision-search-with-fewer-results">High-precision search with fewer results</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_thoughts&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;decisions about the product roadmap&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Casts a wider net — useful when you suspect relevant notes may be phrased differently or only tangentially related to the query.</p>
-<h3 id="high-precision-search">High-precision search</h3>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_thoughts&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Alice&#39;s feedback on the onboarding flow&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;decision to migrate to microservices&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7</span>
+<span class="w">    </span><span class="nt">&quot;threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.72</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Returns only highly relevant results — appropriate when you want to surface a specific note you know exists.</p>
-<h2 id="scope-limitation">Scope limitation</h2>
-<p><code>search_thoughts</code> does not search WikiVault pages (people, projects, concepts, areas, topics, or raw content). If you need results from both sources:</p>
+<h3 id="broad-recall-when-phrasing-is-uncertain">Broad recall when phrasing is uncertain</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_thoughts&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;meeting with Alice about the budget&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.35</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="when-to-use-this-tool">When to use this tool</h2>
 <ul>
-<li>Use <a href="../search-all/"><code>search_all</code></a> for a combined query across thoughts and wiki pages. Results from <code>search_all</code> are tagged by source (<code>[thought]</code> or <code>[wiki]</code>).</li>
-<li>Use <a href="../search-wiki/"><code>search_wiki</code></a> to search wiki pages only.</li>
+<li>The user asks what they previously noted about a topic, person, or event.</li>
+<li>You want to surface relevant context before responding to a question.</li>
+<li>You need to check whether a thought already exists before capturing a duplicate.</li>
 </ul>
-<h2 id="related-tools">Related tools</h2>
-<ul>
-<li><a href="../capture-thought/"><code>capture_thought</code></a> — save a new thought</li>
-<li><a href="../list-thoughts/"><code>list_thoughts</code></a> — browse thoughts chronologically with filters (type, topic, person, date range)</li>
-<li><a href="../thought-stats/"><code>thought_stats</code></a> — get a count and breakdown of all captured thoughts</li>
-<li><a href="../search-all/"><code>search_all</code></a> — semantic search across thoughts and wiki pages together</li>
-<li><a href="../search-messages/"><code>search_messages</code></a> — search past AI chat conversation history</li>
-</ul>
+<p><strong>Prefer <a href="../search-all/"><code>search_all</code></a></strong> when you do not know whether the relevant content was captured as a thought or written as a wiki page.</p>
+<p><strong>Prefer <a href="../list-thoughts/"><code>list_thoughts</code></a></strong> when you want chronological browsing with structured filters (type, topic, person, date range) rather than semantic ranking.</p>
 
 
 

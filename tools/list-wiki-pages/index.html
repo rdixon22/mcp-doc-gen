@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Browse WikiVault pages by type or tag via filesystem scan — returns title, type, tags, and file path without loading page bodies.">
+        <meta name="description" content="Browse WikiVault pages by filesystem scan with optional filters; returns title, type, tags, and file path — no body content, no database required.">
       
       
       
@@ -198,6 +198,63 @@
   
   
   
+  
+    <li class="md-tabs__item">
+      <a href="../../architecture/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architecture
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../setup/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Setup Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../extending/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Extension Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
     
   
   
@@ -280,6 +337,87 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -301,10 +439,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -322,8 +460,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -664,10 +802,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#type-enum-values" class="md-nav__link">
+  <a href="#type-allowed-values" class="md-nav__link">
     <span class="md-ellipsis">
       
-        type enum values
+        type allowed values
       
     </span>
   </a>
@@ -691,22 +829,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#behavior-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behavior notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#usage-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Usage Examples
+        Usage examples
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Usage Examples">
+    <nav class="md-nav" aria-label="Usage examples">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#enumerate-all-person-pages" class="md-nav__link">
+  <a href="#list-all-people" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Enumerate all person pages
+        List all people
       
     </span>
   </a>
@@ -714,10 +863,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#find-all-stub-pages" class="md-nav__link">
+  <a href="#list-all-stub-pages" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Find all stub pages
+        List all stub pages
       
     </span>
   </a>
@@ -725,10 +874,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#list-all-project-pages-tagged-with-a-topic" class="md-nav__link">
+  <a href="#list-project-pages-tagged-with-a-specific-topic" class="md-nav__link">
     <span class="md-ellipsis">
       
-        List all project pages tagged with a topic
+        List project pages tagged with a specific topic
       
     </span>
   </a>
@@ -736,10 +885,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#list-all-raw-articles-no-filters" class="md-nav__link">
+  <a href="#list-all-pages-no-filters-increased-limit" class="md-nav__link">
     <span class="md-ellipsis">
       
-        List all raw articles (no filters)
+        List all pages (no filters, increased limit)
       
     </span>
   </a>
@@ -752,10 +901,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-use-cases" class="md-nav__link">
+  <a href="#choosing-between-list-and-search" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Common Use Cases
+        Choosing between list and search
       
     </span>
   </a>
@@ -763,21 +912,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#choosing-between-list_wiki_pages-and-search_wiki" class="md-nav__link">
+  <a href="#related-tools" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Choosing Between list_wiki_pages and search_wiki
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Notes
+        Related tools
       
     </span>
   </a>
@@ -923,10 +1061,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#type-enum-values" class="md-nav__link">
+  <a href="#type-allowed-values" class="md-nav__link">
     <span class="md-ellipsis">
       
-        type enum values
+        type allowed values
       
     </span>
   </a>
@@ -950,22 +1088,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#behavior-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behavior notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#usage-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Usage Examples
+        Usage examples
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Usage Examples">
+    <nav class="md-nav" aria-label="Usage examples">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#enumerate-all-person-pages" class="md-nav__link">
+  <a href="#list-all-people" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Enumerate all person pages
+        List all people
       
     </span>
   </a>
@@ -973,10 +1122,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#find-all-stub-pages" class="md-nav__link">
+  <a href="#list-all-stub-pages" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Find all stub pages
+        List all stub pages
       
     </span>
   </a>
@@ -984,10 +1133,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#list-all-project-pages-tagged-with-a-topic" class="md-nav__link">
+  <a href="#list-project-pages-tagged-with-a-specific-topic" class="md-nav__link">
     <span class="md-ellipsis">
       
-        List all project pages tagged with a topic
+        List project pages tagged with a specific topic
       
     </span>
   </a>
@@ -995,10 +1144,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#list-all-raw-articles-no-filters" class="md-nav__link">
+  <a href="#list-all-pages-no-filters-increased-limit" class="md-nav__link">
     <span class="md-ellipsis">
       
-        List all raw articles (no filters)
+        List all pages (no filters, increased limit)
       
     </span>
   </a>
@@ -1011,10 +1160,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-use-cases" class="md-nav__link">
+  <a href="#choosing-between-list-and-search" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Common Use Cases
+        Choosing between list and search
       
     </span>
   </a>
@@ -1022,21 +1171,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#choosing-between-list_wiki_pages-and-search_wiki" class="md-nav__link">
+  <a href="#related-tools" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Choosing Between list_wiki_pages and search_wiki
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Notes
+        Related tools
       
     </span>
   </a>
@@ -1060,9 +1198,9 @@
 
 
 
-<h1 id="list_wiki_pages"><code>list_wiki_pages</code></h1>
-<p>Browse WikiVault pages with optional filters. Returns a lightweight listing — title, type, tags, and relative file path — without loading page bodies. Operates via filesystem scan, so no database connection is required.</p>
-<p>Use <code>list_wiki_pages</code> when you want to <strong>enumerate</strong> pages by type or tag. When you want to find pages by meaning or keyword, use <a href="../search-wiki/"><code>search_wiki</code></a> instead.</p>
+<h1 id="list_wiki_pages">list_wiki_pages</h1>
+<p>Browse WikiVault pages with optional filters. Returns title, type, tags, and file path — no body content. Operates entirely from a filesystem scan, so it works even when Supabase is unavailable.</p>
+<p>Use <code>list_wiki_pages</code> when you need to <strong>enumerate</strong> pages ("show me all people", "list every stub") rather than rank by relevance. For relevance-ranked discovery use <a href="../search-wiki/"><code>search_wiki</code></a>; for full body content use <a href="../read-wiki-page/"><code>read_wiki_page</code></a>.</p>
 <h2 id="parameters">Parameters</h2>
 <table>
 <thead>
@@ -1077,28 +1215,28 @@
 <tbody>
 <tr>
 <td><code>type</code></td>
-<td>string (enum)</td>
+<td>string</td>
 <td>No</td>
 <td>—</td>
-<td>Restrict results to one page type. See valid values below.</td>
+<td>Restrict results to one page type (see allowed values below)</td>
 </tr>
 <tr>
 <td><code>tag</code></td>
 <td>string</td>
 <td>No</td>
 <td>—</td>
-<td>Filter by a single tag (lowercase-kebab format).</td>
+<td>Filter by a single tag (lowercase-kebab)</td>
 </tr>
 <tr>
 <td><code>limit</code></td>
 <td>number</td>
 <td>No</td>
 <td><code>50</code></td>
-<td>Maximum number of results to return.</td>
+<td>Maximum number of results to return</td>
 </tr>
 </tbody>
 </table>
-<h3 id="type-enum-values"><code>type</code> enum values</h3>
+<h3 id="type-allowed-values"><code>type</code> allowed values</h3>
 <table>
 <thead>
 <tr>
@@ -1109,7 +1247,7 @@
 <tbody>
 <tr>
 <td><code>wiki_person</code></td>
-<td>Person profiles</td>
+<td>People profiles</td>
 </tr>
 <tr>
 <td><code>wiki_project</code></td>
@@ -1121,11 +1259,11 @@
 </tr>
 <tr>
 <td><code>wiki_area</code></td>
-<td>Area/domain pages</td>
+<td>Areas of responsibility or interest</td>
 </tr>
 <tr>
 <td><code>wiki_topic</code></td>
-<td>Topic overview pages</td>
+<td>Topic overviews</td>
 </tr>
 <tr>
 <td><code>raw_article</code></td>
@@ -1141,46 +1279,29 @@
 </tr>
 <tr>
 <td><code>raw_attachment</code></td>
-<td>Imported attachments</td>
+<td>Attachment files</td>
 </tr>
 </tbody>
 </table>
 <h2 id="returns">Returns</h2>
-<p>An array of page objects. Each object contains:</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>title</code></td>
-<td>string</td>
-<td>Human-readable page title</td>
-</tr>
-<tr>
-<td><code>type</code></td>
-<td>string</td>
-<td>Page type (one of the enum values above)</td>
-</tr>
-<tr>
-<td><code>tags</code></td>
-<td>string[]</td>
-<td>List of lowercase-kebab tags on the page</td>
-</tr>
-<tr>
-<td><code>file_path</code></td>
-<td>string</td>
-<td>Relative path to the file in WikiVault</td>
-</tr>
-</tbody>
-</table>
-<p>Page bodies are <strong>not</strong> included. To read full content, pass the returned <code>file_path</code> or <code>title</code> to <a href="../read-wiki-page/"><code>read_wiki_page</code></a>.</p>
-<h2 id="usage-examples">Usage Examples</h2>
-<h3 id="enumerate-all-person-pages">Enumerate all person pages</h3>
+<p>A list of page summaries, sorted by title. Each entry includes:</p>
+<ul>
+<li><strong>title</strong> — human-readable page title from frontmatter</li>
+<li><strong>type</strong> — the page type (one of the values above)</li>
+<li><strong>tags</strong> — array of lowercase-kebab topic tags</li>
+<li><strong>file_path</strong> — relative path within the WikiVault directory (e.g. <code>wiki/people/Alice-Smith.md</code>)</li>
+</ul>
+<p><strong>Bodies are not returned.</strong> Call <a href="../read-wiki-page/"><code>read_wiki_page</code></a> with the <code>file_path</code> to retrieve full content.</p>
+<p>The following special files are automatically excluded from all results: <code>SCHEMA.md</code>, <code>index.md</code>, <code>log.md</code>.</p>
+<h2 id="behavior-notes">Behavior notes</h2>
+<ul>
+<li><strong>No database required.</strong> The tool walks the WikiVault directory directly; Supabase does not need to be reachable.</li>
+<li><strong>Tag filtering</strong> matches against the <code>tags</code> array in each page's YAML frontmatter. Pass the tag exactly as it appears in frontmatter (lowercase-kebab format, e.g. <code>machine-learning</code>).</li>
+<li><strong>Filters combine.</strong> Specifying both <code>type</code> and <code>tag</code> returns pages matching both conditions.</li>
+<li><strong>Limit applies after filtering.</strong> Results are capped at <code>limit</code> after type and tag filters are applied.</li>
+</ul>
+<h2 id="usage-examples">Usage examples</h2>
+<h3 id="list-all-people">List all people</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;list_wiki_pages&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -1188,15 +1309,7 @@
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Returns all <code>wiki_person</code> pages (up to 50). Then call <code>read_wiki_page</code> on the relevant entry:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;read_wiki_page&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wiki/people/Alice-Smith.md&quot;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="find-all-stub-pages">Find all stub pages</h3>
+<h3 id="list-all-stub-pages">List all stub pages</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;list_wiki_pages&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -1204,8 +1317,7 @@
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Returns every page carrying the <code>stub</code> tag, across all types.</p>
-<h3 id="list-all-project-pages-tagged-with-a-topic">List all project pages tagged with a topic</h3>
+<h3 id="list-project-pages-tagged-with-a-specific-topic">List project pages tagged with a specific topic</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;list_wiki_pages&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -1215,84 +1327,47 @@
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Returns up to 20 project pages tagged <code>machine-learning</code>.</p>
-<h3 id="list-all-raw-articles-no-filters">List all raw articles (no filters)</h3>
+<h3 id="list-all-pages-no-filters-increased-limit">List all pages (no filters, increased limit)</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;list_wiki_pages&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;raw_article&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span>
+<span class="w">    </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="common-use-cases">Common Use Cases</h2>
+<h2 id="choosing-between-list-and-search">Choosing between list and search</h2>
 <table>
 <thead>
 <tr>
 <th>Goal</th>
-<th>Approach</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Find a specific person when you don't know the exact title</td>
-<td><code>list_wiki_pages</code> with <code>type: "wiki_person"</code>, scan titles, then <code>read_wiki_page</code></td>
-</tr>
-<tr>
-<td>Identify stubs that need fleshing out</td>
-<td><code>list_wiki_pages</code> with <code>tag: "stub"</code></td>
-</tr>
-<tr>
-<td>Audit all pages in a topic area</td>
-<td><code>list_wiki_pages</code> with the relevant tag</td>
-</tr>
-<tr>
-<td>Check whether a project page exists before creating one</td>
-<td><code>list_wiki_pages</code> with <code>type: "wiki_project"</code>, scan results</td>
-</tr>
-<tr>
-<td>Browse recently imported articles</td>
-<td><code>list_wiki_pages</code> with <code>type: "raw_article"</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="choosing-between-list_wiki_pages-and-search_wiki">Choosing Between <code>list_wiki_pages</code> and <code>search_wiki</code></h2>
-<table>
-<thead>
-<tr>
-<th>Situation</th>
 <th>Tool</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>You know the type or tag you want</td>
+<td>Enumerate all pages of a type</td>
 <td><code>list_wiki_pages</code></td>
 </tr>
 <tr>
-<td>You have a concept or keyword to match</td>
+<td>Find pages by meaning / topic</td>
 <td><a href="../search-wiki/"><code>search_wiki</code></a></td>
 </tr>
 <tr>
-<td>You want chronological/structural browsing</td>
-<td><code>list_wiki_pages</code></td>
+<td>Read a specific page's content</td>
+<td><a href="../read-wiki-page/"><code>read_wiki_page</code></a></td>
 </tr>
 <tr>
-<td>You need semantic relevance ranking</td>
-<td><a href="../search-wiki/"><code>search_wiki</code></a></td>
-</tr>
-<tr>
-<td>Database is unavailable</td>
-<td><code>list_wiki_pages</code> (filesystem only)</td>
+<td>Search thoughts and wiki together</td>
+<td><a href="../search-all/"><code>search_all</code></a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="notes">Notes</h2>
+<h2 id="related-tools">Related tools</h2>
 <ul>
-<li><strong>No database required.</strong> The tool reads directly from the WikiVault filesystem, making it reliable even when Supabase is unavailable.</li>
-<li><strong>No bodies returned.</strong> Results are intentionally lightweight. Always follow up with <a href="../read-wiki-page/"><code>read_wiki_page</code></a> to retrieve full content.</li>
-<li><strong>Tag format.</strong> Tags are stored and matched as lowercase-kebab strings (e.g., <code>machine-learning</code>, <code>stub</code>, <code>action-required</code>).</li>
-<li><strong>Combining filters.</strong> <code>type</code> and <code>tag</code> filters are additive — results must match both when both are supplied.</li>
+<li><a href="../search-wiki/"><code>search_wiki</code></a> — semantic search over wiki pages (requires database)</li>
+<li><a href="../read-wiki-page/"><code>read_wiki_page</code></a> — read full body and frontmatter of a single page</li>
+<li><a href="../write-wiki-page/"><code>write_wiki_page</code></a> — create or update a wiki page</li>
+<li><a href="../append-wiki-log/"><code>append_wiki_log</code></a> — add an audit entry after wiki changes</li>
 </ul>
 
 
