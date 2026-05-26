@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Read(//Users/robdixon/Documents/dev/AI/ai-local-test/src/**)",
-      "Bash(uv run *)"
+      "Bash(uv run *)",
+      "Bash(REPO_PATH= uv run python3 -m cortexdocs generate --no-eval --from-stage render)"
     ]
   },
   "enabledPlugins": {

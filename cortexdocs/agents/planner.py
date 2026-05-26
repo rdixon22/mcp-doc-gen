@@ -29,7 +29,7 @@ Always include these pages, in this order:
 - phase: always 1
 - key_points: 3–5 bullet points the writer MUST cover on this page
   - For tool pages: what the tool does, every parameter (name, type, required/optional, description), return value, at least one concrete usage example
-  - For the overview (index.md): CONCEPTUAL content only — server purpose, data model (what stores exist and how they differ), functional areas (named groupings of tools, not individual tool tables), typical multi-step usage workflows, architecture notes. Do NOT include per-tool tables or a full tool listing — that is the tools index page's job.
+  - For the overview (index.md): Start with a "Documentation Sections" table linking to tools/index.md, architecture.md, setup.md, and extending.md (use relative paths from index.md). Then: server purpose, data model (what stores exist and how they differ), functional areas (named groupings of tools, not individual tool tables), typical multi-step usage workflows, architecture notes. Do NOT include per-tool tables or a full tool listing — that is the tools index page's job.
   - For the tools index (tools/index.md): TECHNICAL REFERENCE — one table per functional group listing tool name + one-line description, a "Choosing the right search tool" decision table, a "Choosing the right write tool" decision table, the read-before-write protocol (as a numbered list, not a code block). No server overview prose — that belongs in index.md.
 
 ## Output format
@@ -61,7 +61,7 @@ Phase 2 pages (include because research is available):
 - audience: always "both"
 - phase: 1 for protocol-only pages, 2 for pages that require research
 - key_points: 3–5 bullet points the writer MUST cover on this page
-  - Phase 1 page rules: same as Phase 1 planner (see tool schemas, overview/index distinctions)
+  - Phase 1 page rules: same as Phase 1 planner (overview must start with a Documentation Sections table linking to all major sections)
   - architecture.md: runtime stack, data stores and schemas, how the MCP layer sits on top, request lifecycle, external services
   - setup.md: prerequisites, environment variables, database setup steps, how to start the server in both stdio and HTTP modes
   - extending.md: how to add a new MCP tool — registration pattern, relevant files, conventions, testing approach
