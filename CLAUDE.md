@@ -14,7 +14,7 @@ The primary target is the Cortex MCP server (`ai-local-test` repo), but the pipe
 |---|---|
 | Language | Python 3.11+ (tested on 3.13) |
 | Dependency management | `uv` |
-| LLM | Anthropic API — `claude-sonnet-4-6` (planner, writer), `claude-opus-4-7` (reviewer) |
+| LLM | Anthropic API — `claude-sonnet-4-6` (planner, writer), `claude-opus-4-7` (researcher, reviewer, eval judge) |
 | Agent framework | LangGraph (`StateGraph` + SQLite checkpointing) |
 | MCP client | `mcp` Python SDK |
 | Config | `pydantic-settings` (reads `.env`) |
@@ -32,17 +32,23 @@ cortexdocs/
 │   ├── mcp_client.py       # Connects to MCP server; calls tools/list, resources/list, prompts/list
 │   └── models.py           # MCPServerManifest, MCPToolDef, MCPToolParam (Pydantic)
 ├── ingest/
-│   └── walker.py           # STUB (Phase 2) — will walk repo, classify files
+│   ├── walker.py           # ingest_node: walks repo, classifies files under a token budget
+│   └── models.py           # SourceFile / IngestedRepo (Pydantic)
 ├── agents/
 │   ├── state.py            # PipelineState TypedDict + DocPageSpec / DocPlan / DocPage models
 │   ├── graph.py            # StateGraph wiring — routes planner → writer → reviewer → render
 │   ├── planner.py          # Sonnet: manifest → DocPlan (ordered page list)
 │   ├── writer.py           # Sonnet: DocPageSpec → full markdown page (+ revision handling)
 │   ├── reviewer.py         # Opus: approves page or returns revision notes (max 2 rounds)
-│   └── researcher.py       # STUB (Phase 2) — will produce ResearchOutput from repo
-└── render/
-    ├── human_site.py       # render_node: writes MkDocs site_src/, runs mkdocs build
-    └── machine_artifacts.py # write_api_json / write_llms_txt / write_llms_full_txt
+│   └── researcher.py       # Opus: IngestedRepo + manifest → ResearchOutput
+├── render/
+│   ├── human_site.py       # render_node: writes MkDocs site_src/, runs mkdocs build
+│   └── machine_artifacts.py # write_api_json / write_llms_txt / write_llms_full_txt
+└── eval/
+    ├── questions.py        # 15 EvalQuestion fixtures across 3 tiers
+    ├── harness.py          # run_eval: answers each question from contexts A / B / C
+    ├── judge.py            # Opus: blind 1–5 scoring of the three answers
+    └── report.py           # generate_report → output/eval_report.md
 
 output/                     # Generated artifacts (gitignored)
 ├── manifest.json           # Raw tools/list response
@@ -53,6 +59,9 @@ output/                     # Generated artifacts (gitignored)
 ├── api.json                # Machine-readable tool reference
 ├── llms.txt                # llmstxt.org TOC
 ├── llms-full.txt           # All pages concatenated, frontmatter stripped
+├── research.json           # ResearchOutput from the Researcher (Phase 2 runs only)
+├── eval_results.json       # Raw answers + judge scores from eval-docs
+├── eval_report.md          # Rendered eval report
 └── checkpoints.db          # LangGraph SQLite checkpoint store
 
 logs/                       # One JSON file per agent call (gitignored)
@@ -64,10 +73,11 @@ plans/                      # BRIEF.md, ARCHITECTURE.md, IMPLEMENTATION.md
 ```
 [discover]  mcp_client.py — no LLM, pure SDK call → manifest.json
     │
-    ├─ if REPO_PATH set ──► [ingest] walker.py (STUB) → [researcher] (STUB)
+    ├─ if REPO_PATH set ──► [ingest] walker.py → [researcher] Opus → research.json
     │
     ▼
-[planner]   Sonnet — manifest → DocPlan (14 pages for Cortex)
+[planner]   Sonnet — manifest (+ research) → DocPlan
+            18 pages for Cortex (Phase 1) / 21 pages (Phase 2)
     ▼
 [writer]    Sonnet — one call per page; revision calls if reviewer returns notes
     ▼
@@ -75,6 +85,9 @@ plans/                      # BRIEF.md, ARCHITECTURE.md, IMPLEMENTATION.md
     ▼
 [render]    pure Python — machine artifacts + mkdocs build
 ```
+
+Eval is a separate command (`eval-docs`), not a graph node. It reads the finished
+`output/` artifacts and scores them; `generate` never runs it.
 
 ## Implementation status
 
@@ -86,17 +99,17 @@ plans/                      # BRIEF.md, ARCHITECTURE.md, IMPLEMENTATION.md
 | Phase 1: Deploy (mkdocs gh-deploy) | Complete |
 | Phase 2: Ingest (walker.py) | Complete |
 | Phase 2: Researcher agent | Complete |
-| Eval harness | **Stub** (Day 4) |
+| Eval harness | Complete |
 
 ## Key design decisions
 
 **Protocol-first.** `tools/list` is the authoritative source for tool definitions. No static code analysis or regex parsing of Zod chains. The manifest is what the server actually exposes at runtime.
 
-**Prompt caching.** The manifest JSON is wrapped with `cache_control: {"type": "ephemeral"}` in every Writer and Reviewer call. For 14 pages × up to 3 calls each, this drives cache hit rate to ~95% after the first page.
+**Prompt caching.** The manifest JSON is wrapped with `cache_control: {"type": "ephemeral"}` in every Writer and Reviewer call. For 21 pages × up to 3 calls each, this drives cache hit rate to ~95% after the first page.
 
 **Bounded review loop.** `reviewer_node` tracks `revision_counts[page_id]`. At 2 revisions it forces `review_status = "partial"` and advances. Prevents oscillation.
 
-**Phase separation.** Phase 1 works on any MCP server with no source access. Phase 2 (when implemented) adds repo context via the Researcher. The graph wires Phase 2 nodes only when `settings.repo_path` is set.
+**Phase separation.** Phase 1 works on any MCP server with no source access. Phase 2 adds repo context via the Researcher. The graph wires Phase 2 nodes only when `settings.repo_path` is set.
 
 **`--from-stage` for iteration.** The CLI's `--from-stage write` reloads `manifest.json` from disk and skips re-discovery. `--from-stage render` skips everything and just re-renders. Critical for iterating on prompts without burning API credits.
 
@@ -119,6 +132,9 @@ REPO_PATH= uv run python3 -m cortexdocs generate --no-eval --from-stage write
 
 # Re-render only (use existing pages)
 REPO_PATH= uv run python3 -m cortexdocs generate --no-eval --from-stage render
+
+# Score the generated docs (15 questions × 3 contexts × Opus judge) — or: make eval
+uv run python3 -m cortexdocs eval-docs
 
 # Serve locally
 uv run python3 -m cortexdocs serve
@@ -151,9 +167,10 @@ REPO_PATH=/path/to/cortex-repo
 - `mkdocs gh-deploy` requires GitHub Pages to be enabled in repo settings (Settings → Pages → Source: `gh-pages` branch) after the first push.
 - The generated `output/mkdocs.yml` uses absolute paths — it is not portable across machines and should not be committed.
 
-## What is NOT implemented yet
+## Known gaps
 
-- `cortexdocs/ingest/walker.py` — `ingest_node` raises `NotImplementedError("ingest_node — Day 3")`
-- `cortexdocs/agents/researcher.py` — `researcher_node` raises `NotImplementedError("researcher_node — Day 3")`
-- `cortexdocs/eval/` — eval harness skeleton only; `eval-docs` command prints a stub message
-- `cortexdocs/ingest/models.py` — `SourceFile` / `IngestedRepo` models not yet written
+- `generate --no-eval` is effectively a no-op. It sets `settings.run_eval = False`, but nothing
+  outside the config summary reads that field — `generate` never invokes the eval harness either
+  way. Run `eval-docs` separately. Either wire `run_eval` into `_run_pipeline` or drop the flag.
+- `cortexdocs/eval/questions.py` hardcodes 15 Cortex-specific questions. The rest of the pipeline
+  is server-agnostic; the eval harness is not.
