@@ -1,4 +1,4 @@
-# CortexDocs
+# MCP Doc Gen
 
 An AI-powered documentation generator for MCP (Model Context Protocol) servers. It connects to a live MCP server, discovers its tool catalog, and runs a multi-agent pipeline to produce documentation for two audiences simultaneously: human developers reading rendered web pages, and AI agents consuming machine-optimized variants of the same content.
 
@@ -18,7 +18,7 @@ Running `cortexdocs generate` against the Cortex MCP server outputs:
 | `research.json` | `output/research.json` | Structured findings from the Researcher (Phase 2 runs only) |
 | `eval_report.md` | `output/eval_report.md` | Blind 3-way scoring of the generated docs (see [Evaluation](#evaluation)) |
 
-For the Cortex server (16 tools), a Phase 1 run produces 18 pages — an overview, a tools index, and one reference page per tool. A Phase 2 run adds architecture, setup, and extension guides, for 21 pages.
+For the LocalCortex server (16 tools), a Phase 1 run produces 18 pages — an overview, a tools index, and one reference page per tool. A Phase 2 run adds architecture, setup, and extension guides, for 21 pages.
 
 ## How it works
 
