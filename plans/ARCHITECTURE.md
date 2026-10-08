@@ -361,7 +361,7 @@ Output is `MCPServerManifest`, serialized to `output/manifest.json`. This is alw
 
 ### Researcher (Phase 2 only)
 
-- **Model:** `claude-opus-4-7`
+- **Model:** `claude-opus-5-5`
 - **Input:** `MCPServerManifest` (Phase 1 output, cached) + `IngestedRepo` serialized to JSON.
 - **Output:** `ResearchOutput` — architecture summary, module summaries, per-tool implementation notes keyed to manifest tool names, setup steps, extension points.
 - **Token strategy:** Files below 2000 tokens are sent inline. Larger files are summarized first with a separate Sonnet call, then the summary is sent. Total budget: 200k tokens.
@@ -370,14 +370,14 @@ Output is `MCPServerManifest`, serialized to `output/manifest.json`. This is alw
 
 ### Planner
 
-- **Model:** `claude-sonnet-4-6`
+- **Model:** `claude-sonnet-5-5`
 - **Input:** `MCPServerManifest` (always) + `ResearchOutput` (if Phase 2 ran, else `None`).
 - **Output:** `DocPlan` — ordered list of `DocPageSpec`. Pages are tagged with `phase: 1` (derivable from manifest alone) or `phase: 2` (requires repo research). If no repo was provided, `phase: 2` pages are omitted.
 - **One shot.**
 
 ### Writer
 
-- **Model:** `claude-sonnet-4-6`
+- **Model:** `claude-sonnet-5-5`
 - **Input per call:** `MCPServerManifest` (cached) + `ResearchOutput | None` (cached if present) + `DocPageSpec` + optional `reviewer_notes`.
 - **Output:** Full markdown page with YAML frontmatter block.
 - **Frontmatter schema:**
@@ -391,14 +391,14 @@ Output is `MCPServerManifest`, serialized to `output/manifest.json`. This is alw
   doc_phase: 1 | 2
   reviewed: approved | partial
   generated_at: ISO timestamp
-  model: claude-sonnet-4-6
+  model: claude-sonnet-5-5
   ---
   ```
 - Called once per page plus up to 2 revision calls if the Reviewer returns notes.
 
 ### Reviewer
 
-- **Model:** `claude-opus-4-7`
+- **Model:** `claude-opus-5-5`
 - **Input per call:** The generated `DocPage.content` + the relevant tools from `MCPServerManifest` (ground truth for tool names, descriptions, schema) + the relevant `ToolImplementationNote` entries from `ResearchOutput` if available.
 - **Output:** `{status: "approved" | "revise", notes: str | None}`.
 - **Checklist in system prompt:**
@@ -551,7 +551,7 @@ Every agent call writes a JSON log entry to `logs/<ISO_timestamp>_<agent_name>.j
 ```json
 {
   "agent": "writer",
-  "model": "claude-sonnet-4-6",
+  "model": "claude-sonnet-5-5",
   "timestamp": "2026-05-21T10:00:00Z",
   "input_tokens": 12450,
   "output_tokens": 980,
@@ -586,10 +586,10 @@ class Settings(BaseSettings):
     repo_path: str | None = None        # if set, repo enrichment runs
 
     # Models
-    researcher_model: str = "claude-opus-4-7"
-    writer_model: str = "claude-sonnet-4-6"
-    reviewer_model: str = "claude-opus-4-7"
-    judge_model: str = "claude-opus-4-7"
+    researcher_model: str = "claude-opus-5-5"
+    writer_model: str = "claude-sonnet-5-5"
+    reviewer_model: str = "claude-opus-5-5"
+    judge_model: str = "claude-opus-5-5"
 
     # Pipeline limits
     max_revision_rounds: int = 2

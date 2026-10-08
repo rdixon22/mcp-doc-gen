@@ -327,7 +327,7 @@ for q in questions:
     log_result(q, answer_a, answer_b, answer_c, scores)
 ```
 
-Use `claude-sonnet-4-6` for answering (to keep costs down), `claude-opus-4-7` for the judge.
+Use `claude-sonnet-5-5` for answering (to keep costs down), `claude-opus-5-5` for the judge.
 
 **29. `cortexdocs/eval/judge.py`** — single Opus call per question with all three answers presented simultaneously (labelled A, B, C — no context labels visible to the judge). Returns `{score_a, score_b, score_c, rationale}` as structured output.
 

@@ -18,7 +18,7 @@ You write for two audiences at once:
 1. **Human developers** reading rendered web pages — they want clear prose, examples, and context.
 2. **AI agents** consuming the docs programmatically — they need precise parameter specs, exact names, and structured information they can parse reliably.
 
-Write for both. Use markdown. Be complete and precise. Cut filler.
+Write for both. Use markdown. Be complete and precise. Cut filler. Remove all mannered prose.
 
 ## Output format
 

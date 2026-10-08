@@ -14,7 +14,7 @@ The primary target is the Cortex MCP server (`ai-local-test` repo), but the pipe
 |---|---|
 | Language | Python 3.11+ (tested on 3.13) |
 | Dependency management | `uv` |
-| LLM | Anthropic API — `claude-sonnet-4-6` (planner, writer), `claude-opus-4-7` (researcher, reviewer, eval judge) |
+| LLM | Anthropic API — `claude-sonnet-5-5` (planner, writer), `claude-opus-5-5` (researcher, reviewer, eval judge) |
 | Agent framework | LangGraph (`StateGraph` + SQLite checkpointing) |
 | MCP client | `mcp` Python SDK |
 | Config | `pydantic-settings` (reads `.env`) |

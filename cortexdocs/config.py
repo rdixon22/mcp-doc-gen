@@ -19,10 +19,10 @@ class Settings(BaseSettings):
     repo_path: str | None = None
 
     # Models
-    researcher_model: str = "claude-opus-4-7"
-    writer_model: str = "claude-sonnet-4-6"
-    reviewer_model: str = "claude-opus-4-7"
-    judge_model: str = "claude-opus-4-7"
+    researcher_model: str = "claude-opus-5-5"
+    writer_model: str = "claude-sonnet-5-5"
+    reviewer_model: str = "claude-opus-5-5"
+    judge_model: str = "claude-opus-5-5"
 
     # Pipeline limits
     max_revision_rounds: int = 2

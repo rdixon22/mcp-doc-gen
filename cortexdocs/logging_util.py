@@ -17,7 +17,7 @@ def agent_log(
 
     Usage::
 
-        with agent_log("planner", "claude-sonnet-4-6", log_dir, "16 tools") as log:
+        with agent_log("planner", "claude-sonnet-5-5", log_dir, "16 tools") as log:
             response = client.messages.create(...)
             log["input_tokens"] = response.usage.input_tokens
             log["output_tokens"] = response.usage.output_tokens
